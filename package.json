@@ -1,16 +1,16 @@
 {
-  "name": "dfa-dsvite",
-  "version": "0.1.1",
+  "name": "@dashflowx/core",
+  "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "dist/simple-ui-umd.cjs",
-  "module": "dist/simple-ui.js",
+  "main": "dist/index.umd.cjs",
+  "module": "dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/simple-ui.js",
-      "require": "./dist/simple-ui-umd.cjs"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
     }
   },
   "publishConfig": {
