@@ -113,7 +113,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.NEW_VERSION }}
-          body: ${{ steps.get-changelog.outputs.changelog }}
-          prerelease: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
