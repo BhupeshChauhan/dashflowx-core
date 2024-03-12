@@ -37,6 +37,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
+          always-auth: true
           node-version: 20
 
       # Install dependencies (required by Run tests step)
