@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from '.';
+import { TextArea } from '.';
 
-const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
-  component: Input,
+const meta: Meta<typeof TextArea> = {
+  title: 'Components/TextArea',
+  component: TextArea,
   tags: ['autodocs'],
 };
 
@@ -12,58 +12,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
   args: {
-    type: 'text',
     placeholder: 'Insert text here',
-    lable: 'Input',
+    lable: 'Text Area',
   },
 };
 
-export const Password: Story = {
+export const PrefixElementTextArea: Story = {
   args: {
-    type: 'password',
-    placeholder: 'Password',
-  },
-};
-
-export const Number: Story = {
-  args: {
-    type: 'number',
-    placeholder: 'Number',
-  },
-};
-
-export const Date: Story = {
-  args: {
-    type: 'date',
-    placeholder: 'Date',
-  },
-};
-
-export const Time: Story = {
-  args: {
-    type: 'time',
-    placeholder: 'Date',
-  },
-};
-
-export const DateTime: Story = {
-  args: {
-    type: 'datetime-local',
-    placeholder: 'Date',
-  },
-};
-
-export const Fullwidth: Story = {
-  args: {
-    type: 'text',
-    placeholder: 'Insert text here',
-    fullwidth: true,
-  },
-};
-
-export const PrefixElementInput: Story = {
-  args: {
-    type: 'text',
     placeholder: 'Insert text here',
     prefixElement: (
       <svg
@@ -78,9 +33,8 @@ export const PrefixElementInput: Story = {
   },
 };
 
-export const SufixElementInput: Story = {
+export const SufixElementTextArea: Story = {
   args: {
-    type: 'text',
     placeholder: 'Insert text here',
     sufixElement: (
       <svg
@@ -97,7 +51,6 @@ export const SufixElementInput: Story = {
 
 export const ErrorText: Story = {
   args: {
-    type: 'text',
     placeholder: 'Insert text here',
     errorMsg: 'Oh, snapp! Some error message.',
   },
@@ -105,7 +58,6 @@ export const ErrorText: Story = {
 
 export const SucessText: Story = {
   args: {
-    type: 'text',
     placeholder: 'Insert text here',
     sucessMsg: 'Well done! Some success message.',
   },
