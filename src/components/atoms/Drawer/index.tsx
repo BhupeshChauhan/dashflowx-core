@@ -20,7 +20,7 @@ interface iDrawer {
 
 export type DrawerProps = ComponentPropsWithRef<'div'> & iDrawer;
 
-const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
+export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   (
     {
       header,
@@ -95,5 +95,3 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     );
   }
 );
-
-export default Drawer;

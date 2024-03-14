@@ -1,5 +1,5 @@
 import { Button } from '@/components';
-import Drawer from '@/components/atoms/Drawer';
+import { Drawer } from '@/components/atoms/Drawer';
 import { useState } from 'react';
 
 interface iDfaxDrawer {
