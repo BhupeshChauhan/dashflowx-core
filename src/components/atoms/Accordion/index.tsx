@@ -5,11 +5,22 @@ interface iAccordionProps {
   title: string;
   description: JSX.Element;
   accordionClassName?: string;
+  titleClassName?: string;
 }
 
 export type AccordionProps = ComponentPropsWithRef<'div'> & iAccordionProps;
-const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
-  ({ title, description, accordionClassName, children, ...props }, ref) => {
+export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
+  (
+    {
+      title,
+      description,
+      accordionClassName,
+      titleClassName,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         id="accordion-collapse"
@@ -19,7 +30,10 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         {...props}
       >
         <div className="flex justify-center flex-col mb-2">
-          <Typography as="h2" className="text-2xl font-bold">
+          <Typography
+            as="h2"
+            className={'text-2xl font-bold ' + titleClassName}
+          >
             {title}
           </Typography>
           {description}
@@ -29,5 +43,3 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
     );
   }
 );
-
-export default Accordion;

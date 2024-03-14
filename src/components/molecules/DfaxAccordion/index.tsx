@@ -1,6 +1,4 @@
-import Accordion from '@/components/atoms/Accordion';
-import AccordionDetails from '@/components/atoms/AccordionDetails';
-import AccordionSummary from '@/components/atoms/AccordionSummary';
+import { Accordion, AccordionDetails, AccordionSummary } from '@/components';
 import { useState } from 'react';
 
 interface iDfaxAccordionItem {
@@ -21,17 +19,19 @@ interface iDfaxAccordionItem {
   descriptionClassName?: string;
 }
 
-interface iDfaxAccordion {
+export interface iDfaxAccordion {
   title: string;
   description: JSX.Element;
   accordionClassName?: string;
+  titleClassName?: string;
   items?: Array<iDfaxAccordionItem>;
 }
 
-const DfaxAccordion: React.FC<iDfaxAccordion> = ({
+export const DfaxAccordion: React.FC<iDfaxAccordion> = ({
   title,
   description,
   accordionClassName,
+  titleClassName,
   items,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -41,6 +41,7 @@ const DfaxAccordion: React.FC<iDfaxAccordion> = ({
       title={title}
       description={description}
       accordionClassName={accordionClassName}
+      titleClassName={titleClassName}
     >
       {items?.map((item) => {
         const {
@@ -55,7 +56,7 @@ const DfaxAccordion: React.FC<iDfaxAccordion> = ({
           descriptionClassName,
         } = item;
         return (
-          <>
+          <div key={id}>
             <AccordionSummary
               activeIndex={activeIndex}
               accordionNumber={id}
@@ -81,11 +82,9 @@ const DfaxAccordion: React.FC<iDfaxAccordion> = ({
             >
               {description}
             </AccordionDetails>
-          </>
+          </div>
         );
       })}
     </Accordion>
   );
 };
-
-export default DfaxAccordion;

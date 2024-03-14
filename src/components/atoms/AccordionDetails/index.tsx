@@ -9,7 +9,10 @@ interface iAccordionDetailsProps {
 export type AccordionDetailsProps = ComponentPropsWithRef<'div'> &
   iAccordionDetailsProps;
 
-const AccordionDetails = forwardRef<HTMLDivElement, AccordionDetailsProps>(
+export const AccordionDetails = forwardRef<
+  HTMLDivElement,
+  AccordionDetailsProps
+>(
   (
     { children, accordionNumber, activeIndex, descriptionClassName, ...props },
     ref
@@ -27,5 +30,3 @@ const AccordionDetails = forwardRef<HTMLDivElement, AccordionDetailsProps>(
     );
   }
 );
-
-export default AccordionDetails;
