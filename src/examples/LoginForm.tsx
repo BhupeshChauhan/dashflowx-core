@@ -1,38 +1,38 @@
-import { Box, Button, Input, Stack, Text } from "@/components";
+import { Box, Button, Input, Stack, Typography } from '@/components';
 
 export const LoginForm = () => {
   return (
     <Box className="px-8 py-12 border border-gray-300 rounded-xl">
       <Stack>
-        <Text
+        <Typography
           as="h2"
-          weight={"bold"}
-          align={"center"}
-          size={"3xl"}
+          weight={'bold'}
+          align={'center'}
+          size={'3xl'}
           className="mb-2"
         >
           Login
-        </Text>
+        </Typography>
 
-        <Text
+        <Typography
           as="span"
-          emphasis={"low"}
-          size={"sm"}
-          align={"center"}
+          emphasis={'low'}
+          size={'sm'}
+          align={'center'}
           className="mb-8"
         >
           Please enter your credentials to login
-        </Text>
+        </Typography>
 
-        <Text
+        <Typography
           as="label"
           htmlFor="username"
-          size={"sm"}
-          weight={"medium"}
+          size={'sm'}
+          weight={'medium'}
           className="mb-1.5"
         >
           Username
-        </Text>
+        </Typography>
         <Input
           type="text"
           id="username"
@@ -40,18 +40,18 @@ export const LoginForm = () => {
           className="mb-4"
         />
 
-        <Text
+        <Typography
           as="label"
           htmlFor="password"
-          size={"sm"}
-          weight={"medium"}
+          size={'sm'}
+          weight={'medium'}
           className="mb-1.5"
         >
           Password
-        </Text>
-        <Input id="password" type="password" placeholder={"Password"} />
+        </Typography>
+        <Input id="password" type="password" placeholder={'Password'} />
 
-        <Button type="submit" variant={"solid"} className="mt-10">
+        <Button type="submit" variant={'solid'} className="mt-10">
           Login
         </Button>
       </Stack>
