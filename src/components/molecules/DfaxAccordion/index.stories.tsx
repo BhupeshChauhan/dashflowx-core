@@ -1,6 +1,6 @@
 import { Typography } from '@/components';
 import type { Meta, StoryObj } from '@storybook/react';
-import DfaxAccordion from '.';
+import { DfaxAccordion } from '.';
 
 const meta: Meta<typeof DfaxAccordion> = {
   title: 'Components/DfaxAccordion',
@@ -142,5 +142,7 @@ export const Accordion: Story = {
       </Typography>
     ),
     items: itemsArray,
+    accordionClassName: '',
+    titleClassName: '',
   },
 };

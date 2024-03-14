@@ -20,7 +20,10 @@ interface iAccordionSummaryProps {
 
 export type AccordionSummaryProps = ComponentPropsWithRef<'h2'> &
   iAccordionSummaryProps;
-const AccordionSummary = forwardRef<HTMLHeadingElement, AccordionSummaryProps>(
+export const AccordionSummary = forwardRef<
+  HTMLHeadingElement,
+  AccordionSummaryProps
+>(
   (
     {
       children,
@@ -64,5 +67,3 @@ const AccordionSummary = forwardRef<HTMLHeadingElement, AccordionSummaryProps>(
     );
   }
 );
-
-export default AccordionSummary;
