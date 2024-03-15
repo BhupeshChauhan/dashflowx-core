@@ -39,59 +39,87 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   ) => {
     const fixedVertical =
       anchorOrigin.vertical === 'left'
-        ? 'left-2'
+        ? 'left-0'
         : anchorOrigin.vertical === 'right'
-          ? 'right-2'
-          : 'left-2';
+          ? 'right-0'
+          : 'left-0';
 
-    const fixedHorizontal =
-      anchorOrigin.horizontal === 'top'
-        ? 'top-2'
-        : anchorOrigin.horizontal === 'bottom'
-          ? 'bottom-2'
-          : 'bottom-2';
+    const transitionCss =
+      anchorOrigin.vertical === 'left'
+        ? isOpen
+          ? 'translate-x-0'
+          : '-translate-x-full'
+        : anchorOrigin.vertical === 'right'
+          ? isOpen
+            ? '-translate-x-0'
+            : 'translate-x-full'
+          : isOpen
+            ? 'translate-x-0'
+            : '-translate-x-full';
 
     return (
-      <div
-        ref={ref}
-        id="drawer-example"
-        className={cn(
-          'fixed z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800',
-          fixedVertical,
-          fixedHorizontal,
-          isOpen ? '' : 'hidden',
-          className
-        )}
-        aria-labelledby="drawer-label"
-        {...props}
-      >
-        <div className={cn('flex flex-col', containerClassName)}>
-          <div
-            className={cn(
-              'flex justify-center border-b border-slate-100',
-              headerClassName
-            )}
-          >
-            {header}
-            <Button
-              variant="ghost"
-              className="flex flex-1 justify-center items-end"
-              onClick={handleClose}
+      <>
+        <div
+          className={cn(
+            'fixed top-0 left-0 w-screen h-screen bg-slate-100/50',
+            isOpen ? '' : 'hidden'
+          )}
+          onClick={handleClose}
+        />
+        <div
+          ref={ref}
+          className={cn(
+            'fixed z-40 top-0 h-screen p-4 bg-white w-80 transition-all ease-in-out duration-500 transform peer-checked:translate-x-0',
+            fixedVertical,
+            transitionCss,
+            className
+          )}
+          aria-labelledby="drawer-label"
+          {...props}
+          onClick={handleClose}
+        >
+          <div className={cn('flex flex-col h-[98%]', containerClassName)}>
+            <div
+              className={cn(
+                'flex items-center border-b border-slate-100 pb-2 mb-2'
+              )}
             >
-              X
-            </Button>
-          </div>
-          {contentElement}
-          <div
-            className={cn(
-              'flex justify-center border-t border-slate-10',
-              footerClassName
-            )}
-          >
-            {footer}
+              <div className={cn('flex-1', headerClassName)}>{header}</div>
+              <Button
+                variant="ghost"
+                className="text-gray-500"
+                onClick={handleClose}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-3 h-3"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+                <span className="sr-only">Close menu</span>
+              </Button>
+            </div>
+            <div className="flex flex-1">{contentElement}</div>
+            <div
+              className={cn(
+                'flex items-center border-t border-slate-100 pt-2 mt-4',
+                footerClassName
+              )}
+            >
+              {footer}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 );
