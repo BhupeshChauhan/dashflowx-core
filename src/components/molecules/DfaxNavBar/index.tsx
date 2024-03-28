@@ -8,23 +8,30 @@ interface menuArraysProps {
   type: any;
   path: string;
   title: string;
+  key: string;
 }
 interface iDfaxNavBarProps {
   logo: JSX.Element;
   menuArrays: Array<menuArraysProps>;
   actions?: JSX.Element;
+  menuIcon?: JSX.Element;
+  navClassName: string;
+  navItemClassName: string;
 }
 
 export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
   menuArrays,
   actions,
   logo,
+  menuIcon,
+  navClassName,
+  navItemClassName,
 }) => {
   return (
-    <Navbar logo={logo}>
-      <NavMenu>
+    <Navbar logo={logo} menuIcon={menuIcon} className={navClassName}>
+      <NavMenu className={navItemClassName}>
         {menuArrays.map((menu: menuArraysProps) => (
-          <li className="flex items-center justify-center">
+          <li className="flex items-center justify-center" key={menu.key}>
             <Typography
               className={cn(
                 menu.active

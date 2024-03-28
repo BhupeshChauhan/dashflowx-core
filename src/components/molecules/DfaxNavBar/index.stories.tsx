@@ -24,18 +24,21 @@ export const Solid: Story = {
     ),
     menuArrays: [
       {
+        key: '1',
         title: 'Home',
         path: '/',
         active: true,
         type: 'a',
       },
       {
+        key: '2',
         title: 'About',
         path: '/',
         active: false,
         type: 'a',
       },
       {
+        key: '3',
         title: 'Services',
         path: '/',
         active: false,
