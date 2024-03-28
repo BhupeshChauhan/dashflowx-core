@@ -19,6 +19,7 @@ export { Typography } from './atoms/Typography';
 export { DfaxAccordion } from './molecules/DfaxAccordion';
 export { DfaxDrawer } from './molecules/DfaxDrawer';
 export { DfaxDropDown } from './molecules/DfaxDropDown';
+export { DfaxNavBar } from './molecules/DfaxNavBar';
 export { DfaxSelect } from './molecules/DfaxSelect';
 export { DfaxSnackbar } from './molecules/DfaxSnackbar';
 export { Stack } from './molecules/Stack';
