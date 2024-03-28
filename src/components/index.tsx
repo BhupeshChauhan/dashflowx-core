@@ -9,6 +9,8 @@ export { Drawer } from './atoms/Drawer';
 export { DropDown } from './atoms/DropDown';
 export { DropDownItems } from './atoms/DropDownItems';
 export { Input } from './atoms/Input';
+export { NavMenu } from './atoms/NavMenu';
+export { Navbar } from './atoms/Navbar';
 export { Select } from './atoms/Select';
 export { SelectItems } from './atoms/SelectItems';
 export { TextArea } from './atoms/TextArea';
