@@ -15,8 +15,8 @@ interface iDfaxNavBarProps {
   menuArrays: Array<menuArraysProps>;
   actions?: JSX.Element;
   menuIcon?: JSX.Element;
-  navClassName: string;
-  navItemClassName: string;
+  navClassName?: string;
+  navItemClassName?: string;
 }
 
 export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({

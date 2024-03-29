@@ -17,7 +17,10 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
     };
     return (
       <nav
-        className={cn('bg-white border-gray-200 dark:bg-gray-900', className)}
+        className={cn(
+          'bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-10 rounded-lg shadow-md',
+          className
+        )}
         ref={ref}
         {...props}
       >

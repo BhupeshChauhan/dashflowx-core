@@ -1,3 +1,4 @@
+import { Button } from '@/components';
 import type { Meta, StoryObj } from '@storybook/react';
 import { DfaxNavBar } from '.';
 import logo from '../../../assets/react.svg';
@@ -45,5 +46,21 @@ export const Solid: Story = {
         type: 'a',
       },
     ],
+    actions: (
+      <>
+        <Button
+          color="primary"
+          size="md"
+          variant="solid"
+          className="mr-2 rounded-full"
+        >
+          Sign In
+        </Button>
+
+        <Button size="md" variant="outline" className="rounded-full">
+          Sign Up
+        </Button>
+      </>
+    ),
   },
 };
