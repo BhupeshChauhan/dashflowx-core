@@ -8,7 +8,7 @@ export { Button } from './atoms/Button';
 export { Drawer } from './atoms/Drawer';
 export { DropDown } from './atoms/DropDown';
 export { DropDownItems } from './atoms/DropDownItems';
-export { HeroOne } from './atoms/Hero';
+export { HeroOne, HeroTwo } from './atoms/Hero';
 export { Input } from './atoms/Input';
 export { NavMenu } from './atoms/NavMenu';
 export { Navbar } from './atoms/Navbar';
