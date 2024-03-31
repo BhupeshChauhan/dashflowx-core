@@ -35,7 +35,7 @@ export const DfaxAccordion: React.FC<iDfaxAccordion> = ({
   items,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(items);
+
   return (
     <Accordion
       title={title}

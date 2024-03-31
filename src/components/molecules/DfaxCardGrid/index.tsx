@@ -41,7 +41,11 @@ export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
     ref
   ) => {
     return (
-      <div ref={ref} {...props}>
+      <div
+        className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8"
+        ref={ref}
+        {...props}
+      >
         <div className="flex justify-center flex-col mb-2">
           <Typography
             as="h2"
