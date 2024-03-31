@@ -21,6 +21,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
         {variant === 'one' && (
           <HeroOne
             heroImage={heroImage}
+            className={className}
             actions={actions}
             heading={heading}
             caption={caption}
@@ -29,13 +30,19 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
         {variant === 'two' && (
           <HeroTwo
             heroImage={heroImage}
+            className={className}
             actions={actions}
             heading={heading}
             caption={caption}
           />
         )}
         {variant === 'three' && (
-          <HeroThree actions={actions} heading={heading} caption={caption} />
+          <HeroThree
+            actions={actions}
+            heading={heading}
+            caption={caption}
+            className={className}
+          />
         )}
       </div>
     );
