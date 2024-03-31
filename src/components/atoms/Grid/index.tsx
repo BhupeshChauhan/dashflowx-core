@@ -1,33 +1,14 @@
 import { cn } from '@/utils';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
-interface iGridProps {
-  baseCol: string;
-  xsCol: string;
-  mdCol: string;
-  lgCol: string;
-  xlCol: string;
-  gap: string;
-}
-
-export type GridProps = ComponentPropsWithRef<'div'> & iGridProps;
+export type GridProps = ComponentPropsWithRef<'div'>;
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
-  (
-    { baseCol, xsCol, mdCol, lgCol, xlCol, children, gap, className, ...props },
-    ref
-  ) => {
+  ({ children, className, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn(
-          `grid grid-cols-${baseCol} gap-${gap}`,
-          xsCol ? `xs:grid-cols-${xsCol}` : '',
-          mdCol ? `md:grid-cols-${mdCol}` : '',
-          lgCol ? `lg:grid-cols-${lgCol}` : '',
-          xlCol ? `xl:grid-cols-${xlCol}` : '',
-          className
-        )}
+        className={cn('grid grid-cols-2 md:grid-cols-3 gap-4', className)}
         {...props}
       >
         {children}

@@ -156,8 +156,6 @@ type Story = StoryObj<typeof meta>;
 export const Accordion: Story = {
   args: {
     title: 'My Accordion Title',
-    baseCol: '3',
-    gap: '4',
     description: (
       <Typography as="p" className="mb-2 text-sm">
         My Accordion Content

@@ -8,16 +8,11 @@ interface iCardsArray {
 }
 
 interface iGridProps {
-  baseCol: string;
-  xsCol?: string;
-  mdCol?: string;
-  lgCol?: string;
-  xlCol?: string;
-  gap: string;
-  title: string;
-  description: JSX.Element;
+  title?: string;
+  description?: JSX.Element;
   cardsArray: Array<iCardsArray>;
   titleClassName?: string;
+  gridClassName?: string;
 }
 
 export type GridProps = ComponentPropsWithRef<'div'> & iGridProps;
@@ -25,17 +20,12 @@ export type GridProps = ComponentPropsWithRef<'div'> & iGridProps;
 export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
   (
     {
-      baseCol,
-      xsCol,
-      mdCol,
-      lgCol,
-      xlCol,
-      gap,
       cardsArray,
       className,
       title,
       description,
       titleClassName,
+      gridClassName,
       ...props
     },
     ref
@@ -46,23 +36,20 @@ export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
         ref={ref}
         {...props}
       >
-        <div className="flex justify-center flex-col mb-2">
-          <Typography
-            as="h2"
-            className={cn('text-2xl font-bold ', titleClassName)}
-          >
-            {title}
-          </Typography>
-          {description}
-        </div>
-        <Grid
-          baseCol={baseCol}
-          xsCol={xsCol || ''}
-          mdCol={mdCol || ''}
-          lgCol={lgCol || ''}
-          xlCol={xlCol || ''}
-          gap={gap}
-        >
+        {(title || description) && (
+          <div className="flex justify-center flex-col mb-2">
+            {title && (
+              <Typography
+                as="h2"
+                className={cn('text-2xl font-bold ', titleClassName)}
+              >
+                {title}
+              </Typography>
+            )}
+            {description && description}
+          </div>
+        )}
+        <Grid className={gridClassName}>
           {cardsArray.map((card) => (
             <div className="h-auto max-w-full rounded-lg" key={card.id}>
               <Card>{card.element}</Card>
