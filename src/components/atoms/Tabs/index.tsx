@@ -36,15 +36,15 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
           {...props}
         >
           <ul className="flex flex-wrap -mb-px">
-            {tabsArray.map((tab, index) => (
-              <li className="me-2">
+            {tabsArray.map((tab) => (
+              <li className="me-2" key={tab.id}>
                 <Button
                   variant="ghost"
                   color="none"
-                  onClick={() => handleClick(index + 1)}
+                  onClick={() => handleClick(tab.id)}
                   className={cn(
                     'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300',
-                    activeIndex === index + 1
+                    activeIndex === tab.id
                       ? 'text-primary-500'
                       : 'text-gray-500'
                   )}
