@@ -9,15 +9,15 @@ interface iCardsArray {
 
 interface iGridProps {
   baseCol: string;
-  xsCol: string;
-  mdCol: string;
-  lgCol: string;
-  xlCol: string;
+  xsCol?: string;
+  mdCol?: string;
+  lgCol?: string;
+  xlCol?: string;
   gap: string;
   title: string;
   description: JSX.Element;
   cardsArray: Array<iCardsArray>;
-  titleClassName: string;
+  titleClassName?: string;
 }
 
 export type GridProps = ComponentPropsWithRef<'div'> & iGridProps;
@@ -53,10 +53,10 @@ export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
         </div>
         <Grid
           baseCol={baseCol}
-          xsCol={xsCol}
-          mdCol={mdCol}
-          lgCol={lgCol}
-          xlCol={xlCol}
+          xsCol={xsCol || ''}
+          mdCol={mdCol || ''}
+          lgCol={lgCol || ''}
+          xlCol={xlCol || ''}
           gap={gap}
         >
           {cardsArray.map((card) => (
