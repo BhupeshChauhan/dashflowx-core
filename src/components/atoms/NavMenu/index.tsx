@@ -42,3 +42,20 @@ export const NavMenuTwo = forwardRef<HTMLUListElement, NavMenuProps>(
     );
   }
 );
+
+export const NavMenuThree = forwardRef<HTMLUListElement, NavMenuProps>(
+  ({ children, actions, className, ...props }, ref) => {
+    return (
+      <>
+        <ul
+          ref={ref}
+          className={cn('space-y-2 font-medium', className)}
+          {...props}
+        >
+          {children}
+        </ul>
+        <div className="m-2 md:hidden">{actions}</div>
+      </>
+    );
+  }
+);
