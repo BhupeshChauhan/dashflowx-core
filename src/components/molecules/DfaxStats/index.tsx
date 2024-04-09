@@ -11,8 +11,8 @@ interface iStatsArrayProps {
 interface iDfaxStatsProps {
   statsArray: Array<iStatsArrayProps>;
   varient: String;
-  statsClassName: String;
-  labelClassName: String;
+  statsClassName?: String;
+  labelClassName?: String;
 }
 
 export type DfaxStatsProps = ComponentPropsWithRef<'div'> & iDfaxStatsProps;

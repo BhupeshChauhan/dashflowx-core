@@ -4,9 +4,9 @@ import { NavMenuThree } from '../NavMenu';
 import { Typography } from '../Typography';
 
 interface menuArraysProps {
-  active: boolean;
+  active?: boolean;
   type: any;
-  path: string;
+  path?: string;
   title: string;
   key: string;
   menuIcon?: JSX.Element;
@@ -17,13 +17,22 @@ interface iSideBarProps {
   actions?: JSX.Element;
   navItemClassName?: string;
   menuArrays: Array<menuArraysProps>;
-  libraryType: string;
+  libraryType?: string;
   varient?: string;
   sideBarClassName?: string;
   navClassName?: string;
   navTitleClassName?: string;
 }
+interface iBasicSideBarProps {
+  elements?: JSX.Element;
+  navItemClassName?: string;
+  sideBarClassName?: string;
+  varient?: string;
+}
 export type SideBarProps = ComponentPropsWithRef<'div'> & iSideBarProps;
+
+export type BasicSideBarProps = ComponentPropsWithRef<'div'> &
+  iBasicSideBarProps;
 
 export const SideBar = forwardRef<HTMLDivElement, SideBarProps>(
   (
@@ -43,7 +52,7 @@ export const SideBar = forwardRef<HTMLDivElement, SideBarProps>(
       <aside
         id="default-sidebar"
         className={cn(
-          'fixed top-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0',
+          'fixed top-0 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
           varient === 'left' ? 'left-0' : '',
           varient === 'right' ? 'right-0' : ''
         )}
@@ -60,7 +69,10 @@ export const SideBar = forwardRef<HTMLDivElement, SideBarProps>(
           <NavMenuThree className={navItemClassName}>
             {menuArrays.map((menu: menuArraysProps) => (
               <li
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={cn(
+                  'flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group',
+                  menu.type === 'heading' ? '' : 'hover:bg-gray-100'
+                )}
                 key={menu.key}
               >
                 {menu.type === 'heading' ? (
@@ -120,6 +132,42 @@ export const SideBar = forwardRef<HTMLDivElement, SideBarProps>(
               </li>
             ))}
           </NavMenuThree>
+        </div>
+      </aside>
+    );
+  }
+);
+
+export const BasicSideBar = forwardRef<HTMLDivElement, BasicSideBarProps>(
+  (
+    {
+      elements,
+      navItemClassName,
+      varient = 'left',
+      sideBarClassName,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <aside
+        id="default-sidebar"
+        className={cn(
+          'fixed top-0 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
+          varient === 'left' ? 'left-0' : '',
+          varient === 'right' ? 'right-0' : ''
+        )}
+        aria-label="Sidebar"
+        ref={ref}
+        {...props}
+      >
+        <div
+          className={cn(
+            'h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800',
+            sideBarClassName
+          )}
+        >
+          {elements}
         </div>
       </aside>
     );
