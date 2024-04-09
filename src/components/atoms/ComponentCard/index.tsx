@@ -39,8 +39,8 @@ export const ComponentCard = forwardRef<HTMLDivElement, ComponentCardProps>(
             </svg>
           </span>
         </div>
-        <div className="flex h-52 items-center justify-center">
-          <div className="relative h-4/6 w-56 overflow-hidden">
+        <div className="flex h-64 items-center justify-center">
+          <div className="relative">
             <span>{image}</span>
           </div>
         </div>
