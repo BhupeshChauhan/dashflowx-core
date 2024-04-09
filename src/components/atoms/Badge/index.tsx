@@ -2,7 +2,7 @@ import { cn } from '@/utils';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iBadgeProps {
-  message?: string;
+  message?: JSX.Element;
 }
 
 export type BadgeProps = ComponentPropsWithRef<'span'> & iBadgeProps;

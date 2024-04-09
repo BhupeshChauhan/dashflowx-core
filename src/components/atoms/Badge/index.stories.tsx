@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
   args: {
-    message: 'Insert text here',
+    message: <>Insert text here</>,
     className: 'border border-primary-500',
   },
 };
