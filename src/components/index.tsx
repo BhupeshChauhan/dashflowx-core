@@ -30,4 +30,5 @@ export { DfaxHero } from './molecules/DfaxHero';
 export { DfaxNavBar } from './molecules/DfaxNavBar';
 export { DfaxSelect } from './molecules/DfaxSelect';
 export { DfaxSnackbar } from './molecules/DfaxSnackbar';
+export { DfaxStats } from './molecules/DfaxStats';
 export { Stack } from './molecules/Stack';
