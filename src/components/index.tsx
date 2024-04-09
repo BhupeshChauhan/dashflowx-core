@@ -6,6 +6,7 @@ export { Badge } from './atoms/Badge';
 export { Box } from './atoms/Box';
 export { Button } from './atoms/Button';
 export { Card } from './atoms/Card';
+export { ComponentCard } from './atoms/ComponentCard';
 export { Drawer } from './atoms/Drawer';
 export { DropDown } from './atoms/DropDown';
 export { DropDownItems } from './atoms/DropDownItems';
