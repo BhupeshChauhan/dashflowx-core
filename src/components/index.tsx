@@ -25,6 +25,7 @@ export { DfaxAccordion } from './molecules/DfaxAccordion';
 export { DfaxCardGrid } from './molecules/DfaxCardGrid';
 export { DfaxDrawer } from './molecules/DfaxDrawer';
 export { DfaxDropDown } from './molecules/DfaxDropDown';
+export { DfaxFooter } from './molecules/DfaxFooter';
 export { DfaxHero } from './molecules/DfaxHero';
 export { DfaxNavBar } from './molecules/DfaxNavBar';
 export { DfaxSelect } from './molecules/DfaxSelect';
