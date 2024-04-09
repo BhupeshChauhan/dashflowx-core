@@ -8,7 +8,7 @@ interface iTabsArrayProps {
 }
 
 interface iDfaxTabsProps {
-  description: string;
+  description: JSX.Element;
   tabsArray: Array<iTabsArrayProps>;
   heading: JSX.Element;
   caption: JSX.Element;
