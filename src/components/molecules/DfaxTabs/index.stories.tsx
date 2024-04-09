@@ -61,7 +61,6 @@ export const Default: Story = {
         content: <div>Market</div>,
       },
     ],
-    tabsclassNameName: '',
     defaultActive: 1,
   },
 };
