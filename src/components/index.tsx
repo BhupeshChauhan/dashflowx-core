@@ -17,6 +17,7 @@ export { NavMenu } from './atoms/NavMenu';
 export { Navbar } from './atoms/Navbar';
 export { Select } from './atoms/Select';
 export { SelectItems } from './atoms/SelectItems';
+export { SideBar } from './atoms/SideBar';
 export { Tabs } from './atoms/Tabs';
 export { TextArea } from './atoms/TextArea';
 export { Toggle } from './atoms/Toggle';
