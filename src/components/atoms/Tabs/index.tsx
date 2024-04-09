@@ -10,13 +10,14 @@ interface iTabsArrayProps {
 
 interface iTabsProps {
   defaultActive?: number;
+  buttonClassName?: string;
   tabsArray: Array<iTabsArrayProps>;
 }
 
 export type TabsProps = ComponentPropsWithRef<'div'> & iTabsProps;
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
-  ({ tabsArray, className, ...props }, ref) => {
+  ({ tabsArray, className, buttonClassName, ...props }, ref) => {
     const [activeIndex, setActiveIndex] = useState(
       props.defaultActive ? props.defaultActive : 0
     );
@@ -46,7 +47,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                     'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300',
                     activeIndex === tab.id
                       ? 'text-primary-500'
-                      : 'text-gray-500'
+                      : 'text-gray-500',
+                    buttonClassName
                   )}
                 >
                   {tab.title}

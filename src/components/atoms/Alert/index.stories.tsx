@@ -3,7 +3,7 @@ import { Alert } from '.';
 import { Button } from '../Button';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Aleart',
+  title: 'Element/Aleart',
   component: Alert,
   tags: ['autodocs'],
 };

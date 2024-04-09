@@ -1,4 +1,4 @@
-import { HeroOne, HeroThree, HeroTwo } from '@/components';
+import { HeroFour, HeroOne, HeroThree, HeroTwo } from '@/components';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
@@ -38,6 +38,14 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
         )}
         {variant === 'three' && (
           <HeroThree
+            actions={actions}
+            heading={heading}
+            caption={caption}
+            className={className}
+          />
+        )}
+        {variant === 'four' && (
+          <HeroFour
             actions={actions}
             heading={heading}
             caption={caption}

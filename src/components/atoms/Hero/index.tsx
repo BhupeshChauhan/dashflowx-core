@@ -443,3 +443,23 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
     );
   }
 );
+
+export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
+  ({ className, actions, heading, caption, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        {...props}
+      >
+        <div className="grid md:grid-cols-1 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+          <div className="relative ms-4 min-h-[45rem]">
+            {heading}
+            {caption}
+            {actions}
+          </div>
+        </div>
+      </div>
+    );
+  }
+);

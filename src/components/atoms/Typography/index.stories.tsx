@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Typography } from '.';
 
 const meta: Meta<typeof Typography> = {
-  title: 'Components/Typography',
+  title: 'Element/Typography',
   component: Typography,
   parameters: {
     layout: 'centered',

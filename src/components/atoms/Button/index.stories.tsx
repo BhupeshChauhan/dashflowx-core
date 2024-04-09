@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from ".";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '.';
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: 'Element/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -13,11 +13,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Solid: Story = {
   args: {
-    variant: "solid",
-    color: "primary",
-    children: "Button",
+    variant: 'solid',
+    color: 'primary',
+    children: 'Button',
     fullwidth: false,
-    size: "md",
+    size: 'md',
     startIcon: <></>,
     endIcon: <></>,
   },
@@ -25,39 +25,39 @@ export const Solid: Story = {
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
-    children: "Button",
+    variant: 'outline',
+    children: 'Button',
     fullwidth: false,
-    size: "md",
+    size: 'md',
   },
 };
 
 export const Ghost: Story = {
   args: {
-    variant: "ghost",
-    children: "Button",
+    variant: 'ghost',
+    children: 'Button',
     fullwidth: false,
-    size: "md",
+    size: 'md',
   },
 };
 
 export const Fullwidth: Story = {
   args: {
-    variant: "solid",
-    color: "primary",
-    children: "Button",
+    variant: 'solid',
+    color: 'primary',
+    children: 'Button',
     fullwidth: true,
-    size: "md",
+    size: 'md',
   },
 };
 
 export const StartIconButton: Story = {
   args: {
-    variant: "solid",
-    color: "primary",
-    children: "Button",
+    variant: 'solid',
+    color: 'primary',
+    children: 'Button',
     fullwidth: false,
-    size: "md",
+    size: 'md',
     startIcon: (
       <svg
         aria-hidden="true"
@@ -73,11 +73,11 @@ export const StartIconButton: Story = {
 
 export const EndIconButton: Story = {
   args: {
-    variant: "solid",
-    color: "primary",
-    children: "Button",
+    variant: 'solid',
+    color: 'primary',
+    children: 'Button',
     fullwidth: false,
-    size: "md",
+    size: 'md',
     endIcon: (
       <svg
         aria-hidden="true"
