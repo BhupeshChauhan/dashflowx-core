@@ -2,7 +2,7 @@ import { cn } from '@/utils';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
-  heroImage?: string;
+  heroImage?: JSX.Element | string;
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
@@ -26,11 +26,7 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
           </div>
 
           <div className="relative ms-4">
-            <img
-              className="w-full rounded-md"
-              src={heroImage}
-              alt="Image Description"
-            />
+            {heroImage}
             <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
             <div className="absolute bottom-0 start-0">
               <svg
@@ -167,11 +163,7 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
       >
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
           <div className="relative ms-4">
-            <img
-              className="w-full rounded-md"
-              src={heroImage}
-              alt="Image Description"
-            />
+            {heroImage}
             <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
             <div className="absolute bottom-0 start-0">
               <svg
