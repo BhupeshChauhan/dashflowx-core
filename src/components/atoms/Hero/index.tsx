@@ -2,7 +2,7 @@ import { cn } from '@/utils';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
-  heroImage?: JSX.Element | string;
+  heroImage?: JSX.Element;
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;

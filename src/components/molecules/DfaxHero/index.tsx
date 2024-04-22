@@ -2,7 +2,7 @@ import { HeroFour, HeroOne, HeroThree, HeroTwo } from '@/components';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
-  heroImage: string;
+  heroImage?: JSX.Element;
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
