@@ -1,4 +1,5 @@
 import { HeroFour, HeroOne, HeroThree, HeroTwo } from '@/components';
+import { HeroFive } from '@/components/atoms/Hero';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
@@ -6,14 +7,24 @@ interface iDHeroOneProps {
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
-  variant: string;
+  variant: 'one' | 'two' | 'three' | 'four' | 'five';
+  form?: JSX.Element;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
 
 export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
   (
-    { heroImage, className, actions, heading, caption, variant, ...props },
+    {
+      heroImage,
+      className,
+      actions,
+      heading,
+      caption,
+      variant,
+      form,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -50,6 +61,15 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
+          />
+        )}
+        {variant === 'five' && (
+          <HeroFive
+            actions={actions}
+            heading={heading}
+            caption={caption}
+            className={className}
+            form={form}
           />
         )}
       </div>

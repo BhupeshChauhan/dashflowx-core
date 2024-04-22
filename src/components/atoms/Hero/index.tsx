@@ -6,6 +6,7 @@ interface iDHeroOneProps {
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
+  form?: JSX.Element;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
@@ -449,6 +450,35 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
             {heading}
             {caption}
             {actions}
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
+
+export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
+  (
+    { heroImage, className, actions, heading, caption, form, ...props },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        {...props}
+      >
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+          <div>
+            {heading}
+            {caption}
+            {actions}
+          </div>
+
+          <div className="relative ms-4">
+            <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 rounded-md">
+              {form}
+            </div>
           </div>
         </div>
       </div>
