@@ -7,19 +7,36 @@ interface iDHeroOneProps {
   heading: JSX.Element;
   caption: JSX.Element;
   form?: JSX.Element;
+  gridClassName?: string;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
 
 export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ heroImage, className, actions, heading, caption, ...props }, ref) => {
+  (
+    {
+      heroImage,
+      className,
+      actions,
+      heading,
+      caption,
+      gridClassName,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
         className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+        <div
+          className={cn(
+            'grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 pt-10',
+            gridClassName
+          )}
+        >
           <div>
             {heading}
             {caption}
@@ -155,14 +172,30 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
 );
 
 export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ heroImage, className, actions, heading, caption, ...props }, ref) => {
+  (
+    {
+      heroImage,
+      className,
+      actions,
+      heading,
+      caption,
+      gridClassName,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
         className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+        <div
+          className={cn(
+            'grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 pt-10',
+            gridClassName
+          )}
+        >
           <div className="relative ms-4">
             {heroImage}
             <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
@@ -297,14 +330,19 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
 );
 
 export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ className, actions, heading, caption, ...props }, ref) => {
+  ({ className, actions, heading, caption, gridClassName, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
-        <div className="grid md:grid-cols-1 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+        <div
+          className={cn(
+            'grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 pt-10',
+            gridClassName
+          )}
+        >
           <div className="relative ms-4 min-h-[45rem]">
             <div>
               {heading}
@@ -438,14 +476,19 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
 );
 
 export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ className, actions, heading, caption, ...props }, ref) => {
+  ({ className, actions, heading, caption, gridClassName, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
-        <div className="grid md:grid-cols-1 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+        <div
+          className={cn(
+            'grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 pt-10',
+            gridClassName
+          )}
+        >
           <div className="relative ms-4 min-h-[45rem]">
             {heading}
             {caption}
@@ -459,7 +502,16 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
 
 export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
   (
-    { heroImage, className, actions, heading, caption, form, ...props },
+    {
+      heroImage,
+      className,
+      actions,
+      heading,
+      caption,
+      form,
+      gridClassName,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -468,7 +520,12 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
         className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center pt-10">
+        <div
+          className={cn(
+            'grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 pt-10',
+            gridClassName
+          )}
+        >
           <div>
             {heading}
             {caption}
