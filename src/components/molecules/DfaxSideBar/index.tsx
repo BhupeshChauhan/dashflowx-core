@@ -114,7 +114,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                                 : 'hidden'
                             )}
                             as={menu.type}
-                            to={menu.path}
+                            href={menu.path}
                           >
                             <div>{menu.title}</div>
                           </Typography>
