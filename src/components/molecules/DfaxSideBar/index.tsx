@@ -148,7 +148,10 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
               {expandIcon && (
                 <button
                   onClick={HandleExpandCol}
-                  className="flex items-center justify-center ml-2 w-full py-2 px-3 text-gray-900 rounded "
+                  className={cn(
+                    'flex items-center justify-center ml-2 w-full py-2 px-3 text-gray-900 rounded ',
+                    expandCol ? 'rotate-180 duration-75' : 'duration-75'
+                  )}
                 >
                   {expandIcon}
                 </button>
