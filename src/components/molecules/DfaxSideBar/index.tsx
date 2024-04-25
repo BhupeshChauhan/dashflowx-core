@@ -62,7 +62,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
         <aside
           id="default-sidebar"
           className={cn(
-            'fixed top-0 h-[calc(100vh-120px)] transition-transform -translate-x-full sm:translate-x-0',
+            'h-[calc(100vh-120px)] transition-transform -translate-x-full sm:translate-x-0',
             varient === 'left' ? 'left-0' : '',
             varient === 'right' ? 'right-0' : ''
           )}
@@ -166,7 +166,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
         <aside
           id="default-sidebar"
           className={cn(
-            'fixed top-0 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
+            'w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
             varient === 'left' ? 'left-0' : '',
             varient === 'right' ? 'right-0' : ''
           )}
@@ -189,7 +189,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
       <aside
         id="default-sidebar"
         className={cn(
-          'fixed top-0 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
+          'w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0',
           varient === 'left' ? 'left-0' : '',
           varient === 'right' ? 'right-0' : ''
         )}
