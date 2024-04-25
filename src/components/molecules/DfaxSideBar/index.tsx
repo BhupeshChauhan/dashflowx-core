@@ -24,6 +24,7 @@ interface iSideBarProps {
   navTitleClassName?: string;
   type?: string;
   elements?: JSX.Element;
+  expandIcon?: JSX.Element;
 }
 
 export type SideBarProps = ComponentPropsWithRef<'div'> & iSideBarProps;
@@ -40,16 +41,21 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
       sideBarClassName,
       type,
       elements,
+      expandIcon,
       ...props
     },
     ref
   ) => {
     const [displayText, setDisplayText] = useState('');
+    const [expandCol, setExpandCol] = useState(false);
     const handleMouseOver = (index: any) => {
       setDisplayText(index);
     };
     const handleMouseOut = () => {
       setDisplayText('');
+    };
+    const HandleExpandCol = () => {
+      setExpandCol((prev) => !prev);
     };
     if (type === 'icons') {
       return (
@@ -66,7 +72,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
         >
           <div
             className={cn(
-              'h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800',
+              'flex flex-col justify-between h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800',
               sideBarClassName
             )}
           >
@@ -84,39 +90,53 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                   >
                     {libraryType === 'react' ? (
                       <>
-                        <span className="flex">
-                          <span>{menu.menuIcon}</span>
-                        </span>
                         <Typography
-                          className={cn(
-                            'w-fit absolute left-14 bg-white p-1 rounded-lg border-2',
-                            displayText === menu.key
-                              ? 'block text-primary-500'
-                              : 'hidden'
-                          )}
                           as={menu.type}
                           to={menu.path}
+                          className="flex items-center justify-start"
                         >
-                          <div>{menu.title}</div>
+                          <span className="flex">
+                            <span>{menu.menuIcon}</span>
+                          </span>
+                          <div
+                            className={cn(
+                              expandCol
+                                ? menu.active
+                                  ? 'block ml-2 py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
+                                  : 'block ml-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                : displayText === menu.key
+                                  ? 'w-fit absolute left-14 block text-primary-500 bg-white p-1 rounded-lg border-2'
+                                  : 'w-fit absolute left-14 hidden bg-white p-1 rounded-lg border-2'
+                            )}
+                          >
+                            {menu.title}
+                          </div>
                         </Typography>
                       </>
                     ) : (
                       libraryType === 'next' && (
                         <>
-                          <span className="flex">
-                            <span>{menu.menuIcon}</span>
-                          </span>
                           <Typography
-                            className={cn(
-                              'absolute left-14 bg-white p-1 rounded-lg border-2',
-                              displayText === menu.key
-                                ? 'block text-primary-500'
-                                : 'hidden'
-                            )}
                             as={menu.type}
                             href={menu.path}
+                            className="flex items-center justify-start"
                           >
-                            <div>{menu.title}</div>
+                            <span className="flex">
+                              <span>{menu.menuIcon}</span>
+                            </span>
+                            <div
+                              className={cn(
+                                expandCol
+                                  ? menu.active
+                                    ? 'block ml-2 py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
+                                    : 'block ml-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                  : displayText === menu.key
+                                    ? 'w-fit absolute left-14 block text-primary-500 bg-white p-1 rounded-lg border-2'
+                                    : 'w-fit absolute left-14 hidden bg-white p-1 rounded-lg border-2'
+                              )}
+                            >
+                              {menu.title}
+                            </div>
                           </Typography>
                         </>
                       )
@@ -124,6 +144,16 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                   </li>
                 ))}
             </NavMenuThree>
+            <div className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+              {expandIcon && (
+                <button
+                  onClick={HandleExpandCol}
+                  className="flex items-center justify-center ml-2 w-full py-2 px-3 text-gray-900 rounded "
+                >
+                  {expandIcon}
+                </button>
+              )}
+            </div>
           </div>
         </aside>
       );
