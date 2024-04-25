@@ -62,7 +62,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
         <aside
           id="default-sidebar"
           className={cn(
-            'fixed top-0 h-[calc(100vh-80px)] transition-transform -translate-x-full sm:translate-x-0',
+            'fixed top-0 h-[calc(100vh-120px)] transition-transform -translate-x-full sm:translate-x-0',
             varient === 'left' ? 'left-0' : '',
             varient === 'right' ? 'right-0' : ''
           )}
