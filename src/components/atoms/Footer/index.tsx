@@ -11,12 +11,12 @@ interface iFooterProps {
   copyRight: JSX.Element;
 }
 
-export type BoxProps = ComponentPropsWithRef<'footer'> & iFooterProps;
+export type BoxProps = ComponentPropsWithRef<'div'> & iFooterProps;
 
 export const FooterOne = forwardRef<HTMLDivElement, BoxProps>(
   ({ copyRight, className, actions, ...props }, ref) => {
     return (
-      <footer
+      <div
         ref={ref}
         className={cn(
           'w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600',
@@ -30,7 +30,7 @@ export const FooterOne = forwardRef<HTMLDivElement, BoxProps>(
             <li key={element.id}>{element.label}</li>
           ))}
         </ul>
-      </footer>
+      </div>
     );
   }
 );

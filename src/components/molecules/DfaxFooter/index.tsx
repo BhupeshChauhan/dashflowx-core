@@ -16,7 +16,7 @@ export type DfaxFooterProps = ComponentPropsWithRef<'div'> & iDfaxFooterProps;
 export const DfaxFooter = forwardRef<HTMLDivElement, DfaxFooterProps>(
   ({ copyRight, className, actions, variant, ...props }, ref) => {
     return (
-      <div ref={ref} {...props}>
+      <footer ref={ref} {...props}>
         {variant === 'one' && (
           <FooterOne
             className={className}
@@ -24,7 +24,7 @@ export const DfaxFooter = forwardRef<HTMLDivElement, DfaxFooterProps>(
             actions={actions}
           />
         )}
-      </div>
+      </footer>
     );
   }
 );
