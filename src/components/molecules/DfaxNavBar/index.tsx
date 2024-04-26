@@ -1,6 +1,6 @@
 import { Typography } from '@/components';
 import { NavMenu, NavMenuTwo } from '@/components/atoms/NavMenu';
-import { Navbar, NavbarTwo } from '@/components/atoms/Navbar';
+import { Navbar, NavbarThree, NavbarTwo } from '@/components/atoms/Navbar';
 import { cn } from '@/utils';
 
 interface menuArraysProps {
@@ -12,7 +12,7 @@ interface menuArraysProps {
 }
 interface iDfaxNavBarProps {
   logo: JSX.Element;
-  menuArrays: Array<menuArraysProps>;
+  menuArrays?: Array<menuArraysProps>;
   actions?: JSX.Element;
   menuIcon?: JSX.Element;
   navClassName?: string;
@@ -40,14 +40,98 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
         actions={actions}
       >
         <NavMenuTwo className={navItemClassName} actions={actions}>
-          {menuArrays.map((menu: menuArraysProps) => (
+          {menuArrays &&
+            menuArrays.map((menu: menuArraysProps) => (
+              <li className="flex items-center justify-center" key={menu.key}>
+                {libraryType === 'react' && (
+                  <Typography
+                    className={cn(
+                      menu.active
+                        ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                        : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    )}
+                    as={menu.type}
+                    to={menu.path}
+                  >
+                    {menu.title}
+                  </Typography>
+                )}
+                {libraryType === 'next' && (
+                  <Typography
+                    className={cn(
+                      menu.active
+                        ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                        : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    )}
+                    as={menu.type}
+                    href={menu.path}
+                  >
+                    {menu.title}
+                  </Typography>
+                )}
+              </li>
+            ))}
+        </NavMenuTwo>
+      </NavbarTwo>
+    );
+  }
+  if (variant === 'three') {
+    return (
+      <NavbarThree
+        logo={logo}
+        menuIcon={menuIcon}
+        className={navClassName}
+        actions={actions}
+      >
+        {menuArrays && (
+          <NavMenuTwo className={navItemClassName} actions={actions}>
+            {menuArrays.map((menu: menuArraysProps) => (
+              <li className="flex items-center justify-center" key={menu.key}>
+                {libraryType === 'react' && (
+                  <Typography
+                    className={cn(
+                      menu.active
+                        ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                        : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    )}
+                    as={menu.type}
+                    to={menu.path}
+                  >
+                    {menu.title}
+                  </Typography>
+                )}
+                {libraryType === 'next' && (
+                  <Typography
+                    className={cn(
+                      menu.active
+                        ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                        : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    )}
+                    as={menu.type}
+                    href={menu.path}
+                  >
+                    {menu.title}
+                  </Typography>
+                )}
+              </li>
+            ))}
+          </NavMenuTwo>
+        )}
+      </NavbarThree>
+    );
+  }
+  return (
+    <Navbar logo={logo} menuIcon={menuIcon} className={navClassName}>
+      <NavMenu className={navItemClassName}>
+        {menuArrays &&
+          menuArrays.map((menu: menuArraysProps) => (
             <li className="flex items-center justify-center" key={menu.key}>
               {libraryType === 'react' && (
                 <Typography
                   className={cn(
                     menu.active
-                      ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                      : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                      ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                      : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   )}
                   as={menu.type}
                   to={menu.path}
@@ -59,8 +143,8 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
                 <Typography
                   className={cn(
                     menu.active
-                      ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                      : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                      ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                      : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                   )}
                   as={menu.type}
                   href={menu.path}
@@ -70,43 +154,6 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
               )}
             </li>
           ))}
-        </NavMenuTwo>
-      </NavbarTwo>
-    );
-  }
-  return (
-    <Navbar logo={logo} menuIcon={menuIcon} className={navClassName}>
-      <NavMenu className={navItemClassName}>
-        {menuArrays.map((menu: menuArraysProps) => (
-          <li className="flex items-center justify-center" key={menu.key}>
-            {libraryType === 'react' && (
-              <Typography
-                className={cn(
-                  menu.active
-                    ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-                )}
-                as={menu.type}
-                to={menu.path}
-              >
-                {menu.title}
-              </Typography>
-            )}
-            {libraryType === 'next' && (
-              <Typography
-                className={cn(
-                  menu.active
-                    ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-                )}
-                as={menu.type}
-                href={menu.path}
-              >
-                {menu.title}
-              </Typography>
-            )}
-          </li>
-        ))}
         <li>{actions}</li>
       </NavMenu>
     </Navbar>

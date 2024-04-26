@@ -50,7 +50,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <>
         <label
-          className={`ml-1 text-primary-500 dark:text-white ${lable ? '' : 'hidden'} ${lableClassName}`}
+          className={`ml-1 text-primary-light dark:text-white ${lable ? '' : 'hidden'} ${lableClassName}`}
           htmlFor="textAreaElement"
         >
           {' '}

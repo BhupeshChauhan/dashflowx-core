@@ -1,51 +1,51 @@
-import { cn } from "@/utils";
-import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps, forwardRef, useImperativeHandle, useRef } from "react";
+import { cn } from '@/utils';
+import { cva, VariantProps } from 'class-variance-authority';
+import { ComponentProps, forwardRef, useImperativeHandle, useRef } from 'react';
 
 const buttonStyles = cva(
   [
-    "rounded-md",
-    "font-semibold",
-    "focus:outline-none",
-    "disabled:cursor-not-allowed",
-    "text-wrap",
+    'rounded-md',
+    'font-semibold',
+    'focus:outline-none',
+    'disabled:cursor-not-allowed',
+    'text-wrap',
   ],
   {
     variants: {
       variant: {
-        none: "",
-        solid: "",
-        outline: "border-2",
-        ghost: "transition-colors duration-300",
+        none: '',
+        solid: '',
+        outline: 'border-2',
+        ghost: 'transition-colors duration-300',
       },
       size: {
-        xs: "px-4 py-2 text-sm",
-        sm: "px-4 py-2 text-sm",
-        md: "px-4 py-2 text-md",
-        base: "px-4 py-2 text-base",
-        lg: "px-6 py-3 text-lg",
-        xl: "px-6 py-3 text-xl",
-        xxl: "px-6 py-3 text-2xl",
+        xs: 'px-4 py-2 text-sm',
+        sm: 'px-4 py-2 text-sm',
+        md: 'px-4 py-2 text-md',
+        base: 'px-4 py-2 text-base',
+        lg: 'px-6 py-3 text-lg',
+        xl: 'px-6 py-3 text-xl',
+        xxl: 'px-6 py-3 text-2xl',
       },
       colorscheme: {
-        none: "text-primary-500 border-primary-500",
-        primary: "text-white",
+        none: 'text-primary-light border-primary-500',
+        primary: 'text-white',
       },
       color: {
-        none: "bg-transparent",
-        primary: "bg-primary-500 text-white",
-        secondary: "bg-secondary-500",
-        success: "bg-green-500",
-        error: "bg-red-500",
+        none: 'bg-transparent',
+        primary: 'bg-primary-light dark:bg-primary-dark text-white',
+        secondary: 'bg-secondary-light dark:bg-secondary-dark',
+        success: 'bg-green-500',
+        error: 'bg-red-500',
       },
     },
     defaultVariants: {
-      variant: "none",
-      size: "md",
-      colorscheme: "none",
-      color: "none",
+      variant: 'none',
+      size: 'md',
+      colorscheme: 'none',
+      color: 'none',
     },
-  },
+  }
 );
 
 interface iButtonProps {
@@ -55,7 +55,7 @@ interface iButtonProps {
   endIcon?: JSX.Element;
 }
 
-type ButtonProps = ComponentProps<"button"> &
+type ButtonProps = ComponentProps<'button'> &
   VariantProps<typeof buttonStyles> &
   iButtonProps;
 
@@ -74,7 +74,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => buttonRef.current!, []);
@@ -83,23 +83,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={buttonRef}
         className={cn(
           buttonStyles({ variant, size, colorscheme, color, className }),
-          fullwidth ? " w-full" : "",
-          "focus:animate-wiggle",
+          fullwidth ? ' w-full' : '',
+          'focus:animate-wiggle'
         )}
         {...props}
         onAnimationEnd={() => buttonRef.current && buttonRef.current.blur()}
         disabled={disabled}
       >
         <div className="flex items-center justify-center">
-          <div className={`w-4 h-4 mr-2 ${startIcon ? "" : "hidden"}`}>
+          <div className={`w-4 h-4 mr-2 ${startIcon ? '' : 'hidden'}`}>
             {startIcon}
           </div>
           {children}
-          <div className={`w-4 h-4 ml-2 ${endIcon ? "" : "hidden"}`}>
+          <div className={`w-4 h-4 ml-2 ${endIcon ? '' : 'hidden'}`}>
             {endIcon}
           </div>
         </div>
       </button>
     );
-  },
+  }
 );

@@ -62,9 +62,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
         <aside
           id="default-sidebar"
           className={cn(
-            'h-[calc(100vh-120px)] transition-transform -translate-x-full sm:translate-x-0',
-            varient === 'left' ? 'left-0' : '',
-            varient === 'right' ? 'right-0' : ''
+            'transition-transform -translate-x-full sm:translate-x-0'
           )}
           aria-label="Sidebar"
           ref={ref}
@@ -102,10 +100,10 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                             className={cn(
                               expandCol
                                 ? menu.active
-                                  ? 'block ml-2 py-2 px-3 w-60 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                                  : 'block ml-2 py-2 px-3 w-60 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                  ? 'block ml-2 py-2 px-3 w-60 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                                  : 'block ml-2 py-2 px-3 w-60 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                                 : displayText === menu.key
-                                  ? 'w-fit absolute left-14 block text-primary-500 bg-white p-1 rounded-lg border-2'
+                                  ? 'w-fit absolute left-14 block text-primary-light bg-white p-1 rounded-lg border-2'
                                   : 'w-fit absolute left-14 hidden bg-white p-1 rounded-lg border-2'
                             )}
                           >
@@ -128,10 +126,10 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                               className={cn(
                                 expandCol
                                   ? menu.active
-                                    ? 'block ml-2 py-2 px-3 w-64 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                                    : 'block ml-2 py-2 px-3 w-64 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                    ? 'block ml-2 py-2 px-3 w-64 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                                    : 'block ml-2 py-2 px-3 w-64 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                                   : displayText === menu.key
-                                    ? 'w-fit absolute left-14 block text-primary-500 bg-white p-1 rounded-lg border-2'
+                                    ? 'w-fit absolute left-14 block text-primary-light bg-white p-1 rounded-lg border-2'
                                     : 'w-fit absolute left-14 hidden bg-white p-1 rounded-lg border-2'
                               )}
                             >
@@ -145,7 +143,7 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                 ))}
             </NavMenuThree>
           </div>
-          <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-2 text-gray-900 rounded-lg group hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+          <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-2 text-gray-900 rounded-lg group hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
             {expandIcon && (
               <button
                 onClick={HandleExpandCol}
@@ -236,8 +234,8 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                       <Typography
                         className={cn(
                           menu.active
-                            ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                            : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                            ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                            : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
                           navClassName
                         )}
                         as={menu.type}
@@ -255,8 +253,8 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                         <Typography
                           className={cn(
                             menu.active
-                              ? 'block py-2 px-3 text-white bg-primary-500 rounded md:bg-transparent md:text-primary-500 md:p-0 dark:text-white md:dark:text-blue-500'
-                              : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-500 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                              ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                              : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
                             navClassName
                           )}
                           as={menu.type}

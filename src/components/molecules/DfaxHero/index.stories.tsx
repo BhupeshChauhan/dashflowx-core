@@ -289,7 +289,7 @@ export const VarientFive: Story = {
         </div>
         <button
           type="submit"
-          className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-light-700 sm:w-fit hover:bg-primary-light-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-light-600 dark:hover:bg-primary-light-700 dark:focus:ring-primary-800"
         >
           Send message
         </button>

@@ -43,7 +43,7 @@ export const DfaxStats = forwardRef<HTMLDivElement, DfaxStatsProps>(
             <div className="flex items-center justify-between" key={element.id}>
               <Typography
                 className={cn(
-                  'text-6xl text-primary-500 font-semibold',
+                  'text-6xl text-primary-light font-semibold',
                   statsClassName
                 )}
               >

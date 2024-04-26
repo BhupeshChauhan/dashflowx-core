@@ -13,7 +13,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={ref}
         className={cn(
-          'bg-slate-100 text-primary-500 w-32 text-xs font-medium me-2 px-2.5 py-0.5 rounded ',
+          'bg-slate-100 text-primary-light w-32 text-xs font-medium me-2 px-2.5 py-0.5 rounded ',
           className
         )}
         {...props}

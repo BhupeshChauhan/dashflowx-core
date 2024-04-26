@@ -1,14 +1,27 @@
-import colors from 'tailwindcss/colors';
-
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
+  darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      background: 'hsl(var(--color-background))',
       colors: {
-        primary: colors.blue,
-        secondary: colors.orange,
+        primary: {
+          light: '#2561a2',
+          dark: '#a3d1ff',
+        },
+        secondary: {
+          light: '#ffa37e',
+          dark: '#ffd3c2',
+        },
+        accent: {
+          light: '#b23840',
+          dark: '#fd5863',
+        },
+        bgcolor: {
+          light: '#f8f9f5',
+          dark: '#1b1d1c',
+        },
       },
       keyframes: {
         wiggle: {
