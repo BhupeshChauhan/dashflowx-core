@@ -142,19 +142,19 @@ export const DfaxSideBar = forwardRef<HTMLDivElement, SideBarProps>(
                   </li>
                 ))}
             </NavMenuThree>
-          </div>
-          <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-2 text-gray-900 rounded-lg group hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-            {expandIcon && (
-              <button
-                onClick={HandleExpandCol}
-                className={cn(
-                  'flex items-center justify-center ml-2 w-full py-2 px-3 text-gray-900 rounded ',
-                  expandCol ? 'rotate-180 duration-75' : 'duration-75'
-                )}
-              >
-                {expandIcon}
-              </button>
-            )}
+            <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-2 text-gray-900 rounded-lg group hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+              {expandIcon && (
+                <button
+                  onClick={HandleExpandCol}
+                  className={cn(
+                    'flex items-center justify-center ml-2 w-full py-2 px-3 text-gray-900 rounded ',
+                    expandCol ? 'rotate-180 duration-75' : 'duration-75'
+                  )}
+                >
+                  {expandIcon}
+                </button>
+              )}
+            </div>
           </div>
         </aside>
       );

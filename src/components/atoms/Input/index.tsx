@@ -10,6 +10,8 @@ const inputStyles = cva([
   'placeholder:text-gray-400',
   'px-2',
   'bg-transparent',
+  'border-gray-300',
+  'dark:bg-gray-700',
 ]);
 
 interface iInputProps {
@@ -47,17 +49,27 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <>
         <label
-          className={`ml-1 text-primary-light dark:text-white ${lable ? '' : 'hidden'} ${lableClassName}`}
+          className={cn(
+            'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
+            lable ? '' : 'hidden',
+            lableClassName
+          )}
           htmlFor="inputElement"
         >
-          {' '}
           {lable}
         </label>
         <div
-          className={`flex items-center ${lable ? 'mt-1' : ''} justify-start border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2 + 
-        ${sucessMsg ? 'border-green-500 focus-within:border-green-400 focus-within:border-2' : ''} 
-        ${errorMsg ? 'border-red-500 focus-within:border-red-400 focus-within:border-2' : ''} 
-        ${fullwidth ? ' w-full' : 'w-60'}`}
+          className={cn(
+            'flex mb-2 items-center justify-start border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2',
+            lable ? 'mt-1' : '',
+            sucessMsg
+              ? 'border-green-500 focus-within:border-green-400 focus-within:border-2'
+              : '',
+            errorMsg
+              ? 'border-red-500 focus-within:border-red-400 focus-within:border-2'
+              : '',
+            fullwidth ? ' w-full' : 'w-60'
+          )}
         >
           <div className={`w-4 h-4 ${prefixElement ? '' : 'hidden'}`}>
             {prefixElement}
@@ -72,16 +84,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
             disabled={disabled}
           />
-          <div className={`w-4 h-4 ${sufixElement ? '' : 'hidden'}`}>
+          <div className={cn('w-4 h-4', sufixElement ? '' : 'hidden')}>
             {sufixElement}
           </div>
         </div>
         <p
-          className={`mt-2 text-sm text-green-500 ${sucessMsg ? '' : 'hidden'}`}
+          className={cn(
+            'mt-2 text-sm text-green-500',
+            sucessMsg ? '' : 'hidden'
+          )}
         >
           {sucessMsg}
         </p>
-        <p className={`mt-2 text-sm text-red-500 ${errorMsg ? '' : 'hidden'}`}>
+        <p
+          className={cn('mt-2 text-sm text-red-500', errorMsg ? '' : 'hidden')}
+        >
           {errorMsg}
         </p>
       </>

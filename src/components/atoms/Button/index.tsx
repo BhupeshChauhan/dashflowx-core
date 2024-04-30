@@ -28,7 +28,7 @@ const buttonStyles = cva(
         xxl: 'px-6 py-3 text-2xl',
       },
       colorscheme: {
-        none: 'text-primary-light border-primary-500',
+        none: 'text-primary-light border-primary-light dark:text-primary-dark dark:border-primary-dark',
         primary: 'text-white',
       },
       color: {
