@@ -47,5 +47,8 @@ export const DropDown: Story = {
         ),
       },
     ],
+    buttonVariant: 'solid',
+    buttonColor: 'primary',
+    children: 'Open Dropdown',
   },
 };

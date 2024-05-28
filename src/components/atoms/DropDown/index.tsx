@@ -15,7 +15,7 @@ export const DropDown = forwardRef<HTMLDivElement, DropDownProps>(
         ref={ref}
         {...props}
         className={cn(
-          'z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700',
+          'z-10 absolute left-0 top-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700',
           isOpen ? '' : 'hidden'
         )}
       >

@@ -42,11 +42,13 @@ export const DfaxDropDown = forwardRef<HTMLDivElement, DfaxDropDownProps>(
         >
           {children}
         </Button>
-        <DropDown onClose={handleCloseDropDown} isOpen={OpenDropDown}>
-          {items.map((item) => (
-            <DropDownItems key={item.id}>{item.itemElement}</DropDownItems>
-          ))}
-        </DropDown>
+        <div className="relative">
+          <DropDown onClose={handleCloseDropDown} isOpen={OpenDropDown}>
+            {items.map((item) => (
+              <DropDownItems key={item.id}>{item.itemElement}</DropDownItems>
+            ))}
+          </DropDown>
+        </div>
       </div>
     );
   }
