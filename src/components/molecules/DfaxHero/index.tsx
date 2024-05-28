@@ -10,7 +10,7 @@ import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
   heroImage?: JSX.Element;
-  actions: JSX.Element;
+  actions?: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
   variant: 'one' | 'two' | 'three' | 'four' | 'five' | 'six';

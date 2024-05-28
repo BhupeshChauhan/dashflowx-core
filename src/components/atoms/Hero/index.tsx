@@ -3,7 +3,7 @@ import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
   heroImage?: JSX.Element;
-  actions: JSX.Element;
+  actions?: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
   subElement?: JSX.Element;
@@ -42,7 +42,7 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
           <div className={cn(textSecClassName)}>
             {heading}
             {caption}
-            {actions}
+            {actions && actions}
           </div>
 
           <div className="relative ms-4">
@@ -324,7 +324,7 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
           <div className={cn(textSecClassName)}>
             {heading}
             {caption}
-            {actions}
+            {actions && actions}
           </div>
         </div>
       </div>
@@ -507,7 +507,7 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
           <div className={cn(textSecClassName)}>
             {heading}
             {caption}
-            {actions}
+            {actions && actions}
           </div>
         </div>
       </div>
@@ -545,7 +545,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
           <div className={cn(textSecClassName)}>
             {heading}
             {caption}
-            {actions}
+            {actions && actions}
           </div>
 
           <div className="relative ms-4">{subElement}</div>
@@ -586,7 +586,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
           <div className={cn(textSecClassName)}>
             {heading}
             {caption}
-            {actions}
+            {actions && actions}
           </div>
         </div>
       </div>
