@@ -12,12 +12,20 @@ interface iDfaxDropDown {
   isOpen: boolean;
   onClose: () => void;
   items: Array<iDfaxDropDownItems>;
+  buttonVariant: 'none' | 'solid' | 'outline' | 'ghost' | null | undefined;
+  buttonColor:
+    | 'none'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | undefined;
 }
 
 export type DfaxDropDownProps = ComponentPropsWithRef<'div'> & iDfaxDropDown;
 
 export const DfaxDropDown = forwardRef<HTMLDivElement, DfaxDropDownProps>(
-  ({ items, ...props }, ref) => {
+  ({ items, children, buttonVariant, buttonColor, ...props }, ref) => {
     const [OpenDropDown, setOpenDropDown] = useState(false);
     const handleOpenDropDown = () => {
       setOpenDropDown(!OpenDropDown);
@@ -27,8 +35,12 @@ export const DfaxDropDown = forwardRef<HTMLDivElement, DfaxDropDownProps>(
     };
     return (
       <div ref={ref} {...props}>
-        <Button variant="solid" color="primary" onClick={handleOpenDropDown}>
-          Open DropDown
+        <Button
+          variant={buttonVariant}
+          color={buttonColor}
+          onClick={handleOpenDropDown}
+        >
+          {children}
         </Button>
         <DropDown onClose={handleCloseDropDown} isOpen={OpenDropDown}>
           {items.map((item) => (

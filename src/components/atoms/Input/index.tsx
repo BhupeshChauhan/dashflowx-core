@@ -47,7 +47,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <>
+      <div className={cn('mb-2', className)}>
         <label
           className={cn(
             'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
@@ -101,7 +101,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           {errorMsg}
         </p>
-      </>
+      </div>
     );
   }
 );
