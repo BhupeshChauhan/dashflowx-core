@@ -15,7 +15,7 @@ interface iDHeroOneProps {
   caption: JSX.Element;
   variant: 'one' | 'two' | 'three' | 'four' | 'five' | 'six';
   subElement?: JSX.Element;
-  textSecClassName: string;
+  textSecClassName?: string;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;

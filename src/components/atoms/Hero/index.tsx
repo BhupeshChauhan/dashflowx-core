@@ -352,7 +352,7 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
         {...props}
       >
         <div className={cn('pt-10', gridClassName)}>
-          <div className="relative ms-4 min-h-[45rem]">
+          <div className="relative ms-4">
             <div className={cn(textSecClassName)}>
               {heading}
               {caption}
@@ -504,7 +504,7 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
         {...props}
       >
         <div className={cn('pt-10', gridClassName)}>
-          <div className={cn(textSecClassName, 'relative ms-4 min-h-[45rem]')}>
+          <div className={cn(textSecClassName)}>
             {heading}
             {caption}
             {actions}
