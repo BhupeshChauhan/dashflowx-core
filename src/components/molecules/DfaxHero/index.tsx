@@ -15,6 +15,7 @@ interface iDHeroOneProps {
   caption: JSX.Element;
   variant: 'one' | 'two' | 'three' | 'four' | 'five' | 'six';
   subElement?: JSX.Element;
+  textSecClassName: string;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
@@ -29,6 +30,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
       caption,
       variant,
       subElement,
+      textSecClassName,
       ...props
     },
     ref
@@ -42,6 +44,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             actions={actions}
             heading={heading}
             caption={caption}
+            textSecClassName={textSecClassName}
           />
         )}
         {variant === 'two' && (
@@ -51,6 +54,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             actions={actions}
             heading={heading}
             caption={caption}
+            textSecClassName={textSecClassName}
           />
         )}
         {variant === 'three' && (
@@ -59,6 +63,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
+            textSecClassName={textSecClassName}
           />
         )}
         {variant === 'four' && (
@@ -67,6 +72,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
+            textSecClassName={textSecClassName}
           />
         )}
         {variant === 'five' && (
@@ -76,6 +82,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             caption={caption}
             className={className}
             subElement={subElement}
+            textSecClassName={textSecClassName}
           />
         )}
         {variant === 'six' && (
@@ -85,6 +92,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             caption={caption}
             className={className}
             subElement={subElement}
+            textSecClassName={textSecClassName}
           />
         )}
       </div>

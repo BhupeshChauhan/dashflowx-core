@@ -8,6 +8,7 @@ interface iDHeroOneProps {
   caption: JSX.Element;
   subElement?: JSX.Element;
   gridClassName?: string;
+  textSecClassName?: string;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
@@ -21,6 +22,7 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
       heading,
       caption,
       gridClassName,
+      textSecClassName,
       ...props
     },
     ref
@@ -37,7 +39,7 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
             gridClassName
           )}
         >
-          <div>
+          <div className={cn(textSecClassName)}>
             {heading}
             {caption}
             {actions}
@@ -180,6 +182,7 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
       heading,
       caption,
       gridClassName,
+      textSecClassName,
       ...props
     },
     ref
@@ -318,7 +321,7 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
               </svg>
             </div>
           </div>
-          <div>
+          <div className={cn(textSecClassName)}>
             {heading}
             {caption}
             {actions}
@@ -330,7 +333,18 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
 );
 
 export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ className, actions, heading, caption, gridClassName, ...props }, ref) => {
+  (
+    {
+      className,
+      actions,
+      heading,
+      caption,
+      gridClassName,
+      textSecClassName,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
@@ -339,7 +353,7 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
       >
         <div className={cn('pt-10', gridClassName)}>
           <div className="relative ms-4 min-h-[45rem]">
-            <div>
+            <div className={cn(textSecClassName)}>
               {heading}
               {caption}
               {actions}
@@ -471,7 +485,18 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
 );
 
 export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
-  ({ className, actions, heading, caption, gridClassName, ...props }, ref) => {
+  (
+    {
+      className,
+      actions,
+      heading,
+      caption,
+      gridClassName,
+      textSecClassName,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
@@ -479,7 +504,7 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
         {...props}
       >
         <div className={cn('pt-10', gridClassName)}>
-          <div className="relative ms-4 min-h-[45rem]">
+          <div className={cn(textSecClassName, 'relative ms-4 min-h-[45rem]')}>
             {heading}
             {caption}
             {actions}
@@ -500,6 +525,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
       caption,
       subElement,
       gridClassName,
+      textSecClassName,
       ...props
     },
     ref
@@ -516,7 +542,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
             gridClassName
           )}
         >
-          <div>
+          <div className={cn(textSecClassName)}>
             {heading}
             {caption}
             {actions}
@@ -539,6 +565,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
       caption,
       subElement,
       gridClassName,
+      textSecClassName,
       ...props
     },
     ref
@@ -556,7 +583,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
           )}
         >
           <div className="relative ms-4">{subElement}</div>
-          <div>
+          <div className={cn(textSecClassName)}>
             {heading}
             {caption}
             {actions}
