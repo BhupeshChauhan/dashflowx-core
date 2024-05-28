@@ -14,7 +14,7 @@ interface iDHeroOneProps {
   heading: JSX.Element;
   caption: JSX.Element;
   variant: 'one' | 'two' | 'three' | 'four' | 'five' | 'six';
-  element?: JSX.Element;
+  subElement?: JSX.Element;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
@@ -28,7 +28,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
       heading,
       caption,
       variant,
-      element,
+      subElement,
       ...props
     },
     ref
@@ -75,7 +75,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
-            element={element}
+            subElement={subElement}
           />
         )}
         {variant === 'six' && (
@@ -84,7 +84,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
-            element={element}
+            subElement={subElement}
           />
         )}
       </div>

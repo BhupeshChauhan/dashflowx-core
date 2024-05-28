@@ -241,7 +241,7 @@ export const VarientFive: Story = {
         entrepreneur.
       </p>
     ),
-    element: (
+    subElement: (
       <form action="#" className="space-y-8">
         <div>
           <label

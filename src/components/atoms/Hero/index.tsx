@@ -6,7 +6,7 @@ interface iDHeroOneProps {
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
-  element?: JSX.Element;
+  subElement?: JSX.Element;
   gridClassName?: string;
 }
 
@@ -498,7 +498,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
       actions,
       heading,
       caption,
-      element,
+      subElement,
       gridClassName,
       ...props
     },
@@ -524,7 +524,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
 
           <div className="relative ms-4">
             <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 rounded-md">
-              {element}
+              {subElement}
             </div>
           </div>
         </div>
@@ -541,7 +541,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
       actions,
       heading,
       caption,
-      element,
+      subElement,
       gridClassName,
       ...props
     },
@@ -561,7 +561,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
         >
           <div className="relative ms-4">
             <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 rounded-md">
-              {element}
+              {subElement}
             </div>
           </div>
           <div>
