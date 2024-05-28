@@ -12,7 +12,14 @@ export { DropDown } from './atoms/DropDown';
 export { DropDownItems } from './atoms/DropDownItems';
 export { FooterOne } from './atoms/Footer';
 export { Grid } from './atoms/Grid';
-export { HeroFour, HeroOne, HeroThree, HeroTwo } from './atoms/Hero';
+export {
+  HeroFive,
+  HeroFour,
+  HeroOne,
+  HeroSix,
+  HeroThree,
+  HeroTwo,
+} from './atoms/Hero';
 export { Input } from './atoms/Input';
 export { IconUnOrderList, OrderList, UnOrderList } from './atoms/List';
 export { NavMenu, NavMenuThree, NavMenuTwo } from './atoms/NavMenu';

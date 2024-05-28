@@ -1,5 +1,11 @@
-import { HeroFour, HeroOne, HeroThree, HeroTwo } from '@/components';
-import { HeroFive } from '@/components/atoms/Hero';
+import {
+  HeroFive,
+  HeroFour,
+  HeroOne,
+  HeroSix,
+  HeroThree,
+  HeroTwo,
+} from '@/components';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
 interface iDHeroOneProps {
@@ -7,8 +13,8 @@ interface iDHeroOneProps {
   actions: JSX.Element;
   heading: JSX.Element;
   caption: JSX.Element;
-  variant: 'one' | 'two' | 'three' | 'four' | 'five';
-  form?: JSX.Element;
+  variant: 'one' | 'two' | 'three' | 'four' | 'five' | 'six';
+  element?: JSX.Element;
 }
 
 export type HeroOneProps = ComponentPropsWithRef<'div'> & iDHeroOneProps;
@@ -22,7 +28,7 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
       heading,
       caption,
       variant,
-      form,
+      element,
       ...props
     },
     ref
@@ -69,7 +75,16 @@ export const DfaxHero = forwardRef<HTMLDivElement, HeroOneProps>(
             heading={heading}
             caption={caption}
             className={className}
-            form={form}
+            element={element}
+          />
+        )}
+        {variant === 'six' && (
+          <HeroSix
+            actions={actions}
+            heading={heading}
+            caption={caption}
+            className={className}
+            element={element}
           />
         )}
       </div>

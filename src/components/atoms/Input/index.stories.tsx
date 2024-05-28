@@ -20,3 +20,14 @@ export const Basic: Story = {
     placeholder: 'name@company.com',
   },
 };
+
+export const Fullwidth: Story = {
+  args: {
+    lable: 'Your Email',
+    type: 'email',
+    name: 'email',
+    id: 'email',
+    placeholder: 'name@company.com',
+    fullwidth: true,
+  },
+};
