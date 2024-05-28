@@ -522,11 +522,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
             {actions}
           </div>
 
-          <div className="relative ms-4">
-            <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 rounded-md">
-              {subElement}
-            </div>
-          </div>
+          <div className="relative ms-4">{subElement}</div>
         </div>
       </div>
     );
@@ -559,11 +555,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
             gridClassName
           )}
         >
-          <div className="relative ms-4">
-            <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 rounded-md">
-              {subElement}
-            </div>
-          </div>
+          <div className="relative ms-4">{subElement}</div>
           <div>
             {heading}
             {caption}
