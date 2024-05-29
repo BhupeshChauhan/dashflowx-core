@@ -18,10 +18,7 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
     };
     return (
       <nav
-        className={cn(
-          'bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-10 rounded-lg shadow-sm',
-          className
-        )}
+        className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
         {...props}
       >
@@ -79,10 +76,7 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
     };
     return (
       <nav
-        className={cn(
-          'bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-10 rounded-lg shadow-md',
-          className
-        )}
+        className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
         {...props}
       >
@@ -143,10 +137,7 @@ export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
     };
     return (
       <nav
-        className={cn(
-          'bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-10 rounded-lg shadow-md',
-          className
-        )}
+        className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
         {...props}
       >
