@@ -30,7 +30,7 @@ export const HeroOne = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div
@@ -190,7 +190,7 @@ export const HeroTwo = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div
@@ -348,7 +348,7 @@ export const HeroThree = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div className={cn('pt-10', gridClassName)}>
@@ -500,7 +500,7 @@ export const HeroFour = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div className={cn('pt-10', gridClassName)}>
@@ -533,7 +533,7 @@ export const HeroFive = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div
@@ -573,7 +573,7 @@ export const HeroSix = forwardRef<HTMLDivElement, HeroOneProps>(
     return (
       <div
         ref={ref}
-        className={cn('max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8', className)}
+        className={cn('px-4 sm:px-6 lg:px-8', className)}
         {...props}
       >
         <div
