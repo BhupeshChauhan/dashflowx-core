@@ -19,6 +19,7 @@ interface iDfaxNavBarProps {
   navItemClassName?: string;
   variant?: string;
   libraryType?: string;
+  style?: any;
 }
 
 export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
@@ -29,6 +30,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
   navClassName,
   navItemClassName,
   variant,
+  style,
   libraryType = 'react',
 }) => {
   if (variant === 'two') {
@@ -38,6 +40,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
         menuIcon={menuIcon}
         className={navClassName}
         actions={actions}
+        style={style}
       >
         <NavMenuTwo className={navItemClassName} actions={actions}>
           {menuArrays &&
@@ -82,6 +85,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
         menuIcon={menuIcon}
         className={navClassName}
         actions={actions}
+        style={style}
       >
         {menuArrays && (
           <NavMenuTwo className={navItemClassName} actions={actions}>
@@ -122,7 +126,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
   }
   return (
     <Navbar logo={logo} menuIcon={menuIcon} className={navClassName}>
-      <NavMenu className={navItemClassName}>
+      <NavMenu className={navItemClassName} style={style}>
         {menuArrays &&
           menuArrays.map((menu: menuArraysProps) => (
             <li className="flex items-center justify-center" key={menu.key}>

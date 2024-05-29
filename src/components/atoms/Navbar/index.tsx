@@ -6,12 +6,13 @@ interface iNavbarProps {
   logo?: JSX.Element;
   menuIcon?: JSX.Element;
   actions?: JSX.Element;
+  style?: any;
 }
 
 export type BoxProps = ComponentPropsWithRef<'nav'> & iNavbarProps;
 
 export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, children, ...props }, ref) => {
+  ({ logo, className, menuIcon, style, children, ...props }, ref) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -20,6 +21,7 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
       <nav
         className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
+        style={style}
         {...props}
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -69,7 +71,7 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
 );
 
 export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, children, actions, ...props }, ref) => {
+  ({ logo, className, menuIcon, children, style, actions, ...props }, ref) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -78,6 +80,7 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
       <nav
         className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
+        style={style}
         {...props}
       >
         <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
@@ -130,7 +133,7 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
 );
 
 export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, children, actions, ...props }, ref) => {
+  ({ logo, className, menuIcon, children, actions, style, ...props }, ref) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -140,6 +143,7 @@ export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
         className={cn('fixed top-0 left-0 w-full z-10', className)}
         ref={ref}
         {...props}
+        style={style}
       >
         <div className="flex flex-wrap items-center mx-auto p-4">
           <div className="mr-16">{logo}</div>
