@@ -13,6 +13,7 @@ interface iGridProps {
   cardsArray: Array<iCardsArray>;
   titleClassName?: string;
   gridClassName?: string;
+  cardClassName?: string;
 }
 
 export type GridProps = ComponentPropsWithRef<'div'> & iGridProps;
@@ -26,6 +27,7 @@ export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
       description,
       titleClassName,
       gridClassName,
+      cardClassName,
       ...props
     },
     ref
@@ -48,7 +50,7 @@ export const DfaxCardGrid = forwardRef<HTMLDivElement, GridProps>(
         <Grid className={gridClassName}>
           {cardsArray.map((card) => (
             <div className="h-auto max-w-full rounded-lg" key={card.id}>
-              <Card>{card.element}</Card>
+              <Card className={cardClassName}>{card.element}</Card>
             </div>
           ))}
         </Grid>

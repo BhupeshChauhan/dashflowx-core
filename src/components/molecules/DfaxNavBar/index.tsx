@@ -125,8 +125,13 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
     );
   }
   return (
-    <Navbar logo={logo} menuIcon={menuIcon} className={navClassName}>
-      <NavMenu className={navItemClassName} style={style}>
+    <Navbar
+      logo={logo}
+      menuIcon={menuIcon}
+      className={navClassName}
+      style={style}
+    >
+      <NavMenu className={navItemClassName}>
         {menuArrays &&
           menuArrays.map((menu: menuArraysProps) => (
             <li className="flex items-center justify-center" key={menu.key}>
