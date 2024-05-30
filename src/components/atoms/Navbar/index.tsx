@@ -58,7 +58,7 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
           <div
             className={cn(
               openMenu ? '' : 'hidden ',
-              'w-full md:block md:w-auto'
+              'w-full md:block md:w-auto bg-white'
             )}
             id="navbar-default"
           >
