@@ -23,6 +23,9 @@ interface iInputProps {
   errorMsg?: String;
   lable?: String;
   lableClassName?: String;
+  sufixElementClassName?: string;
+  prefixElementClassName?: string;
+  inputContainerClassName?: string;
 }
 
 type InputProps = ComponentProps<'input'> &
@@ -42,6 +45,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       lable,
       lableClassName,
+      sufixElementClassName,
+      inputContainerClassName,
+      prefixElementClassName,
       ...props
     },
     ref
@@ -60,7 +66,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </label>
         <div
           className={cn(
-            'flex mb-2 items-center justify-start border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2',
+            'flex items-center justify-start border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2',
             lable ? 'mt-1' : '',
             sucessMsg
               ? 'border-green-500 focus-within:border-green-400 focus-within:border-2'
@@ -68,10 +74,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             errorMsg
               ? 'border-red-500 focus-within:border-red-400 focus-within:border-2'
               : '',
-            fullwidth ? ' w-full' : 'w-60'
+            fullwidth ? ' w-full' : 'w-60',
+            inputContainerClassName
           )}
         >
-          <div className={`w-4 h-4 ${prefixElement ? '' : 'hidden'}`}>
+          <div
+            className={cn(
+              prefixElementClassName,
+              prefixElement ? '' : 'hidden'
+            )}
+          >
             {prefixElement}
           </div>
           <input
@@ -84,7 +96,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
             disabled={disabled}
           />
-          <div className={cn('w-4 h-4', sufixElement ? '' : 'hidden')}>
+          <div
+            className={cn(sufixElementClassName, sufixElement ? '' : 'hidden')}
+          >
             {sufixElement}
           </div>
         </div>

@@ -83,7 +83,7 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
         style={style}
         {...props}
       >
-        <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
+        <div className="max-w-screen-xl flex flex-wrap items-center sm:justify-between mx-auto p-4">
           {logo}
           <Button
             data-collapse-toggle="navbar-default"
@@ -145,7 +145,7 @@ export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
         {...props}
         style={style}
       >
-        <div className="flex flex-wrap items-center mx-auto p-4">
+        <div className="flex flex-wrap items-center mx-auto sm:justify-between p-4">
           {logo}
           <Button
             data-collapse-toggle="navbar-default"
