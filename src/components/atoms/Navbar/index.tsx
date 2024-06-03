@@ -7,12 +7,25 @@ interface iNavbarProps {
   menuIcon?: JSX.Element;
   actions?: JSX.Element;
   style?: any;
+  hideMenuIcon?: boolean;
 }
 
 export type BoxProps = ComponentPropsWithRef<'nav'> & iNavbarProps;
 
 export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, style, children, ...props }, ref) => {
+  (
+    {
+      logo,
+      className,
+      menuIcon,
+      style,
+      hideMenuIcon,
+      children,
+      actions,
+      ...props
+    },
+    ref
+  ) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -26,43 +39,53 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
       >
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
           {logo}
-          <Button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            onClick={handleMenutoggle}
-          >
-            <span className="sr-only">Open main menu</span>
-            {menuIcon ? (
-              menuIcon
-            ) : (
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            )}
-          </Button>
+          {!hideMenuIcon ? (
+            <Button
+              data-collapse-toggle="navbar-default"
+              type="button"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-default"
+              aria-expanded="false"
+              onClick={handleMenutoggle}
+            >
+              <span className="sr-only">Open main menu</span>
+              {menuIcon ? (
+                menuIcon
+              ) : (
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 17 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 1h15M1 7h15M1 13h15"
+                  />
+                </svg>
+              )}
+            </Button>
+          ) : null}
           <div
             className={cn(
               openMenu ? '' : 'hidden ',
-              'w-full md:block md:w-auto bg-white'
+              'w-full md:block md:w-auto'
             )}
             id="navbar-default"
           >
             {children}
+          </div>
+          <div
+            className={cn(
+              !hideMenuIcon ? 'hidden md:flex' : 'flex',
+              'flex-1 items-center justify-end'
+            )}
+          >
+            <div>{actions}</div>
           </div>
         </div>
       </nav>
@@ -71,7 +94,19 @@ export const Navbar = forwardRef<HTMLDivElement, BoxProps>(
 );
 
 export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, children, style, actions, ...props }, ref) => {
+  (
+    {
+      logo,
+      className,
+      menuIcon,
+      children,
+      style,
+      hideMenuIcon,
+      actions,
+      ...props
+    },
+    ref
+  ) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -85,35 +120,37 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
       >
         <div className="max-w-screen-xl flex flex-wrap items-center sm:justify-between mx-auto p-4">
           {logo}
-          <Button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            onClick={handleMenutoggle}
-          >
-            <span className="sr-only">Open main menu</span>
-            {menuIcon ? (
-              menuIcon
-            ) : (
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            )}
-          </Button>
+          {!hideMenuIcon ? (
+            <Button
+              data-collapse-toggle="navbar-default"
+              type="button"
+              className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-default"
+              aria-expanded="false"
+              onClick={handleMenutoggle}
+            >
+              <span className="sr-only">Open main menu</span>
+              {menuIcon ? (
+                menuIcon
+              ) : (
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 17 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 1h15M1 7h15M1 13h15"
+                  />
+                </svg>
+              )}
+            </Button>
+          ) : null}
           <div
             className={cn(
               openMenu ? '' : 'hidden ',
@@ -123,7 +160,12 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
           >
             {children}
           </div>
-          <div className="flex-1 hidden md:flex items-center justify-end">
+          <div
+            className={cn(
+              !hideMenuIcon ? 'hidden md:flex' : 'flex',
+              'flex-1 items-center justify-end'
+            )}
+          >
             <div>{actions}</div>
           </div>
         </div>
@@ -133,7 +175,19 @@ export const NavbarTwo = forwardRef<HTMLDivElement, BoxProps>(
 );
 
 export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
-  ({ logo, className, menuIcon, children, actions, style, ...props }, ref) => {
+  (
+    {
+      logo,
+      className,
+      menuIcon,
+      children,
+      actions,
+      style,
+      hideMenuIcon,
+      ...props
+    },
+    ref
+  ) => {
     const [openMenu, setOpenMenu] = useState(false);
     const handleMenutoggle = () => {
       setOpenMenu(!openMenu);
@@ -147,35 +201,37 @@ export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
       >
         <div className="flex flex-wrap items-center mx-auto sm:justify-between p-4">
           {logo}
-          <Button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            onClick={handleMenutoggle}
-          >
-            <span className="sr-only">Open main menu</span>
-            {menuIcon ? (
-              menuIcon
-            ) : (
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            )}
-          </Button>
+          {!hideMenuIcon ? (
+            <Button
+              data-collapse-toggle="navbar-default"
+              type="button"
+              className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-default"
+              aria-expanded="false"
+              onClick={handleMenutoggle}
+            >
+              <span className="sr-only">Open main menu</span>
+              {menuIcon ? (
+                menuIcon
+              ) : (
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 17 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 1h15M1 7h15M1 13h15"
+                  />
+                </svg>
+              )}
+            </Button>
+          ) : null}
           <div
             className={cn(
               openMenu ? '' : 'hidden ',
@@ -185,7 +241,12 @@ export const NavbarThree = forwardRef<HTMLDivElement, BoxProps>(
           >
             {children}
           </div>
-          <div className="flex-1 hidden md:flex items-center justify-end">
+          <div
+            className={cn(
+              !hideMenuIcon ? 'hidden md:flex' : 'flex',
+              'flex-1 items-center justify-end'
+            )}
+          >
             <div>{actions}</div>
           </div>
         </div>

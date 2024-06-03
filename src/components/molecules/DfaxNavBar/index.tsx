@@ -130,6 +130,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
       menuIcon={menuIcon}
       className={navClassName}
       style={style}
+      hideMenuIcon={menuArrays && menuArrays?.length > 0 ? false : true}
     >
       <NavMenu className={navItemClassName}>
         {menuArrays &&
