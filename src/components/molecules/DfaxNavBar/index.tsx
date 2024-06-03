@@ -41,6 +41,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
         className={navClassName}
         actions={actions}
         style={style}
+        hideMenuIcon={menuArrays && menuArrays?.length > 0 ? false : true}
       >
         <NavMenuTwo className={navItemClassName} actions={actions}>
           {menuArrays &&
@@ -86,6 +87,7 @@ export const DfaxNavBar: React.FC<iDfaxNavBarProps> = ({
         className={navClassName}
         actions={actions}
         style={style}
+        hideMenuIcon={menuArrays && menuArrays?.length > 0 ? false : true}
       >
         {menuArrays && (
           <NavMenuTwo className={navItemClassName} actions={actions}>
