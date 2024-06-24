@@ -201,6 +201,8 @@ export {
   MenubarTrigger,
 } from './Menubar';
 
+export { MenuList, MenuListComp, MenuListOne } from './MenuList';
+
 export {
   NavigationMenu,
   NavigationMenuComp,
