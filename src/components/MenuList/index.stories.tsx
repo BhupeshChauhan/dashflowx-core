@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { MenuList } from '.';
 
 const meta: Meta<typeof MenuList> = {
-  title: 'molecules/MenuList',
+  title: 'Element/MenuList',
   component: MenuList,
   tags: ['autodocs'],
   parameters: {

@@ -13,6 +13,8 @@ interface iDfxMenuList {
   library: 'react' | 'next';
   type: any;
   className?: string;
+  showText?: boolean;
+  showIcon?: boolean;
 }
 
 export const MenuListOne = ({
@@ -20,6 +22,8 @@ export const MenuListOne = ({
   library,
   type,
   className,
+  showText = true,
+  showIcon = true,
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
@@ -33,13 +37,17 @@ export const MenuListOne = ({
           <TypographyComp
             className={cn(
               menu.active
-                ? 'block py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                : 'block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
+                : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
             )}
             as={type}
             to={menu.path}
           >
-            {menu.title}
+            {showIcon && menu.menuIcon}
+
+            {showText && (
+              <span className={'mx-4 font-medium'}>{menu.title}</span>
+            )}
           </TypographyComp>
         ))}
       </nav>
@@ -58,7 +66,11 @@ export const MenuListOne = ({
             as={type}
             href={menu.path}
           >
-            {menu.title}
+            {showIcon && menu.menuIcon}
+
+            {showText && (
+              <span className={'mx-4 font-medium'}>{menu.title}</span>
+            )}
           </TypographyComp>
         ))}
       </nav>

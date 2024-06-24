@@ -13,6 +13,8 @@ interface iDfxMenuList {
   library: 'react' | 'next';
   type: any;
   className?: string;
+  showText?: boolean;
+  showIcon?: boolean;
 }
 
 export const MenuListComp = ({
@@ -20,6 +22,8 @@ export const MenuListComp = ({
   library,
   type,
   className,
+  showText = true,
+  showIcon = true,
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
@@ -32,9 +36,11 @@ export const MenuListComp = ({
             as={type}
             to={menu.path}
           >
-            {menu.menuIcon}
+            {showIcon && menu.menuIcon}
 
-            <span className={'mx-4 font-medium'}>{menu.title}</span>
+            {showText && (
+              <span className={'mx-4 font-medium'}>{menu.title}</span>
+            )}
           </TypographyComp>
         ))}
       </nav>
@@ -51,9 +57,11 @@ export const MenuListComp = ({
             as={type}
             href={menu.path}
           >
-            {menu.menuIcon}
+            {showIcon && menu.menuIcon}
 
-            <span className={'mx-4 font-medium'}>{menu.title}</span>
+            {showText && (
+              <span className={'mx-4 font-medium'}>{menu.title}</span>
+            )}
           </TypographyComp>
         ))}
       </nav>

@@ -14,6 +14,8 @@ interface iMenuList {
   type: any;
   variant: 'basic' | 'one';
   className?: string;
+  showText?: boolean;
+  showIcon?: boolean;
 }
 
 const MenuList = ({
@@ -22,6 +24,8 @@ const MenuList = ({
   type,
   variant,
   className,
+  showText,
+  showIcon,
 }: iMenuList) => {
   if (variant === 'basic') {
     return (
@@ -30,6 +34,8 @@ const MenuList = ({
         library={library}
         type={type}
         className={className}
+        showText={showText}
+        showIcon={showIcon}
       />
     );
   }
@@ -40,6 +46,8 @@ const MenuList = ({
         library={library}
         type={type}
         className={className}
+        showText={showText}
+        showIcon={showIcon}
       />
     );
   }
