@@ -147,8 +147,6 @@ export {
   DropdownMenuTrigger,
 } from './DropDownMenu';
 
-export { Footer, FooterOne } from './Footer';
-
 export {
   Form,
   FormControl,
@@ -161,16 +159,6 @@ export {
 } from './Form';
 
 export { Grid } from './Grid';
-
-export {
-  Hero,
-  HeroFive,
-  HeroFour,
-  HeroOne,
-  HeroSix,
-  HeroThree,
-  HeroTwo,
-} from './Hero';
 
 export {
   HoverCard,
@@ -212,15 +200,6 @@ export {
   MenubarSubTrigger,
   MenubarTrigger,
 } from './Menubar';
-
-export {
-  NavBar,
-  NavMenu,
-  NavMenuTwo,
-  NavbarComp,
-  NavbarThree,
-  NavbarTwo,
-} from './Navbar';
 
 export {
   NavigationMenu,
