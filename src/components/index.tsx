@@ -201,7 +201,7 @@ export {
   MenubarTrigger,
 } from './Menubar';
 
-export { MenuList, MenuListComp, MenuListOne } from './MenuList';
+export { MenuList, MenuListComp, MenuListOne, type iDfxMenu } from './MenuList';
 
 export {
   NavigationMenu,

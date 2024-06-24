@@ -1,7 +1,7 @@
 import { MenuListComp } from './variants/Basic';
 import { MenuListOne } from './variants/MenuListOne';
 
-export interface iDfxMenu {
+interface iDfxMenu {
   id: string;
   menuIcon?: JSX.Element;
   title: string;
@@ -46,4 +46,4 @@ const MenuList = ({
   return null;
 };
 
-export { MenuList, MenuListComp, MenuListOne };
+export { MenuList, MenuListComp, MenuListOne, type iDfxMenu };
