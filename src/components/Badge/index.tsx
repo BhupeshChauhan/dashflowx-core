@@ -54,8 +54,8 @@ const Badge = ({
       <span
         className={cn(
           'p-2 w-full h-full',
-          textClassName,
-          variant === 'default' ? 'text-white' : ''
+          variant === 'default' ? 'text-white' : '',
+          textClassName
         )}
       >
         {textContent}

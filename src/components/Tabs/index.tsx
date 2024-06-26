@@ -6,8 +6,14 @@ interface iTabs {
   tabsArray: Array<any>;
   buttonClassName?: string;
   defaultActive?: number;
+  className?: string;
 }
-const Tabs = ({ tabsArray, buttonClassName, defaultActive }: iTabs) => {
+const Tabs = ({
+  tabsArray,
+  buttonClassName,
+  defaultActive,
+  className,
+}: iTabs) => {
   const [activeIndex, setActiveIndex] = useState(
     defaultActive ? defaultActive : 0
   );
@@ -19,7 +25,7 @@ const Tabs = ({ tabsArray, buttonClassName, defaultActive }: iTabs) => {
     return null;
   }
   return (
-    <TabsComp defaultValue="account" className="w-[800px]">
+    <TabsComp defaultValue="account" className={cn('w-[800px]', className)}>
       <TabsList className="flex items-start justify-start">
         {tabsArray.map((tab: any) => (
           <TabsTrigger

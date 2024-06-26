@@ -28,6 +28,7 @@ interface iCardGrid {
   searchColName: string;
   cardCompClassName?: string;
   cardContentClassName?: string;
+  className?: string;
 }
 
 export function CardGrid({
@@ -44,6 +45,7 @@ export function CardGrid({
   searchColName,
   cardContentClassName,
   cardCompClassName,
+  className,
 }: iCardGrid) {
   const table = useReactTable({
     data,
@@ -65,7 +67,7 @@ export function CardGrid({
   });
 
   return (
-    <div className="w-full">
+    <div className={cn('w-full', className)}>
       <div className="flex items-center justify-between py-4">
         <Input
           placeholder={`Filter ${searchColName}...`}
