@@ -33,42 +33,83 @@ export const MenuListComp = ({
   if (library === 'react') {
     return (
       <nav className={cn(className)}>
-        {menuArrays.map((menu) => (
-          <TypographyComp
-            className={cn(
-              'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
-            )}
-            as={type}
-            to={menu.path}
-          >
-            {showIcon ? !showText ? <Tooltip tooltipContent={menu.title} tooltipTrigger={menu.menuIcon} side="right" className={cn("ml-8", tooltipClassName)}/> : menu.menuIcon : null}
-
-            {showText && (
-              <span className={'mx-4 font-medium'}>{menu.title}</span>
-            )}
-          </TypographyComp>
-        ))}
+        {menuArrays.map((menu) => {
+          if(!showText){
+            return (
+              <TypographyComp
+                className={cn(
+                  'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                )}
+                as={type}
+                to={menu.path}
+              >
+                <Tooltip 
+                  tooltipContent={menu.title} 
+                  tooltipTrigger={menu.menuIcon} 
+                  side="right" 
+                  className={cn("ml-8", tooltipClassName)}
+                /> 
+              </TypographyComp>
+            )
+          }
+          if(showText){
+            return (
+              <TypographyComp
+                className={cn(
+                  'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                )}
+                as={type}
+                to={menu.path}
+              >
+                {showIcon && menu.menuIcon}
+                <span className={'mx-4 font-medium'}>{menu.title}</span>
+              </TypographyComp>
+            )
+          }
+        })}
       </nav>
     );
   }
   if (library === 'next') {
     return (
-      <nav>
-        {menuArrays.map((menu) => (
-          <TypographyComp
-            className={cn(
-              'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
-            )}
-            as={type}
-            href={menu.path}
-          >
-            {showIcon && menu.menuIcon}
-
-            {showText && (
-              <span className={'mx-4 font-medium'}>{menu.title}</span>
-            )}
-          </TypographyComp>
-        ))}
+      <nav className={cn(className)}>
+        {menuArrays.map((menu) => {
+          if(!showText){
+            return (
+              <Tooltip 
+                tooltipContent={<span className={'mx-4 font-medium'}>{menu.title}</span>} 
+                tooltipTrigger={
+                  <TypographyComp
+                    className={cn(
+                      'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', 
+                      linkClassName
+                    )} 
+                    as={type}
+                    href={menu.path}
+                  >
+                    {showIcon && menu.menuIcon}
+                  </TypographyComp>
+                } 
+                side="right" 
+                className={cn("absolute top-0 left-0 ml-8", tooltipClassName)}
+              /> 
+            )
+          }
+          if(showText){
+            return (
+              <TypographyComp
+                className={cn(
+                  'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                )}
+                as={type}
+                href={menu.path}
+              >
+                {showIcon && menu.menuIcon}
+                <span className={'mx-4 font-medium'}>{menu.title}</span>
+              </TypographyComp>
+            )
+          }
+        })}
       </nav>
     );
   }
