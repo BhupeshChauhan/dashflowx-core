@@ -17,6 +17,7 @@ interface iDfxMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
+  linkClassName?: string;
 }
 
 export const MenuListComp = ({
@@ -26,7 +27,8 @@ export const MenuListComp = ({
   className,
   showText = true,
   showIcon = true,
-  tooltipClassName
+  tooltipClassName,
+  linkClassName
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
@@ -34,7 +36,7 @@ export const MenuListComp = ({
         {menuArrays.map((menu) => (
           <TypographyComp
             className={cn(
-              'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+              'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
             )}
             as={type}
             to={menu.path}
