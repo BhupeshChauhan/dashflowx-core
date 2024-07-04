@@ -36,20 +36,20 @@ export const MenuListComp = ({
         {menuArrays.map((menu) => {
           if(!showText){
             return (
-              <TypographyComp
-                className={cn(
-                  'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
-                )}
-                as={type}
-                to={menu.path}
-              >
                 <Tooltip 
-                  tooltipContent={menu.title} 
-                  tooltipTrigger={menu.menuIcon} 
+                  tooltipContent={<span className={'mx-4 font-medium'}>{menu.title}</span>} 
+                  tooltipTrigger={<TypographyComp
+                    className={cn(
+                      'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                    )}
+                    as={type}
+                    to={menu.path}
+                  >
+                    {showIcon && menu.menuIcon}
+                  </TypographyComp>} 
                   side="right" 
                   className={cn("ml-8", tooltipClassName)}
                 /> 
-              </TypographyComp>
             )
           }
           if(showText){

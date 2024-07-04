@@ -41,23 +41,20 @@ export const MenuListOne = ({
         {menuArrays.map((menu) => {
           if(!showText){
             return (
-              <TypographyComp
-                className={cn(
-                  menu.active
-                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                    linkClassName
-                )}
-                as={type}
-                to={menu.path}
-              >
-                <Tooltip 
-                  tooltipContent={menu.title} 
-                  tooltipTrigger={menu.menuIcon} 
+              <Tooltip 
+                  tooltipContent={<span className={'mx-4 font-medium'}>{menu.title}</span>} 
+                  tooltipTrigger={<TypographyComp
+                    className={cn(
+                      'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                    )}
+                    as={type}
+                    to={menu.path}
+                  >
+                    {showIcon && menu.menuIcon}
+                  </TypographyComp>} 
                   side="right" 
                   className={cn("ml-8", tooltipClassName)}
                 /> 
-              </TypographyComp>
             )
           }
           if(showText){
@@ -90,23 +87,20 @@ export const MenuListOne = ({
         {menuArrays.map((menu) => {
           if(!showText){
             return (
-              <TypographyComp
-                className={cn(
-                  menu.active
-                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                    linkClassName
-                )}
-                as={type}
-                href={menu.path}
-              >
-                <Tooltip 
-                  tooltipContent={menu.title} 
-                  tooltipTrigger={menu.menuIcon} 
+              <Tooltip 
+                  tooltipContent={<span className={'mx-4 font-medium'}>{menu.title}</span>} 
+                  tooltipTrigger={<TypographyComp
+                    className={cn(
+                      'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700', linkClassName
+                    )}
+                    as={type}
+                    href={menu.path}
+                  >
+                    {showIcon && menu.menuIcon}
+                  </TypographyComp>} 
                   side="right" 
                   className={cn("ml-8", tooltipClassName)}
                 /> 
-              </TypographyComp>
             )
           }
           if(showText){
