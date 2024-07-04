@@ -43,6 +43,7 @@ export const Basic: Story = {
     type: 'a',
     library: 'react',
     variant: 'basic',
+    showText: false
   },
 };
 
@@ -74,5 +75,6 @@ export const One: Story = {
     type: 'a',
     library: 'react',
     variant: 'one',
+    showText: false
   },
 };

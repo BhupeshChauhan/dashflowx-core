@@ -1,3 +1,4 @@
+import { Tooltip } from '@/components';
 import { TypographyComp } from '@/components/Typography';
 import { cn } from '@/lib/utils';
 
@@ -15,6 +16,7 @@ interface iDfxMenuList {
   className?: string;
   showText?: boolean;
   showIcon?: boolean;
+  tooltipClassName?: string;
 }
 
 export const MenuListOne = ({
@@ -24,6 +26,7 @@ export const MenuListOne = ({
   className,
   showText = true,
   showIcon = true,
+  tooltipClassName
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
@@ -43,7 +46,7 @@ export const MenuListOne = ({
             as={type}
             to={menu.path}
           >
-            {showIcon && menu.menuIcon}
+            {showIcon ? !showText ? <Tooltip tooltipContent={menu.title} tooltipTrigger={menu.menuIcon} className={tooltipClassName}/> : menu.menuIcon : null}
 
             {showText && (
               <span className={'mx-4 font-medium'}>{menu.title}</span>
