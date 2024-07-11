@@ -31,12 +31,14 @@ interface iBreadcrumb {
   className?: string;
   listClassName?: string;
   itemClassName?: string;
+  activeItemClassName?: string;
 }
 const Breadcrumb = ({
   breadcrumbList,
   className,
   listClassName,
   itemClassName,
+  activeItemClassName
 }: iBreadcrumb) => {
   return (
     <BreadcrumbComp className={className}>
@@ -45,7 +47,7 @@ const Breadcrumb = ({
           return (
             <>
               {breadcrumbList.length - 1 === index && (
-                <BreadcrumbItem className={itemClassName} key={breadcrumb.id}>
+                <BreadcrumbItem className={activeItemClassName} key={breadcrumb.id}>
                   <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
                 </BreadcrumbItem>
               )}
