@@ -18,15 +18,13 @@ export type SelectProps = ComponentPropsWithRef<'div'> & iSelect;
 const Select = forwardRef<HTMLDivElement, SelectProps>(
   ({ items, selected, ...props }, ref) => {
     return (
-      <div ref={ref} {...props}>
-        <SelectComp>
-          {items.map((item) => (
-            <SelectItems selected={selected === item.id}>
-              {item.itemElement}
-            </SelectItems>
-          ))}
-        </SelectComp>
-      </div>
+      <SelectComp ref={ref} {...props}>
+        {items.map((item) => (
+          <SelectItems selected={selected === item.id}>
+            {item.itemElement}
+          </SelectItems>
+        ))}
+      </SelectComp>
     );
   }
 );
