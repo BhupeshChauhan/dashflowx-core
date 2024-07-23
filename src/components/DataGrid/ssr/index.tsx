@@ -24,7 +24,6 @@ import {
   TableRow,
 } from '../../Table';
 import { CheckboxComp } from '../../Checkbox';
-import { v4 as uuidv4 } from 'uuid';
 
 interface iDataTable {
   sorting: any;
