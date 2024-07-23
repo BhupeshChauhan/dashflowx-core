@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CircleDotDashed, LucideSortAsc } from 'lucide-react';
 import { DataTable } from '.';
 import { Button } from '../Button';
-import { CheckboxComp } from '../Checkbox';
 import {
   DropdownMenuComp,
   DropdownMenuContent,
@@ -35,31 +34,11 @@ export const Basic: Story = {
     setColumnFilters: () => {},
     setColumnVisibility: () => {},
     setRowSelection: () => {},
+    bulkActions: "bulkActions",
+    paginationsString: "paginationsString",
+    actions: 'action',
+    showSelectAction: true,
     columns: [
-      {
-        id: 'select',
-        header: ({ table }: any) => (
-          <CheckboxComp
-            checked={
-              table.getIsAllPageRowsSelected() ||
-              (table.getIsSomePageRowsSelected() && 'indeterminate')
-            }
-            onCheckedChange={(value) =>
-              table.toggleAllPageRowsSelected(!!value)
-            }
-            aria-label="Select all"
-          />
-        ),
-        cell: ({ row }: any) => (
-          <CheckboxComp
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-            aria-label="Select row"
-          />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-      },
       {
         accessorKey: 'status',
         header: 'Status',

@@ -110,7 +110,7 @@ export {
   ContextMenuTrigger,
 } from './ContextMenu';
 
-export { DataTable } from './DataGrid';
+export { DataTable, SsrDataTable } from './DataGrid';
 
 export { DatePicker } from './DatePicker';
 

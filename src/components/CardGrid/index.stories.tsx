@@ -24,6 +24,10 @@ export const Basic: Story = {
     setColumnFilters: () => {},
     setColumnVisibility: () => {},
     setRowSelection: () => {},
+    bulkActions: "bulkActions",
+    paginationsString: "paginationsString",
+    actions: 'action',
+    showSelectAction: true,
     columns: [
       {
         accessorKey: 'status',
