@@ -42,7 +42,6 @@ interface iDataTable {
   showSelectAction?: boolean;
   ssrSearch?: string | JSX.Element;
   ssrPagination?: string | JSX.Element;
-  totalRecords: number;
 }
 
 export function SsrDataTable({
@@ -61,8 +60,7 @@ export function SsrDataTable({
   bulkActions,
   showSelectAction,
   ssrSearch,
-  ssrPagination,
-  totalRecords
+  ssrPagination
 }: iDataTable) {
   const table = useReactTable({
     data,
@@ -198,12 +196,6 @@ export function SsrDataTable({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        {showSelectAction && (
-          <div className="flex-1 text-sm text-muted-foreground">
-            {rowSelection.length > 0 ? rowSelection.length : 0} of{' '}
-            {totalRecords} row(s) selected.
-          </div>
-        )}
         {ssrPagination && ssrPagination}
       </div>
     </div>
