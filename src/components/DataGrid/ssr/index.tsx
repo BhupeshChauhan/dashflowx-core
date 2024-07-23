@@ -24,6 +24,7 @@ import {
   TableRow,
 } from '../../Table';
 import { CheckboxComp } from '../../Checkbox';
+import { v4 as uuidv4 } from 'uuid';
 
 interface iDataTable {
   sorting: any;
@@ -71,6 +72,8 @@ export function SsrDataTable({
     // getPaginationRowModel: getPaginationRowModel(),
     manualPagination: true, //turn off client-side pagination
     rowCount: data?.length,
+    getRowId: uuidv4, //use the row's uuid from your database as the row id
+    manualSorting: true,
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
