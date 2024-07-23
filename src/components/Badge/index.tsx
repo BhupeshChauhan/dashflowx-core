@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { TypographyComp as Typography } from '../Typography/TypographyComp';
-import { BadgeComp, badgeVariants } from './BadgeComp';
+import { BadgeComp, ButtonVariants } from './BadgeComp';
 
 interface iDfxBadge {
   type: any;
@@ -35,7 +35,7 @@ const Badge = ({
         href: path,
       })}
       className={cn(
-        badgeVariants({ variant: variant }),
+        ButtonVariants({ variant: variant }),
         'flex gap-2 px-4 py-2',
         variant === 'outline' ? 'hover:bg-slate-100' : '',
         className
@@ -64,4 +64,4 @@ const Badge = ({
   );
 };
 
-export { Badge, BadgeComp, badgeVariants };
+export { Badge, BadgeComp, ButtonVariants as BadgeVariants };

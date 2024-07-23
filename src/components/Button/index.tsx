@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentProps, forwardRef, useImperativeHandle, useRef } from 'react';
-import { ButtonComp, buttonVariants } from './ButtonComp';
+import { ButtonComp, ButtonVariants } from './ButtonComp';
 
 const buttonStyles = cva(
   [
@@ -105,4 +105,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export { Button, ButtonComp, buttonVariants };
+export { Button, ButtonComp, ButtonVariants };

@@ -14,6 +14,7 @@ import { CardComp, CardContent } from '../Card/CardComp';
 import { Input } from '../Input';
 import { TableComp as Table, TableBody, TableCell, TableRow } from '../Table';
 import { CheckboxComp } from '../Checkbox';
+import { SsrCardGrid } from './ssr';
 
 interface iCardGrid {
   sorting: any;
@@ -36,7 +37,7 @@ interface iCardGrid {
   actions?: string | JSX.Element;
 }
 
-export function CardGrid({
+function CardGrid({
   sorting,
   setSorting,
   columnFilters,
@@ -188,3 +189,5 @@ export function CardGrid({
     </div>
   );
 }
+
+export { CardGrid, SsrCardGrid }

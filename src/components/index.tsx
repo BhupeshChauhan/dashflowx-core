@@ -26,9 +26,9 @@ export { AspectRatio, AspectRatioComp } from './AspectRatio';
 
 export { Avatar, AvatarComp, AvatarFallback, AvatarImage } from './Avatar';
 
-export { Button, ButtonComp, buttonVariants } from './Button';
+export { Button, ButtonComp, ButtonVariants } from './Button';
 
-export { Badge, BadgeComp, badgeVariants } from './Badge';
+export { Badge, BadgeComp, BadgeVariants } from './Badge';
 
 export { Box } from './Box';
 
@@ -55,7 +55,7 @@ export {
   CardTitle,
 } from './Card';
 
-export { CardGrid } from './CardGrid';
+export { CardGrid, SsrCardGrid } from './CardGrid';
 
 export {
   Carousel,
