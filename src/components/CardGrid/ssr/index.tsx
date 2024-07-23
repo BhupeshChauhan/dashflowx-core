@@ -30,6 +30,7 @@ interface iSsrCardGrid {
   actions?: string | JSX.Element;
   ssrSearch?: string | JSX.Element;
   ssrPagination?: string | JSX.Element;
+  totalRecords: number;
 }
 
 export function SsrCardGrid({
@@ -50,7 +51,8 @@ export function SsrCardGrid({
   bulkActions,
   actions,
   ssrSearch,
-  ssrPagination
+  ssrPagination,
+  totalRecords
 }: iSsrCardGrid) {
   const table = useReactTable({
     data,
@@ -144,10 +146,10 @@ export function SsrCardGrid({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        {showSelectAction && (
+      {showSelectAction && (
           <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{' '}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
+            {rowSelection.length} of{' '}
+            {totalRecords} row(s) selected.
           </div>
         )}
         {ssrPagination && ssrPagination}
