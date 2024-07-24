@@ -55,8 +55,6 @@ export {
   CardTitle,
 } from './Card';
 
-export { CardGrid, SsrCardGrid } from './CardGrid';
-
 export {
   Carousel,
   CarouselComp,
@@ -109,8 +107,6 @@ export {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from './ContextMenu';
-
-export { DataTable, SsrDataTable } from './DataGrid';
 
 export { DatePicker } from './DatePicker';
 
