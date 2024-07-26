@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentProps, forwardRef } from 'react';
+import { Input2 } from './Input2';
 
 const inputStyles = cva([
   'w-full',
@@ -32,7 +33,7 @@ type InputProps = ComponentProps<'input'> &
   VariantProps<typeof inputStyles> &
   iInputProps;
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -119,3 +120,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+export { Input, Input2 }

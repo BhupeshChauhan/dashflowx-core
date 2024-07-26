@@ -163,7 +163,7 @@ export {
   HoverCardTrigger,
 } from './HoverCard';
 
-export { Input } from './Input';
+export { Input, Input2 } from './Input';
 
 export {
   InputOTP,
