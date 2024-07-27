@@ -70,7 +70,7 @@ export const MenuListOne = ({
                 to={menu.path}
               >
                 {showIcon && menu.menuIcon}
-                <span className={'mx-4 font-medium'}>{menu.title}</span>
+                <span className={'font-medium'}>{menu.title}</span>
               </TypographyComp>
             )
           }
@@ -116,7 +116,7 @@ export const MenuListOne = ({
                 href={menu.path}
               >
                 {showIcon && menu.menuIcon}
-                <span className={'mx-4 font-medium'}>{menu.title}</span>
+                <span className={'font-medium'}>{menu.title}</span>
               </TypographyComp>
             )
           }
