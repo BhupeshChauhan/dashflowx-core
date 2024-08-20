@@ -308,3 +308,5 @@ export {
 } from './Tooltip';
 
 export { Typography, TypographyComp } from './Typography';
+
+export { toast, useToast } from '../lib/use-toast';
