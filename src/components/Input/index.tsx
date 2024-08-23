@@ -27,6 +27,7 @@ interface iInputProps {
   sufixElementClassName?: string;
   prefixElementClassName?: string;
   inputContainerClassName?: string;
+  required?: boolean;
 }
 
 type InputProps = ComponentProps<'input'> &
@@ -49,6 +50,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       sufixElementClassName,
       inputContainerClassName,
       prefixElementClassName,
+      required,
       ...props
     },
     ref
@@ -63,7 +65,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           htmlFor="inputElement"
         >
-          {lable}
+          {lable} {required && <span className='text-red-500'>*</span>}
         </label>
         <div
           className={cn(

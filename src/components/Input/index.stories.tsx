@@ -29,5 +29,6 @@ export const Fullwidth: Story = {
     id: 'email',
     placeholder: 'name@company.com',
     fullwidth: true,
+    required: true,
   },
 };
