@@ -43,6 +43,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       placeholder,
       lable,
       lableClassName,
+      required,
       ...props
     },
     ref
@@ -50,11 +51,15 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <>
         <label
-          className={`ml-1 text-primary-light dark:text-white ${lable ? '' : 'hidden'} ${lableClassName}`}
+          className={cn(
+            'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
+            lable ? '' : 'hidden',
+            lableClassName
+          )}
           htmlFor="textAreaElement"
         >
           {' '}
-          {lable}
+          {lable} {required && <span className='text-red-500'>*</span>}
         </label>
         <div
           className={`flex items-start justify-center border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2 + 

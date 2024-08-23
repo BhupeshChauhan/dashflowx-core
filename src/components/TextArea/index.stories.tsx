@@ -60,5 +60,7 @@ export const SucessText: Story = {
   args: {
     placeholder: 'Insert text here',
     sucessMsg: 'Well done! Some success message.',
+    lable: 'email',
+    required: true,
   },
 };
