@@ -73,7 +73,7 @@ export const MenuListOne = ({
                 to={menu.path}
               >
                 {showIcon && menu.menuIcon}
-                <span className={'font-medium whitespace-nowrap	'}>{menu.title}</span>
+                <span className={'font-medium whitespace-nowrap	ml-2'}>{menu.title}</span>
               </TypographyComp>
             )
           }
@@ -122,7 +122,7 @@ export const MenuListOne = ({
                 href={menu.path}
               >
                 {showIcon && menu.menuIcon}
-                <span className={'font-medium whitespace-nowrap	'}>{menu.title}</span>
+                <span className={'font-medium whitespace-nowrap	ml-2'}>{menu.title}</span>
               </TypographyComp>
             )
           }

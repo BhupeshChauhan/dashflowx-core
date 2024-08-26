@@ -74,7 +74,7 @@ export const MenuListComp = ({
                 to={menu.path}
               >
                 {showIcon && menu.menuIcon}
-                <span className={'font-medium'}>{menu.title}</span>
+                <span className={'font-medium ml-2'}>{menu.title}</span>
               </TypographyComp>
             );
           }
