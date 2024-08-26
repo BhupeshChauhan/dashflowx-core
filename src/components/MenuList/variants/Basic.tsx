@@ -46,7 +46,7 @@ export const MenuListComp = ({
                   <TypographyComp
                     className={cn(
                       menu.active
-                        ? 'flex items-center px-4 py-2 mt-5 bg-primary-light text-white border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                        ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                         : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
                       linkClassName
                     )}
@@ -66,7 +66,7 @@ export const MenuListComp = ({
               <TypographyComp
                 className={cn(
                   menu.active
-                    ? 'flex items-center px-4 py-2 mt-5 bg-primary-light text-white border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                    ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
                   linkClassName
                 )}
@@ -98,7 +98,7 @@ export const MenuListComp = ({
                   <TypographyComp
                     className={cn(
                       menu.active
-                        ? 'flex items-center px-4 py-2 mt-5 bg-primary-light text-white border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                        ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                         : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
                       linkClassName
                     )}
@@ -118,7 +118,7 @@ export const MenuListComp = ({
               <TypographyComp
                 className={cn(
                   menu.active
-                    ? 'flex items-center px-4 py-2 mt-5 bg-primary-light text-white border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                    ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
                   linkClassName
                 )}
