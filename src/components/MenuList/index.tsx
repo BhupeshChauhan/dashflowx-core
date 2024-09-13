@@ -13,7 +13,7 @@ interface iMenuList {
   menuArrays: iDfxMenu[];
   library: 'react' | 'next';
   type: any;
-  variant: 'basic' | 'one';
+  variant: 'basic' | 'one' | 'two';
   className?: string;
   showText?: boolean;
   showIcon?: boolean;

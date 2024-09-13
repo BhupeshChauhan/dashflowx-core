@@ -78,3 +78,35 @@ export const One: Story = {
     showText: false
   },
 };
+
+export const Two: Story = {
+  args: {
+    menuArrays: [
+      {
+        id: '1',
+        title: 'Dashboard',
+        path: '/admin',
+        active: true,
+        menuIcon: <ArrowRight />,
+      },
+      {
+        id: '2',
+        title: 'Applicants',
+        path: '/admin/posts',
+        active: false,
+        menuIcon: <ArrowRight />,
+      },
+      {
+        id: '3',
+        title: 'Clients',
+        path: '/admin/posts',
+        active: false,
+        menuIcon: <ArrowRight />,
+      },
+    ],
+    type: 'a',
+    library: 'react',
+    variant: 'two',
+    showText: false
+  },
+};
