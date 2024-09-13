@@ -1,5 +1,6 @@
 import { MenuListComp } from './variants/Basic';
 import { MenuListOne } from './variants/MenuListOne';
+import { MenuListTwo } from './variants/MenuListTwo';
 
 interface iDfxMenu {
   id: string;
@@ -48,6 +49,20 @@ const MenuList = ({
   if (variant === 'one') {
     return (
       <MenuListOne
+        menuArrays={menuArrays}
+        library={library}
+        type={type}
+        className={className}
+        showText={showText}
+        showIcon={showIcon}
+        tooltipClassName={tooltipClassName}
+        linkClassName={linkClassName}
+      />
+    );
+  }
+  if (variant === 'two') {
+    return (
+      <MenuListTwo
         menuArrays={menuArrays}
         library={library}
         type={type}
