@@ -15,7 +15,6 @@ interface iAlertDailogComp {
   actionButton: string;
   title: string;
   description: string;
-  onCancel: () => void;
   onSubmit: () => void;
 }
 
@@ -23,7 +22,6 @@ export const AlertDailogBasic = ({
   actionButton,
   title,
   description,
-  onCancel,
   onSubmit,
 }: iAlertDailogComp) => {
   return (
@@ -31,14 +29,14 @@ export const AlertDailogBasic = ({
       <AlertDialogTrigger asChild>
         <Button variant="outline">{actionButton}</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className='bg-white'>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
-          <AlertDialogAction onSubmit={onSubmit}>Continue</AlertDialogAction>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={onSubmit}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialogComp>

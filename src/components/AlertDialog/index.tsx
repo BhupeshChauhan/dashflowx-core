@@ -15,7 +15,6 @@ interface iAlertDialog {
   actionButton: string;
   title: string;
   description: string;
-  onCancel: () => void;
   onSubmit: () => void;
   variant: 'basic';
 }
@@ -24,7 +23,6 @@ const AlertDialog = ({
   actionButton,
   title,
   description,
-  onCancel,
   onSubmit,
   variant,
 }: iAlertDialog) => {
@@ -34,7 +32,6 @@ const AlertDialog = ({
         actionButton={actionButton}
         title={title}
         description={description}
-        onCancel={onCancel}
         onSubmit={onSubmit}
       />
     );

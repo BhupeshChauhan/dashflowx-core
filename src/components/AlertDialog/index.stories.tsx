@@ -20,5 +20,8 @@ export const Basic: Story = {
     title: 'Basic',
     description: 'This is a basic alert',
     variant: 'basic',
+    onSubmit: () => {
+      alert('Submitting alert');
+    },
   },
 };
