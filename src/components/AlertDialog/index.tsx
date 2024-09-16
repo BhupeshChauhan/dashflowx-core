@@ -18,6 +18,7 @@ interface iAlertDialog {
   onSubmit: () => void;
   variant: 'basic';
   buttonClassName?: string;
+  submitClassName?: string;
 }
 
 const AlertDialog = ({
@@ -26,7 +27,8 @@ const AlertDialog = ({
   description,
   onSubmit,
   variant,
-  buttonClassName
+  buttonClassName,
+  submitClassName
 }: iAlertDialog) => {
   if (variant === 'basic') {
     return (
@@ -36,6 +38,7 @@ const AlertDialog = ({
         description={description}
         onSubmit={onSubmit}
         buttonClassName={buttonClassName}
+        submitClassName={submitClassName}
       />
     );
   }

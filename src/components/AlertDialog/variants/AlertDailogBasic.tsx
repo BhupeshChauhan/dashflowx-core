@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { Button } from '../../Button';
 import {
   AlertDialogAction,
@@ -17,6 +18,7 @@ interface iAlertDailogComp {
   description: string;
   onSubmit: () => void;
   buttonClassName?: string;
+  submitClassName?: string;
 }
 
 export const AlertDailogBasic = ({
@@ -24,7 +26,8 @@ export const AlertDailogBasic = ({
   title,
   description,
   onSubmit,
-  buttonClassName
+  buttonClassName,
+  submitClassName
 }: iAlertDailogComp) => {
   return (
     <AlertDialogComp>
@@ -38,7 +41,7 @@ export const AlertDailogBasic = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onSubmit}>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={onSubmit} className={cn('text-white',submitClassName)}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialogComp>
