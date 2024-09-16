@@ -16,6 +16,7 @@ interface iAlertDailogComp {
   title: string;
   description: string;
   onSubmit: () => void;
+  buttonClassName?: string;
 }
 
 export const AlertDailogBasic = ({
@@ -23,11 +24,12 @@ export const AlertDailogBasic = ({
   title,
   description,
   onSubmit,
+  buttonClassName
 }: iAlertDailogComp) => {
   return (
     <AlertDialogComp>
       <AlertDialogTrigger asChild>
-        <Button variant="outline">{actionButton}</Button>
+        <Button variant="outline" className={buttonClassName}>{actionButton}</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className='bg-white'>
         <AlertDialogHeader>
