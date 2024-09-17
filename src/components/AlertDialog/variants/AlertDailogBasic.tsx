@@ -13,7 +13,7 @@ import {
 } from '../AlertDialogComp';
 
 interface iAlertDailogComp {
-  actionButton: string;
+  actionButton: string | JSX.Element;
   title: string;
   description: string;
   onSubmit: () => void;

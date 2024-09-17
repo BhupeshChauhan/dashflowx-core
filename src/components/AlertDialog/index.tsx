@@ -12,7 +12,7 @@ import {
 import { AlertDailogBasic } from './variants/AlertDailogBasic';
 
 interface iAlertDialog {
-  actionButton: string;
+  actionButton: string| JSX.Element;
   title: string;
   description: string;
   onSubmit: () => void;
