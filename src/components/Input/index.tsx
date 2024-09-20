@@ -59,7 +59,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className={cn('mb-2', className)}>
         <label
           className={cn(
-            'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
+            'block font-bold mb-2 text-sm text-gray-900 dark:text-white',
             lable ? '' : 'hidden',
             lableClassName
           )}
