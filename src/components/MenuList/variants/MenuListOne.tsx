@@ -60,7 +60,7 @@ export const MenuListOne = ({
               <TypographyComp
                 className={cn(
                   menu.active
-                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent'
+                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
                     : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
                     className
                 )}
