@@ -18,7 +18,6 @@ interface iMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
-  linkClassName?: string;
 }
 
 const MenuList = ({
@@ -30,7 +29,6 @@ const MenuList = ({
   showText,
   showIcon,
   tooltipClassName,
-  linkClassName
 }: iMenuList) => {
   if (variant === 'basic') {
     return (
@@ -42,7 +40,6 @@ const MenuList = ({
         showText={showText}
         showIcon={showIcon}
         tooltipClassName={tooltipClassName}
-        linkClassName={linkClassName}
       />
     );
   }
@@ -56,7 +53,6 @@ const MenuList = ({
         showText={showText}
         showIcon={showIcon}
         tooltipClassName={tooltipClassName}
-        linkClassName={linkClassName}
       />
     );
   }
@@ -70,7 +66,6 @@ const MenuList = ({
         showText={showText}
         showIcon={showIcon}
         tooltipClassName={tooltipClassName}
-        linkClassName={linkClassName}
       />
     );
   }
