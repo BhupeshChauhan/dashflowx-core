@@ -259,15 +259,7 @@ export { Sonner, SonnerComp } from './Sonner';
 export { Switch, SwitchComp } from './Switch';
 
 export {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableComp,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
+  table,
 } from './Table';
 
 export { Tabs, TabsComp, TabsContent, TabsList, TabsTrigger } from './Tabs';
@@ -310,3 +302,41 @@ export {
 export { Typography, TypographyComp } from './Typography';
 
 export { toast, useToast } from '../lib/use-toast';
+
+export {a} from './a';
+
+export { code } from './Code';
+
+export { CopyButton } from './CopyButton';
+
+export { h1 } from './H1';
+
+export { h2 } from './H2';
+
+export { h3 } from './H3';
+
+export { h4 } from './H4';
+
+export { h5 } from './H5';
+
+export { h6 } from './H6';
+
+export { hr } from './Hr';
+
+export { img } from './Img';
+
+export { li } from './Li';
+
+export { ol } from './Ol';
+
+export { p } from './P';
+
+export { pre } from './Pre';
+
+export { td } from './Td';
+
+export { th } from './Th';
+
+export { tr } from './Tr';
+
+export { ul } from './Ul';
