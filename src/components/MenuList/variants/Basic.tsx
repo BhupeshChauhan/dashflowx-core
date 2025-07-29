@@ -30,7 +30,7 @@ export const MenuListComp = ({
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <nav>
+      <nav className='flex'>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -82,7 +82,7 @@ export const MenuListComp = ({
   }
   if (library === 'next') {
     return (
-      <nav>
+      <nav className='flex'>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
