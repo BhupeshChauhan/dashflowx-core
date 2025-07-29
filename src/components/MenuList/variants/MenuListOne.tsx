@@ -17,7 +17,8 @@ interface iDfxMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
-}
+  navClassName?: string;
+  }
 
 export const MenuListOne = ({
   menuArrays,
@@ -27,10 +28,11 @@ export const MenuListOne = ({
   showText = true,
   showIcon = true,
   tooltipClassName,
-}: iDfxMenuList) => {
+  navClassName,
+  }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <nav className='flex'>
+      <nav className={cn('flex', navClassName)}>
         {menuArrays.map((menu) => {
           if(!showText){
             return (
@@ -39,8 +41,8 @@ export const MenuListOne = ({
                   tooltipTrigger={<TypographyComp
                     className={cn(
                       menu.active
-                        ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                        : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                        ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
+                        : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
                         className
                     )}
                     as={type}
@@ -58,8 +60,8 @@ export const MenuListOne = ({
               <TypographyComp
                 className={cn(
                   menu.active
-                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent'
+                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
                     className
                 )}
                 as={type}
@@ -76,7 +78,7 @@ export const MenuListOne = ({
   }
   if (library === 'next') {
     return (
-      <nav className='flex'>
+      <nav className={cn('flex', navClassName)}>
         {menuArrays.map((menu) => {
           if(!showText){
             return (
@@ -85,8 +87,8 @@ export const MenuListOne = ({
                   tooltipTrigger={<TypographyComp
                     className={cn(
                       menu.active
-                        ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                        : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                        ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent'
+                        : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
                         className
                     )}
                     as={type}
@@ -104,8 +106,8 @@ export const MenuListOne = ({
               <TypographyComp
                 className={cn(
                   menu.active
-                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
-                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
+                    ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
+                    : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-primary-light md:p-0',
                     className
                 )}
                 as={type}

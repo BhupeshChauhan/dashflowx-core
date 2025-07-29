@@ -17,6 +17,7 @@ interface iDfxMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
+  navClassName?: string;
 }
 
 export const MenuListTwo = ({
@@ -27,10 +28,11 @@ export const MenuListTwo = ({
   showIcon = true,
   tooltipClassName,
   className,
+  navClassName,
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <nav className='flex'>
+      <nav className={cn('flex', navClassName)}>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -82,7 +84,7 @@ export const MenuListTwo = ({
   }
   if (library === 'next') {
     return (
-      <nav className='flex'>
+      <nav className={cn('flex', navClassName)} >
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
