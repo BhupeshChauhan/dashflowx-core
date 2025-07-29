@@ -13,24 +13,24 @@ interface iDfxMenuList {
   menuArrays: iDfxMenu[];
   library: 'react' | 'next';
   type: any;
-  className?: string;
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
+  className?: string;
 }
 
 export const MenuListComp = ({
   menuArrays,
   library,
   type,
-  className,
   showText = true,
   showIcon = true,
   tooltipClassName,
+  className,
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <>
+      <nav>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -77,12 +77,12 @@ export const MenuListComp = ({
             );
           }
         })}
-      </>
+      </nav>
     );
   }
   if (library === 'next') {
     return (
-      <>
+      <nav>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -129,7 +129,7 @@ export const MenuListComp = ({
             );
           }
         })}
-      </>
+      </nav>
     );
   }
 };
