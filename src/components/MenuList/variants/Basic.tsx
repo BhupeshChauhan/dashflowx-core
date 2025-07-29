@@ -17,7 +17,6 @@ interface iDfxMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
-  linkClassName?: string;
 }
 
 export const MenuListComp = ({
@@ -28,11 +27,10 @@ export const MenuListComp = ({
   showText = true,
   showIcon = true,
   tooltipClassName,
-  linkClassName,
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <nav className={cn(className)}>
+      <>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -48,7 +46,7 @@ export const MenuListComp = ({
                       menu.active
                         ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                         : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
-                      linkClassName
+                      className
                     )}
                     as={type}
                     to={menu.path}
@@ -68,7 +66,7 @@ export const MenuListComp = ({
                   menu.active
                     ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
-                  linkClassName
+                  className
                 )}
                 as={type}
                 to={menu.path}
@@ -79,12 +77,12 @@ export const MenuListComp = ({
             );
           }
         })}
-      </nav>
+      </>
     );
   }
   if (library === 'next') {
     return (
-      <nav className={cn(className)}>
+      <>
         {menuArrays.map((menu) => {
           if (!showText) {
             return (
@@ -100,7 +98,7 @@ export const MenuListComp = ({
                       menu.active
                         ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                         : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
-                      linkClassName
+                      className
                     )}
                     as={type}
                     href={menu.path}
@@ -120,7 +118,7 @@ export const MenuListComp = ({
                   menu.active
                     ? 'flex items-center px-4 py-2 mt-5 text-primary-light border-primary-light transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     : 'flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700',
-                  linkClassName
+                  className
                 )}
                 as={type}
                 href={menu.path}
@@ -131,7 +129,7 @@ export const MenuListComp = ({
             );
           }
         })}
-      </nav>
+      </>
     );
   }
 };

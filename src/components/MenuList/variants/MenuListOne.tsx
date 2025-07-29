@@ -17,7 +17,6 @@ interface iDfxMenuList {
   showText?: boolean;
   showIcon?: boolean;
   tooltipClassName?: string;
-  linkClassName?: string;
 }
 
 export const MenuListOne = ({
@@ -28,16 +27,10 @@ export const MenuListOne = ({
   showText = true,
   showIcon = true,
   tooltipClassName,
-  linkClassName
 }: iDfxMenuList) => {
   if (library === 'react') {
     return (
-      <nav
-        className={cn(
-          'font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0',
-          className
-        )}
-      >
+      <>
         {menuArrays.map((menu) => {
           if(!showText){
             return (
@@ -48,7 +41,7 @@ export const MenuListOne = ({
                       menu.active
                         ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
                         : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                        linkClassName
+                        className
                     )}
                     as={type}
                     to={menu.path}
@@ -67,7 +60,7 @@ export const MenuListOne = ({
                   menu.active
                     ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
                     : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                    linkClassName
+                    className
                 )}
                 as={type}
                 to={menu.path}
@@ -78,15 +71,12 @@ export const MenuListOne = ({
             )
           }
         })}
-      </nav>
+      </>
     );
   }
   if (library === 'next') {
     return (
-      <nav className={cn(
-        'font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0',
-        className
-      )}>
+      <>
         {menuArrays.map((menu) => {
           if(!showText){
             return (
@@ -97,7 +87,7 @@ export const MenuListOne = ({
                       menu.active
                         ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
                         : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                        linkClassName
+                        className
                     )}
                     as={type}
                     href={menu.path}
@@ -116,7 +106,7 @@ export const MenuListOne = ({
                   menu.active
                     ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light md:p-0 dark:text-white md:dark:text-blue-500'
                     : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0 dark:text-white md:dark:hover:text-primary-light dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent',
-                    linkClassName
+                    className
                 )}
                 as={type}
                 href={menu.path}
@@ -127,7 +117,7 @@ export const MenuListOne = ({
             )
           }
         })}
-      </nav>
+      </>
     );
   }
 };
