@@ -19,18 +19,23 @@ export {
   AlertInfo
 } from './Alert';
 
-export {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogComp,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from './AlertDialog';
+  export {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogComp,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    AlertDailogBasic,
+    AlertDialogSuccess,
+    AlertDialogWarning,
+    AlertDialogError,
+    AlertDialogInfo,
+  }from './AlertDialog';
 
 export { AspectRatio, AspectRatioComp } from './AspectRatio';
 

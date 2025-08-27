@@ -12,7 +12,7 @@ import {
   AlertDialogTrigger,
 } from '../AlertDialogComp';
 
-interface iAlertDailogComp {
+interface iAlertDialogComp {
   actionButton: string | JSX.Element;
   title: string;
   description: string;
@@ -22,7 +22,7 @@ interface iAlertDailogComp {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const AlertDailogBasic = ({
+export const AlertDialogWarning = ({
   actionButton,
   title,
   description,
@@ -30,7 +30,7 @@ export const AlertDailogBasic = ({
   buttonClassName,
   submitClassName,
   size = 'md',
-}: iAlertDailogComp) => {
+}: iAlertDialogComp) => {
   const sizeStyles = {
     sm: {
       content: 'max-w-sm p-4',
@@ -60,16 +60,29 @@ export const AlertDailogBasic = ({
   return (
     <AlertDialogComp>
       <AlertDialogTrigger asChild>
-        <Button variant="outline" className={buttonClassName}>{actionButton}</Button>
+        <Button variant="outline" className={cn('border-yellow-200 text-yellow-700 hover:bg-yellow-50', buttonClassName)}>
+          {actionButton}
+        </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className={cn('bg-white', currentSize.content)}>
+      <AlertDialogContent className={cn('bg-yellow-50 border-yellow-200', currentSize.content)}>
         <AlertDialogHeader>
-          <AlertDialogTitle className={currentSize.title}>{title}</AlertDialogTitle>
-          <AlertDialogDescription className={currentSize.description}>{description}</AlertDialogDescription>
+          <AlertDialogTitle className={cn('text-yellow-900', currentSize.title)}>
+            {title}
+          </AlertDialogTitle>
+          <AlertDialogDescription className={cn('text-yellow-700', currentSize.description)}>
+            {description}
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className={currentSize.footer}>
-          <AlertDialogCancel className={currentSize.button}>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onSubmit} className={cn('text-white', currentSize.button, submitClassName)}>Continue</AlertDialogAction>
+          <AlertDialogCancel className={cn('border-yellow-300 text-yellow-700 hover:bg-yellow-100', currentSize.button)}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction 
+            onClick={onSubmit} 
+            className={cn('bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500', currentSize.button, submitClassName)}
+          >
+            Continue
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialogComp>
