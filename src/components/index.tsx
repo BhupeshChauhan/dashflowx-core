@@ -7,7 +7,17 @@ export {
   AccordionTrigger,
 } from './Accordion';
 
-export { Alert, AlertComp, AlertDescription, AlertTitle } from './Alert';
+export { 
+  Alert, 
+  AlertComp, 
+  AlertDescription, 
+  AlertTitle,
+  AlertBasic,
+  AlertSuccess,
+  AlertWarning,
+  AlertError,
+  AlertInfo
+} from './Alert';
 
 export {
   AlertDialog,
