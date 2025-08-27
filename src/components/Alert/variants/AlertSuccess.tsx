@@ -13,7 +13,7 @@ interface iDfxAlert {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const AlertBasic = ({
+export const AlertSuccess = ({
   prefix,
   title,
   description,
@@ -52,22 +52,24 @@ export const AlertBasic = ({
   const currentSize = sizeStyles[size];
 
   return (
-    <AlertComp className={cn(currentSize.container, className)}>
+    <AlertComp 
+      className={cn('bg-green-50 border-green-200 text-green-800', currentSize.container, className)}
+    >
       <div className="flex items-center gap-3">
         {prefix && (
-          <div className={cn('flex-shrink-0', currentSize.icon)}>
+          <div className={cn('text-green-500 flex-shrink-0', currentSize.icon)}>
             {prefix}
           </div>
         )}
         <div className="flex-1">
-          <AlertTitle className={cn(currentSize.title, titleClassName)}>
+          <AlertTitle className={cn('text-green-900', currentSize.title, titleClassName)}>
             {title}
           </AlertTitle>
-          <AlertDescription className={cn(currentSize.description, descriptionClassName)}>
+          <AlertDescription className={cn('text-green-700', currentSize.description, descriptionClassName)}>
             {description}
           </AlertDescription>
         </div>
-        <Button variant="ghost" className={cn('p-0 m-0', currentSize.button)}>
+        <Button variant="ghost" className={cn('p-0 m-0 text-green-500 hover:text-green-700', currentSize.button)}>
           <X className={currentSize.closeIcon} />
         </Button>
       </div>
