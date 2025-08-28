@@ -192,7 +192,7 @@ const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
       ...props
     }, 
       React.createElement('ol', {
-        className: 'flex items-center space-x-1 md:space-x-3 list-decimal list-inside'
+        className: 'flex items-center space-x-1 md:space-x-3 list-decimal list-inside marker:text-gray-500 marker:font-medium marker:mr-2'
       }, 
         finalBreadcrumbList.map((item: iBreadcrumbItem, index: number) => {
           const isLast = index === finalBreadcrumbList.length - 1;
@@ -203,13 +203,7 @@ const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
               key: `${item.id}-item`,
               className: 'flex items-center'
             }, [
-              // Show ordered list number
-              React.createElement('span', {
-                key: `${item.id}-number`,
-                className: 'mr-2 text-sm text-gray-500 font-medium'
-              }, `${index + 1}.`),
-              
-              // Render item content
+              // Render item content (removed explicit number span)
               isDropdown ? 
                 React.createElement(DropdownMenuComp, {
                   key: `${item.id}-dropdown`

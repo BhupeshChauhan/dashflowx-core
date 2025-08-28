@@ -321,3 +321,16 @@ export const CustomStyling: Story = {
     breadcrumbList: sampleBreadcrumbs,
   },
 };
+
+export const SimpleNumbered: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'chevron',
+    breadcrumbList: [
+      { id: '1', type: 'item', title: 'Home', href: '/', separator: true },
+      { id: '2', type: 'item', title: 'Products', href: '/products', separator: true },
+      { id: '3', type: 'item', title: 'Current Page', separator: false },
+    ],
+  },
+};
