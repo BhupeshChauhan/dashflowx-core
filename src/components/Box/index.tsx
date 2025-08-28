@@ -7,6 +7,7 @@ export type BoxSize = 'sm' | 'md' | 'lg' | 'xl';
 export interface BoxProps extends ComponentPropsWithRef<'div'> {
   variant?: BoxVariant;
   size?: BoxSize;
+  boxItem?: React.ReactNode;
 }
 
 const getBoxClasses = (variant: BoxVariant, size: BoxSize) => {
@@ -39,7 +40,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(({
   variant = 'default', 
   size = 'md',
   className,
-  children,
+  boxItem,
   ...props 
 }, ref) => {
   const boxClasses = getBoxClasses(variant, size);
@@ -49,7 +50,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(({
     ref,
     className: finalClasses,
     ...props
-  }, children);
+  }, boxItem);
 });
 
 Box.displayName = 'Box';

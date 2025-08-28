@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    children: 'Basic Box Content',
+    boxItem: 'Basic Box Content',
     className: 'bg-gray-100',
   },
 };
@@ -34,21 +34,21 @@ export const Basic: Story = {
 export const Container: Story = {
   args: {
     variant: 'container',
-    children: 'Container Box with auto margins and padding',
+    boxItem: 'Container Box with auto margins and padding',
   },
 };
 
 export const Card: Story = {
   args: {
     variant: 'card',
-    children: 'Card Box with shadow and hover effects',
+    boxItem: 'Card Box with shadow and hover effects',
   },
 };
 
 export const Spacing: Story = {
   args: {
     variant: 'spacing',
-    children: (
+    boxItem: (
       <>
         <div>Item 1</div>
         <div>Item 2</div>
@@ -61,7 +61,7 @@ export const Spacing: Story = {
 export const Flex: Story = {
   args: {
     variant: 'flex',
-    children: (
+    boxItem: (
       <>
         <span>Left</span>
         <span>Center</span>
@@ -74,7 +74,7 @@ export const Flex: Story = {
 export const Grid: Story = {
   args: {
     variant: 'grid',
-    children: (
+    boxItem: (
       <>
         <div className="bg-blue-100 p-2">Grid Item 1</div>
         <div className="bg-green-100 p-2">Grid Item 2</div>
@@ -88,38 +88,38 @@ export const Grid: Story = {
 export const Responsive: Story = {
   args: {
     variant: 'responsive',
-    children: 'Responsive Box with different padding on different screen sizes',
+    boxItem: 'Responsive Box with different padding on different screen sizes',
   },
 };
 
 export const Interactive: Story = {
   args: {
     variant: 'interactive',
-    children: 'Interactive Box with hover effects',
+    boxItem: 'Interactive Box with hover effects',
   },
 };
 
 export const Gradient: Story = {
   args: {
     variant: 'gradient',
-    children: 'Gradient Box with beautiful colors',
+    boxItem: 'Gradient Box with beautiful colors',
   },
 };
 
 export const Animated: Story = {
   args: {
     variant: 'animated',
-    children: 'Animated Box with scale and shadow transitions',
+    boxItem: 'Animated Box with scale and shadow transitions',
   },
 };
 
 export const SizeVariants: Story = {
   render: () => (
     <div className="space-y-4">
-      <Box variant="card" size="sm">Small Box</Box>
-      <Box variant="card" size="md">Medium Box</Box>
-      <Box variant="card" size="lg">Large Box</Box>
-      <Box variant="card" size="xl">Extra Large Box</Box>
+      <Box variant="card" size="sm" boxItem="Small Box" />
+      <Box variant="card" size="md" boxItem="Medium Box" />
+      <Box variant="card" size="lg" boxItem="Large Box" />
+      <Box variant="card" size="xl" boxItem="Extra Large Box" />
     </div>
   ),
 };
@@ -129,6 +129,6 @@ export const CustomStyling: Story = {
     variant: 'card',
     size: 'lg',
     className: 'border-2 border-blue-500 bg-blue-50',
-    children: 'Custom styled box with additional classes',
+    boxItem: 'Custom styled box with additional classes',
   },
 };
