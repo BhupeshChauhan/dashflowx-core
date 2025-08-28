@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils';
-import { TypographyComp as Typography } from '../Typography/TypographyComp';
 import { BadgeComp, ButtonVariants } from './BadgeComp';
 import { BadgeDefault } from './variants/BadgeDefault';
 import { BadgeSecondary } from './variants/BadgeSecondary';
