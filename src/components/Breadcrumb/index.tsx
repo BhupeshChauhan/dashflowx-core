@@ -110,49 +110,51 @@ const getBreadcrumbClasses = (variant: BreadcrumbVariant, size: BreadcrumbSize) 
 };
 
 const getSeparatorIcon = (style: BreadcrumbSeparatorStyle) => {
+  const iconProps = { className: 'text-gray-400' };
+  
   switch (style) {
     case 'slash':
-      return React.createElement(Slash, { className: 'w-4 h-4 text-gray-400' });
+      return <Slash {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'chevron':
-      return React.createElement(ChevronRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ChevronRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'arrow':
-      return React.createElement(ArrowRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ArrowRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'dot':
-      return React.createElement(Minus, { className: 'w-2 h-2 text-gray-400' });
+      return <Minus {...iconProps} className="w-2 h-2 text-gray-400" />;
     case 'custom':
-      return React.createElement(ChevronRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ChevronRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'caret':
-      return React.createElement(ChevronDown, { className: 'w-4 h-4 text-gray-400' });
+      return <ChevronDown {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'double-chevron':
-      return React.createElement(ChevronsRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ChevronsRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'triangle':
-      return React.createElement(Triangle, { className: 'w-3 h-3 text-gray-400' });
+      return <Triangle {...iconProps} className="w-3 h-3 text-gray-400" />;
     case 'circle':
-      return React.createElement(Circle, { className: 'w-2 h-2 text-gray-400 fill-current' });
+      return <Circle {...iconProps} className="w-2 h-2 text-gray-400 fill-current" />;
     case 'square':
-      return React.createElement(Square, { className: 'w-2 h-2 text-gray-400 fill-current' });
+      return <Square {...iconProps} className="w-2 h-2 text-gray-400 fill-current" />;
     case 'star':
-      return React.createElement(Star, { className: 'w-3 h-3 text-gray-400 fill-current' });
+      return <Star {...iconProps} className="w-3 h-3 text-gray-400 fill-current" />;
     case 'heart':
-      return React.createElement(Heart, { className: 'w-3 h-3 text-gray-400 fill-current' });
+      return <Heart {...iconProps} className="w-3 h-3 text-gray-400 fill-current" />;
     case 'diamond':
-      return React.createElement(Diamond, { className: 'w-3 h-3 text-gray-400 fill-current' });
+      return <Diamond {...iconProps} className="w-3 h-3 text-gray-400 fill-current" />;
     case 'arrow-up-right':
-      return React.createElement(ArrowUpRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ArrowUpRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'arrow-down-right':
-      return React.createElement(ArrowDownRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ArrowDownRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'arrow-left-right':
-      return React.createElement(ArrowLeftRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ArrowLeftRight {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'arrow-up-down':
-      return React.createElement(ArrowUpDown, { className: 'w-4 h-4 text-gray-400' });
+      return <ArrowUpDown {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'grip-vertical':
-      return React.createElement(GripVertical, { className: 'w-3 h-3 text-gray-400' });
+      return <GripVertical {...iconProps} className="w-3 h-3 text-gray-400" />;
     case 'more-horizontal':
-      return React.createElement(MoreHorizontal, { className: 'w-4 h-4 text-gray-400' });
+      return <MoreHorizontal {...iconProps} className="w-4 h-4 text-gray-400" />;
     case 'plus':
-      return React.createElement(Plus, { className: 'w-3 h-3 text-gray-400' });
+      return <Plus {...iconProps} className="w-3 h-3 text-gray-400" />;
     default:
-      return React.createElement(ChevronRight, { className: 'w-4 h-4 text-gray-400' });
+      return <ChevronRight {...iconProps} className="w-4 h-4 text-gray-400" />;
   }
 };
 
@@ -166,10 +168,7 @@ const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
 }, ref) => {
   // SSR Safety: Check if we're in a browser environment
   if (typeof window === 'undefined') {
-    // We're on the server - return a safe placeholder
-    return React.createElement('div', {
-      className: 'animate-pulse bg-gray-200 rounded p-4 text-center'
-    }, 'Loading Breadcrumb...');
+    return <div className="animate-pulse bg-gray-200 rounded p-4 text-center">Loading Breadcrumb...</div>;
   }
 
   // Ensure we have a safe breadcrumb list
@@ -184,79 +183,64 @@ const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
   const currentClasses = 'text-gray-900 font-medium';
   const separatorClasses = 'mx-2 text-gray-400';
 
-  return React.createElement(React.Fragment, {}, 
-    React.createElement('nav', {
-      ref,
-      'aria-label': 'Breadcrumb',
-      className: containerClasses,
-      ...props
-    }, 
-      React.createElement('ol', {
-        className: 'flex items-center space-x-1 md:space-x-3 list-decimal list-inside marker:text-gray-500 marker:font-medium marker:mr-2'
-      }, 
-        finalBreadcrumbList.map((item: iBreadcrumbItem, index: number) => {
+  return (
+    <nav ref={ref} aria-label="Breadcrumb" className={containerClasses} {...props}>
+      <ol className="flex items-center space-x-1 md:space-x-3">
+        {finalBreadcrumbList.map((item, index) => {
           const isLast = index === finalBreadcrumbList.length - 1;
           const isDropdown = item.type === 'dropdown' && item.children && item.children.length > 0;
 
-          return React.createElement(React.Fragment, { key: item.id }, [
-            React.createElement('li', {
-              key: `${item.id}-item`,
-              className: 'flex items-center'
-            }, [
-              // Render item content (removed explicit number span)
-              isDropdown ? 
-                React.createElement(DropdownMenuComp, {
-                  key: `${item.id}-dropdown`
-                }, [
-                  React.createElement(DropdownMenuTrigger, {
-                    key: `${item.id}-trigger`,
-                    className: `${linkClasses} flex items-center`
-                  }, [
-                    React.createElement('span', {}, item.title),
-                    React.createElement(BreadcrumbEllipsis, {
-                      className: 'ml-1 h-4 w-4'
-                    })
-                  ]),
-                  React.createElement(DropdownMenuContent, {
-                    key: `${item.id}-content`
-                  }, 
-                    item.children?.map((child: iBreadcrumbItemChild, childIndex: number) => 
-                      React.createElement(DropdownMenuItem, {
-                        key: `${item.id}-child-${childIndex}`,
-                        className: 'cursor-pointer'
-                      }, 
-                        React.createElement('a', {
-                          href: child.href,
-                          className: 'block w-full'
-                        }, child.title)
-                      )
-                    )
-                  )
-                ]) :
-                React.createElement('div', {
-                  className: 'flex items-center'
-                }, [
-                  item.href && !isLast ? 
-                    React.createElement('a', {
-                      href: item.href,
-                      className: linkClasses
-                    }, item.title) :
-                    React.createElement('span', {
-                      className: isLast ? currentClasses : linkClasses
-                    }, item.title)
-                ])
-            ]),
-            
-            // Add separator if not the last item
-            item.separator && !isLast && 
-              React.createElement('li', {
-                key: `${item.id}-separator`,
-                className: separatorClasses
-              }, getSeparatorIcon(separatorStyle))
-          ]);
-        })
-      )
-    )
+          return (
+            <React.Fragment key={item.id}>
+              <li className="flex items-center">
+                {/* Number */}
+                <span className="mr-2 text-sm text-gray-500 font-medium select-none flex-shrink-0">
+                  {index + 1}.
+                </span>
+                
+                {/* Content */}
+                {isDropdown ? (
+                  <DropdownMenuComp>
+                    <DropdownMenuTrigger className={`${linkClasses} flex items-center`}>
+                      <span>{item.title}</span>
+                      <BreadcrumbEllipsis className="ml-1 h-4 w-4" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {item.children?.map((child, childIndex) => (
+                        <DropdownMenuItem key={childIndex} className="cursor-pointer">
+                          <a href={child.href} className="block w-full">
+                            {child.title}
+                          </a>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenuComp>
+                ) : (
+                  <div className="flex items-center">
+                    {item.href && !isLast ? (
+                      <a href={item.href} className={linkClasses}>
+                        {item.title}
+                      </a>
+                    ) : (
+                      <span className={isLast ? currentClasses : linkClasses}>
+                        {item.title}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </li>
+              
+              {/* Separator */}
+              {item.separator && !isLast && (
+                <li className={separatorClasses}>
+                  {getSeparatorIcon(separatorStyle)}
+                </li>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </ol>
+    </nav>
   );
 });
 
