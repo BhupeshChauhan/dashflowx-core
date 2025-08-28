@@ -34,7 +34,11 @@ const meta: Meta<typeof Breadcrumb> = {
     },
     separatorStyle: {
       control: 'select',
-      options: ['slash', 'chevron', 'arrow', 'dot', 'custom', 'caret', 'double-chevron', 'triangle'],
+      options: [
+        'slash', 'chevron', 'arrow', 'dot', 'custom', 'caret', 'double-chevron', 'triangle',
+        'circle', 'square', 'star', 'heart', 'diamond', 'arrow-up-right', 'arrow-down-right',
+        'arrow-left-right', 'arrow-up-down', 'grip-vertical', 'more-horizontal', 'plus'
+      ],
     },
   },
 };
@@ -200,6 +204,60 @@ export const TriangleSeparator: Story = {
   },
 };
 
+export const CircleSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'circle',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
+export const StarSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'star',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
+export const HeartSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'heart',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
+export const DiamondSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'diamond',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
+export const ArrowUpRightSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'arrow-up-right',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
+export const GripVerticalSeparator: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    separatorStyle: 'grip-vertical',
+    breadcrumbList: sampleBreadcrumbs,
+  },
+};
+
 export const AllVariants: Story = {
   render: () => (
     <div className="space-y-4">
@@ -234,6 +292,18 @@ export const AllSeparators: Story = {
       <Breadcrumb variant="default" size="md" separatorStyle="caret" breadcrumbList={sampleBreadcrumbs} />
       <Breadcrumb variant="default" size="md" separatorStyle="double-chevron" breadcrumbList={sampleBreadcrumbs} />
       <Breadcrumb variant="default" size="md" separatorStyle="triangle" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="circle" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="square" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="star" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="heart" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="diamond" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="arrow-up-right" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="arrow-down-right" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="arrow-left-right" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="arrow-up-down" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="grip-vertical" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="more-horizontal" breadcrumbList={sampleBreadcrumbs} />
+      <Breadcrumb variant="default" size="md" separatorStyle="plus" breadcrumbList={sampleBreadcrumbs} />
     </div>
   ),
 };

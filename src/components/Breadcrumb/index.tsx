@@ -9,6 +9,18 @@ import {
   ChevronDown,
   Triangle,
   Slash,
+  Circle,
+  Square,
+  Star,
+  Heart,
+  Diamond,
+  ArrowUpRight,
+  ArrowDownRight,
+  ArrowLeftRight,
+  ArrowUpDown,
+  GripVertical,
+  MoreHorizontal,
+  Plus,
 } from 'lucide-react';
 import {
   DropdownMenuComp,
@@ -28,7 +40,27 @@ import {
 
 export type BreadcrumbVariant = 'default' | 'minimal' | 'bordered' | 'filled' | 'gradient' | 'outlined';
 export type BreadcrumbSize = 'sm' | 'md' | 'lg';
-export type BreadcrumbSeparatorStyle = 'slash' | 'chevron' | 'arrow' | 'dot' | 'custom' | 'caret' | 'double-chevron' | 'triangle';
+export type BreadcrumbSeparatorStyle = 
+  | 'slash' 
+  | 'chevron' 
+  | 'arrow' 
+  | 'dot' 
+  | 'custom'
+  | 'caret'
+  | 'double-chevron'
+  | 'triangle'
+  | 'circle'
+  | 'square'
+  | 'star'
+  | 'heart'
+  | 'diamond'
+  | 'arrow-up-right'
+  | 'arrow-down-right'
+  | 'arrow-left-right'
+  | 'arrow-up-down'
+  | 'grip-vertical'
+  | 'more-horizontal'
+  | 'plus';
 
 interface iBreadcrumbItemChild {
   title: string | JSX.Element;
@@ -95,123 +127,144 @@ const getSeparatorIcon = (style: BreadcrumbSeparatorStyle) => {
       return React.createElement(ChevronsRight, { className: 'w-4 h-4 text-gray-400' });
     case 'triangle':
       return React.createElement(Triangle, { className: 'w-3 h-3 text-gray-400' });
+    case 'circle':
+      return React.createElement(Circle, { className: 'w-2 h-2 text-gray-400 fill-current' });
+    case 'square':
+      return React.createElement(Square, { className: 'w-2 h-2 text-gray-400 fill-current' });
+    case 'star':
+      return React.createElement(Star, { className: 'w-3 h-3 text-gray-400 fill-current' });
+    case 'heart':
+      return React.createElement(Heart, { className: 'w-3 h-3 text-gray-400 fill-current' });
+    case 'diamond':
+      return React.createElement(Diamond, { className: 'w-3 h-3 text-gray-400 fill-current' });
+    case 'arrow-up-right':
+      return React.createElement(ArrowUpRight, { className: 'w-4 h-4 text-gray-400' });
+    case 'arrow-down-right':
+      return React.createElement(ArrowDownRight, { className: 'w-4 h-4 text-gray-400' });
+    case 'arrow-left-right':
+      return React.createElement(ArrowLeftRight, { className: 'w-4 h-4 text-gray-400' });
+    case 'arrow-up-down':
+      return React.createElement(ArrowUpDown, { className: 'w-4 h-4 text-gray-400' });
+    case 'grip-vertical':
+      return React.createElement(GripVertical, { className: 'w-3 h-3 text-gray-400' });
+    case 'more-horizontal':
+      return React.createElement(MoreHorizontal, { className: 'w-4 h-4 text-gray-400' });
+    case 'plus':
+      return React.createElement(Plus, { className: 'w-3 h-3 text-gray-400' });
     default:
       return React.createElement(ChevronRight, { className: 'w-4 h-4 text-gray-400' });
   }
 };
 
-const BreadcrumbComponent = ({
-  breadcrumbList,
+const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
   variant = 'default',
   size = 'md',
-  separatorStyle = 'custom',
+  separatorStyle = 'chevron',
+  breadcrumbList = [],
   className,
-  listClassName,
-  itemClassName,
-  activeItemClassName,
-  separatorClassName
-}: iBreadcrumb) => {
-  // IMMEDIATE safety check - if anything is wrong, return error immediately
+  ...props
+}, ref) => {
+  // SSR Safety: Check if we're in a browser environment
   if (typeof window === 'undefined') {
     // We're on the server - return a safe placeholder
-    return React.createElement('div', { 
-      className: 'animate-pulse bg-gray-200 rounded p-4 text-center' 
+    return React.createElement('div', {
+      className: 'animate-pulse bg-gray-200 rounded p-4 text-center'
     }, 'Loading Breadcrumb...');
   }
 
-  // Always use a safe default breadcrumb list to prevent map errors
-  const safeBreadcrumbList: iBreadcrumbItem[] = [
-    { id: '1', type: 'item', title: 'Home', href: '/', separator: true },
-    { id: '2', type: 'item', title: 'Products', href: '/products', separator: true },
-    { id: '3', type: 'item', title: 'Current Page', separator: false }
+  // Ensure we have a safe breadcrumb list
+  const safeBreadcrumbList = Array.isArray(breadcrumbList) ? breadcrumbList : [];
+  const finalBreadcrumbList: iBreadcrumbItem[] = safeBreadcrumbList.length > 0 ? safeBreadcrumbList : [
+    { id: '1', type: 'item', title: 'Home', href: '/', separator: false }
   ];
 
-  // Only override if we have a valid, non-empty array
-  const finalBreadcrumbList = (breadcrumbList && Array.isArray(breadcrumbList) && breadcrumbList.length > 0) 
-    ? breadcrumbList 
-    : safeBreadcrumbList;
-
+  // Generate classes based on variant and size
   const containerClasses = getBreadcrumbClasses(variant, size);
-  const finalContainerClasses = className ? `${containerClasses} ${className}` : containerClasses;
-  
-  const linkClasses = variant === 'gradient' 
-    ? 'transition-colors hover:text-blue-200' 
-    : 'transition-colors hover:text-foreground';
-  
-  const currentClasses = variant === 'gradient' 
-    ? 'font-medium text-white' 
-    : 'font-medium text-foreground';
-  
-  const separatorClasses = variant === 'gradient' 
-    ? 'text-blue-200' 
-    : 'text-muted-foreground';
-  
-  const finalSeparatorClasses = separatorClassName ? `${separatorClasses} ${separatorClassName}` : separatorClasses;
+  const linkClasses = 'text-blue-600 hover:text-blue-800 transition-colors duration-200';
+  const currentClasses = 'text-gray-900 font-medium';
+  const separatorClasses = 'mx-2 text-gray-400';
 
-  // Final safety check - ensure we always have an array
-  if (!Array.isArray(finalBreadcrumbList) || finalBreadcrumbList.length === 0) {
-    console.error('Breadcrumb: finalBreadcrumbList is not a valid array:', finalBreadcrumbList);
-    return React.createElement('div', { 
-      className: 'text-red-500 p-4 border border-red-300 rounded' 
-    }, 'Error: Invalid breadcrumb data');
-  }
+  return React.createElement(React.Fragment, {}, 
+    React.createElement('nav', {
+      ref,
+      'aria-label': 'Breadcrumb',
+      className: containerClasses,
+      ...props
+    }, 
+      React.createElement('ol', {
+        className: 'flex items-center space-x-1 md:space-x-3 list-decimal list-inside'
+      }, 
+        finalBreadcrumbList.map((item: iBreadcrumbItem, index: number) => {
+          const isLast = index === finalBreadcrumbList.length - 1;
+          const isDropdown = item.type === 'dropdown' && item.children && item.children.length > 0;
 
-  return (
-    <BreadcrumbComp className={finalContainerClasses}>
-      <BreadcrumbList className={listClassName}>
-        {finalBreadcrumbList.map((breadcrumb, index) => {
-          // Additional safety check for each breadcrumb item
-          if (!breadcrumb || typeof breadcrumb !== 'object') {
-            console.error('Breadcrumb: Invalid breadcrumb item:', breadcrumb);
-            return null;
-          }
-
-          return (
-            <React.Fragment key={breadcrumb.id || `breadcrumb-${index}`}>
-              {finalBreadcrumbList.length - 1 === index && (
-                <BreadcrumbItem className={activeItemClassName}>
-                  <BreadcrumbPage className={currentClasses}>
-                    {breadcrumb.title || 'Untitled'}
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-              )}
-              {finalBreadcrumbList.length - 1 !== index &&
-                breadcrumb.type === 'item' && (
-                  <BreadcrumbItem className={itemClassName}>
-                    <BreadcrumbLink href={breadcrumb.href || '#'} className={linkClasses}>
-                      {breadcrumb.title || 'Untitled'}
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                )}
-              {breadcrumb.type === 'dropdown' && (
-                <BreadcrumbItem className={itemClassName}>
-                  <DropdownMenuComp>
-                    <DropdownMenuTrigger className="flex items-center gap-1">
-                      <BreadcrumbEllipsis className="h-4 w-4" />
-                      <span className="sr-only">Toggle menu</span>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      {breadcrumb?.children?.map((child, childIndex) => (
-                        <DropdownMenuItem key={childIndex} className={itemClassName}>
-                          {child.title}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenuComp>
-                </BreadcrumbItem>
-              )}
-              {breadcrumb.separator && (
-                <BreadcrumbSeparator className={finalSeparatorClasses}>
-                  {getSeparatorIcon(separatorStyle)}
-                </BreadcrumbSeparator>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </BreadcrumbList>
-    </BreadcrumbComp>
+          return React.createElement(React.Fragment, { key: item.id }, [
+            React.createElement('li', {
+              key: `${item.id}-item`,
+              className: 'flex items-center'
+            }, [
+              // Show ordered list number
+              React.createElement('span', {
+                key: `${item.id}-number`,
+                className: 'mr-2 text-sm text-gray-500 font-medium'
+              }, `${index + 1}.`),
+              
+              // Render item content
+              isDropdown ? 
+                React.createElement(DropdownMenuComp, {
+                  key: `${item.id}-dropdown`
+                }, [
+                  React.createElement(DropdownMenuTrigger, {
+                    key: `${item.id}-trigger`,
+                    className: `${linkClasses} flex items-center`
+                  }, [
+                    React.createElement('span', {}, item.title),
+                    React.createElement(BreadcrumbEllipsis, {
+                      className: 'ml-1 h-4 w-4'
+                    })
+                  ]),
+                  React.createElement(DropdownMenuContent, {
+                    key: `${item.id}-content`
+                  }, 
+                    item.children?.map((child: iBreadcrumbItemChild, childIndex: number) => 
+                      React.createElement(DropdownMenuItem, {
+                        key: `${item.id}-child-${childIndex}`,
+                        className: 'cursor-pointer'
+                      }, 
+                        React.createElement('a', {
+                          href: child.href,
+                          className: 'block w-full'
+                        }, child.title)
+                      )
+                    )
+                  )
+                ]) :
+                React.createElement('div', {
+                  className: 'flex items-center'
+                }, [
+                  item.href && !isLast ? 
+                    React.createElement('a', {
+                      href: item.href,
+                      className: linkClasses
+                    }, item.title) :
+                    React.createElement('span', {
+                      className: isLast ? currentClasses : linkClasses
+                    }, item.title)
+                ])
+            ]),
+            
+            // Add separator if not the last item
+            item.separator && !isLast && 
+              React.createElement('li', {
+                key: `${item.id}-separator`,
+                className: separatorClasses
+              }, getSeparatorIcon(separatorStyle))
+          ]);
+        })
+      )
+    )
   );
-};
+});
 
 // Client-side wrapper to prevent SSR issues
 const ClientBreadcrumb = (props: iBreadcrumb) => {
