@@ -1,11 +1,8 @@
-import { BadgeComp, ButtonVariants } from './BadgeComp';
-import { BadgeDefault } from './variants/BadgeDefault';
-import { BadgeSecondary } from './variants/BadgeSecondary';
-import { BadgeOutline } from './variants/BadgeOutline';
-import { BadgeDestructive } from './variants/BadgeDestructive';
+import { BadgeComp, BadgeVariants } from './BadgeComp';
+import { TypographyComp as Typography } from '../Typography/TypographyComp';
 
 interface iDfxBadge {
-  type: any;
+  type?: any;
   icon?: JSX.Element;
   textContent: string | JSX.Element;
   library?: 'react' | 'next';
@@ -29,88 +26,50 @@ const Badge = ({
   variant = 'outline',
   size = 'md',
 }: iDfxBadge) => {
-  if (variant === 'default') {
-    return (
-      <BadgeDefault
-        textContent={textContent}
-        icon={icon}
-        className={className}
-        iconClassName={iconClassName}
-        textClassName={textClassName}
-        size={size}
-        type={type}
-        library={library}
-        path={path}
-      />
-    );
+  // Handle interactive badges with Typography component
+  if (type && path) {
+    const baseClasses = `inline-flex items-center rounded-full font-medium cursor-pointer`;
+    
+    if (library === 'next') {
+      return (
+        <Typography
+          as={type}
+          href={path} // Use href for Next.js
+          className={`${baseClasses} ${className || ''}`}
+        >
+          {icon && <span className={`mr-2 ${iconClassName || ''}`}>{icon}</span>}
+          <span className={textClassName || ''}>{textContent}</span>
+        </Typography>
+      );
+    } else {
+      return (
+        <Typography
+          as={type}
+          to={path} // Use to for React Router
+          className={`${baseClasses} ${className || ''}`}
+        >
+          {icon && <span className={`mr-2 ${iconClassName || ''}`}>{icon}</span>}
+          <span className={textClassName || ''}>{textContent}</span>
+        </Typography>
+      );
+    }
   }
-  
-  if (variant === 'secondary') {
-    return (
-      <BadgeSecondary
-        textContent={textContent}
-        icon={icon}
-        className={className}
-        iconClassName={iconClassName}
-        textClassName={textClassName}
-        size={size}
-      />
-    );
-  }
-  
-  if (variant === 'outline') {
-    return (
-      <BadgeOutline
-        textContent={textContent}
-        icon={icon}
-        className={className}
-        iconClassName={iconClassName}
-        textClassName={textClassName}
-        size={size}
-        type={type}
-        library={library}
-        path={path}
-      />
-    );
-  }
-  
-  if (variant === 'destructive') {
-    return (
-      <BadgeDestructive
-        textContent={textContent}
-        icon={icon}
-        className={className}
-        iconClassName={iconClassName}
-        textClassName={textClassName}
-        size={size}
-        type={type}
-        library={library}
-        path={path}
-      />
-    );
-  }
-  
+
+  // Use BadgeComp for all non-interactive badges
   return (
-    <BadgeOutline
-      textContent={textContent}
-      icon={icon}
-      className={className}
-      iconClassName={iconClassName}
-      textClassName={textClassName}
+    <BadgeComp 
+      variant={variant}
       size={size}
-      type={type}
-      library={library}
-      path={path}
-    />
+      className={className}
+    >
+      {icon && <span className={`mr-2 ${iconClassName || ''}`}>{icon}</span>}
+      <span className={textClassName || ''}>{textContent}</span>
+    </BadgeComp>
   );
 };
 
 export { 
   Badge, 
   BadgeComp, 
-  ButtonVariants as BadgeVariants,
-  BadgeDefault,
-  BadgeSecondary,
-  BadgeOutline,
-  BadgeDestructive
+  BadgeVariants
 };
