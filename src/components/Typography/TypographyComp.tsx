@@ -72,11 +72,22 @@ export const TypographyComp = forwardRef(
     const Component = as || 'span';
     const typographyClasses = getTypographyClasses({ align, size, emphasis, italic, underline, weight });
 
+    // Filter out custom props that shouldn't be passed to HTML elements
+    const {
+      align: _align,
+      size: _size,
+      emphasis: _emphasis,
+      italic: _italic,
+      underline: _underline,
+      weight: _weight,
+      ...htmlProps
+    } = props;
+
     return (
       <Component
         ref={ref}
         className={cn(typographyClasses, className)}
-        {...props}
+        {...htmlProps}
       />
     );
   }
