@@ -41,7 +41,7 @@ export const AvatarRounded = ({
 
   return (
     <AvatarComp className={cn('rounded-lg', currentSize.container)}>
-      <AvatarImage src={imageSrc} alt={imageAlt} className={imageClassName} />
+      <AvatarImage src={imageSrc} alt={imageAlt} className={`m-0 ${imageClassName || ''}`.trim()} />
       <AvatarFallback className={cn('bg-blue-100 text-blue-600 rounded-lg', currentSize.text, fallbackClassName)}>
         {fallback || 'UD'}
       </AvatarFallback>

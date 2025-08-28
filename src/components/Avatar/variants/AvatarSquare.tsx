@@ -41,7 +41,7 @@ export const AvatarSquare = ({
 
   return (
     <AvatarComp className={cn('rounded-none', currentSize.container)}>
-      <AvatarImage src={imageSrc} alt={imageAlt} className={imageClassName} />
+      <AvatarImage src={imageSrc} alt={imageAlt} className={`m-0 ${imageClassName || ''}`.trim()} />
       <AvatarFallback className={cn('bg-gray-100 text-gray-600 rounded-none', currentSize.text, fallbackClassName)}>
         {fallback || 'UD'}
       </AvatarFallback>

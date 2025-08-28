@@ -45,7 +45,7 @@ export const AvatarRing = ({
 
   return (
     <AvatarComp className={cn('ring-offset-2', currentSize.container, currentSize.ring)}>
-      <AvatarImage src={imageSrc} alt={imageAlt} className={imageClassName} />
+      <AvatarImage src={imageSrc} alt={imageAlt} className={`m-0 ${imageClassName || ''}`.trim()} />
       <AvatarFallback className={cn('bg-gray-100 text-gray-600', currentSize.text, fallbackClassName)}>
         {fallback || 'UD'}
       </AvatarFallback>
