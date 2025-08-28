@@ -1,6 +1,5 @@
-import { PolymorphicComponentPropsWithRef, PolymorphicRef } from '../../lib/types';
+import * as React from 'react';
 import { cn } from '../../lib/utils';
-import { forwardRef } from 'react';
 
 // Simple style mapping without external dependencies
 const getTypographyClasses = (props: {
@@ -52,45 +51,43 @@ const getTypographyClasses = (props: {
   );
 };
 
-type TypographyProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C>;
+interface TypographyProps {
+  as?: React.ElementType;
+  size?: 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl';
+  weight?: 'thin' | 'normal' | 'medium' | 'semibold' | 'bold' | 'black';
+  align?: 'left' | 'center' | 'right';
+  italic?: boolean;
+  underline?: boolean;
+  emphasis?: 'low';
+  className?: string;
+  children?: React.ReactNode;
+  [key: string]: any; // Allow other props to pass through
+}
 
-export const TypographyComp = forwardRef(
-  <C extends React.ElementType = 'span'>(
+export const TypographyComp = React.forwardRef<HTMLElement, TypographyProps>(
+  (
     {
-      as,
-      align,
+      as: Component = 'span',
       size,
-      emphasis,
+      weight,
+      align,
       italic,
       underline,
-      weight,
+      emphasis,
       className,
+      children,
       ...props
-    }: TypographyProps<C>,
-    ref?: PolymorphicRef<C>
+    },
+    ref
   ) => {
-    const Component = as || 'span';
-    const typographyClasses = getTypographyClasses({ align, size, emphasis, italic, underline, weight });
-
-    // Filter out custom props that shouldn't be passed to HTML elements
-    const {
-      align: _align,
-      size: _size,
-      emphasis: _emphasis,
-      italic: _italic,
-      underline: _underline,
-      weight: _weight,
-      ...htmlProps
-    } = props;
+    const typographyClasses = getTypographyClasses({ size, weight, align, italic, underline, emphasis });
 
     return (
       <Component
         ref={ref}
         className={cn(typographyClasses, className)}
-        {...htmlProps}
+        {...props}
       />
     );
   }
-) as <C extends React.ElementType = 'span'>(
-  props: TypographyProps<C> & { ref?: PolymorphicRef<C> }
-) => React.ReactElement;
+);
