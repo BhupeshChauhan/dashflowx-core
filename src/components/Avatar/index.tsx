@@ -10,6 +10,8 @@ interface iDfxAvatar {
   fallback: JSX.Element;
   variant?: 'basic' | 'rounded' | 'square' | 'ring';
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  imageClassName?: string;
+  fallbackClassName?: string;
 }
 
 const Avatar = ({ 
@@ -17,7 +19,9 @@ const Avatar = ({
   imageAlt, 
   fallback, 
   variant = 'basic',
-  size = 'md'
+  size = 'md',
+  imageClassName,
+  fallbackClassName
 }: iDfxAvatar) => {
   if (variant === 'basic') {
     return (
@@ -26,6 +30,8 @@ const Avatar = ({
         imageAlt={imageAlt}
         fallback={fallback}
         size={size}
+        imageClassName={imageClassName}
+        fallbackClassName={fallbackClassName}
       />
     );
   }
@@ -37,6 +43,8 @@ const Avatar = ({
         imageAlt={imageAlt}
         fallback={fallback}
         size={size}
+        imageClassName={imageClassName}
+        fallbackClassName={fallbackClassName}
       />
     );
   }
@@ -48,6 +56,8 @@ const Avatar = ({
         imageAlt={imageAlt}
         fallback={fallback}
         size={size}
+        imageClassName={imageClassName}
+        fallbackClassName={fallbackClassName}
       />
     );
   }
@@ -59,6 +69,8 @@ const Avatar = ({
         imageAlt={imageAlt}
         fallback={fallback}
         size={size}
+        imageClassName={imageClassName}
+        fallbackClassName={fallbackClassName}
       />
     );
   }
@@ -69,6 +81,8 @@ const Avatar = ({
       imageAlt={imageAlt}
       fallback={fallback}
       size={size}
+      imageClassName={imageClassName}
+      fallbackClassName={fallbackClassName}
     />
   );
 };

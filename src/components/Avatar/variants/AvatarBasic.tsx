@@ -6,6 +6,8 @@ interface iDfxAvatar {
   imageAlt: string;
   fallback: JSX.Element;
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  imageClassName?: string;
+  fallbackClassName?: string;
 }
 
 export const AvatarBasic = ({
@@ -13,6 +15,8 @@ export const AvatarBasic = ({
   imageAlt,
   fallback,
   size = 'md',
+  imageClassName,
+  fallbackClassName,
 }: iDfxAvatar) => {
   const sizeStyles = {
     sm: {
@@ -37,8 +41,8 @@ export const AvatarBasic = ({
 
   return (
     <AvatarComp className={currentSize.container}>
-      <AvatarImage src={imageSrc} alt={imageAlt} />
-      <AvatarFallback className={cn('bg-gray-100 text-gray-600', currentSize.text)}>
+      <AvatarImage src={imageSrc} alt={imageAlt} className={imageClassName} />
+      <AvatarFallback className={cn('bg-gray-100 text-gray-600', currentSize.text, fallbackClassName)}>
         {fallback || 'UD'}
       </AvatarFallback>
     </AvatarComp>
