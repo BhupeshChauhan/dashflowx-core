@@ -38,6 +38,9 @@ const Badge = ({
         iconClassName={iconClassName}
         textClassName={textClassName}
         size={size}
+        type={type}
+        library={library}
+        path={path}
       />
     );
   }
@@ -64,6 +67,9 @@ const Badge = ({
         iconClassName={iconClassName}
         textClassName={textClassName}
         size={size}
+        type={type}
+        library={library}
+        path={path}
       />
     );
   }
@@ -77,6 +83,9 @@ const Badge = ({
         iconClassName={iconClassName}
         textClassName={textClassName}
         size={size}
+        type={type}
+        library={library}
+        path={path}
       />
     );
   }
@@ -89,6 +98,9 @@ const Badge = ({
       iconClassName={iconClassName}
       textClassName={textClassName}
       size={size}
+      type={type}
+      library={library}
+      path={path}
     />
   );
 };
