@@ -43,10 +43,9 @@ export { Avatar, AvatarComp, AvatarFallback, AvatarImage } from './Avatar';
 
 export { Button, ButtonComp, ButtonVariants } from './Button';
 
-export { Badge, BadgeComp, BadgeSSR } from './Badge';
+export { Badge, BadgeComp } from './Badge';
 
 export { Box } from './Box';
-export type { BoxVariant, BoxSize } from './Box';
 
 export {
   Breadcrumb,

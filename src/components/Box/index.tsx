@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { ComponentPropsWithRef, forwardRef } from 'react';
-import { cn } from '../../lib/utils';
 
 export type BoxVariant = 'default' | 'container' | 'card' | 'spacing' | 'flex' | 'grid' | 'responsive' | 'interactive' | 'gradient' | 'animated';
 export type BoxSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -32,11 +32,7 @@ const getBoxClasses = (variant: BoxVariant, size: BoxSize) => {
     xl: 'p-8 text-xl'
   };
   
-  return cn(
-    baseClasses,
-    variantClasses[variant],
-    sizeClasses[size]
-  );
+  return `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`;
 };
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(({ 
@@ -47,13 +43,16 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(({
   ...props 
 }, ref) => {
   const boxClasses = getBoxClasses(variant, size);
-  const finalClasses = cn(boxClasses, className);
+  const finalClasses = className ? `${boxClasses} ${className}` : boxClasses;
   
-  return (
-    <div ref={ref} className={finalClasses} {...props}>
-      {children}
-    </div>
-  );
+  return React.createElement('div', {
+    ref,
+    className: finalClasses,
+    ...props
+  }, children);
 });
 
 Box.displayName = 'Box';
+
+// Add default export for compatibility
+export default Box;
