@@ -1,3 +1,5 @@
+'use client';
+
 import { BadgeComp } from './BadgeComp';
 import { TypographyComp as Typography } from '../Typography/TypographyComp';
 import { cn } from '../../lib/utils';
@@ -27,8 +29,11 @@ const Badge = ({
   variant = 'outline',
   size = 'md',
 }: iDfxBadge) => {
+  // SSR Safety: Check if we're in a browser environment
+  const isBrowser = typeof window !== 'undefined';
+  
   // Handle interactive badges with Typography component
-  if (type && path) {
+  if (type && path && isBrowser) {
     const baseClasses = 'inline-flex items-center rounded-full font-medium transition-colors cursor-pointer';
     
     // Get variant and size classes like BadgeComp
@@ -77,7 +82,7 @@ const Badge = ({
     }
   }
 
-  // Use BadgeComp for all non-interactive badges
+  // SSR Fallback: Use BadgeComp for all non-interactive badges and SSR
   return (
     <BadgeComp 
       variant={variant}
@@ -94,3 +99,6 @@ export {
   Badge, 
   BadgeComp
 };
+
+// Export SSR-safe version for server-side rendering
+export { BadgeSSR } from './ssr-safe';
