@@ -89,21 +89,21 @@ interface iBreadcrumb {
 }
 
 const getBreadcrumbClasses = (variant: BreadcrumbVariant, size: BreadcrumbSize) => {
-  const baseClasses = 'flex items-center space-x-1';
+  const baseClasses = 'flex items-center';
   
   const variantClasses = {
-    default: 'text-sm text-muted-foreground',
-    minimal: 'text-sm text-gray-600',
-    bordered: 'text-sm text-gray-700 border border-gray-200 rounded-lg px-3 py-2',
-    filled: 'text-sm text-gray-700 bg-gray-50 rounded-lg px-3 py-2',
-    gradient: 'text-sm text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg px-3 py-2',
-    outlined: 'text-sm text-gray-700 border-2 border-gray-300 rounded-lg px-3 py-2'
+    default: 'text-gray-700',
+    minimal: 'text-gray-600',
+    bordered: 'text-gray-700 border border-gray-200 rounded-lg px-3 py-2',
+    filled: 'text-gray-700 bg-gray-50 rounded-lg px-3 py-2',
+    gradient: 'text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg px-3 py-2',
+    outlined: 'text-gray-700 border-2 border-gray-300 rounded-lg px-3 py-2'
   };
   
   const sizeClasses = {
-    sm: 'text-xs space-x-1',
-    md: 'text-sm space-x-2',
-    lg: 'text-base space-x-3'
+    sm: 'text-xs',
+    md: 'text-sm',
+    lg: 'text-base'
   };
   
   return `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`;
@@ -181,62 +181,54 @@ const BreadcrumbComponent = React.forwardRef<HTMLDivElement, iBreadcrumb>(({
   const containerClasses = getBreadcrumbClasses(variant, size);
   const linkClasses = 'text-blue-600 hover:text-blue-800 transition-colors duration-200';
   const currentClasses = 'text-gray-900 font-medium';
-  const separatorClasses = 'mx-2 text-gray-400';
 
   return (
     <nav ref={ref} aria-label="Breadcrumb" className={containerClasses} {...props}>
-      <ol className="flex items-center space-x-1 md:space-x-3">
+      <ol className="flex items-center flex-wrap gap-1 md:gap-3">
         {finalBreadcrumbList.map((item, index) => {
           const isLast = index === finalBreadcrumbList.length - 1;
           const isDropdown = item.type === 'dropdown' && item.children && item.children.length > 0;
 
           return (
-            <React.Fragment key={item.id}>
-              <li className="flex items-center">
-                {/* Number */}
-                <span className="mr-2 text-sm text-gray-500 font-medium select-none flex-shrink-0">
-                  {index + 1}.
-                </span>
-                
-                {/* Content */}
-                {isDropdown ? (
-                  <DropdownMenuComp>
-                    <DropdownMenuTrigger className={`${linkClasses} flex items-center`}>
-                      <span>{item.title}</span>
-                      <BreadcrumbEllipsis className="ml-1 h-4 w-4" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      {item.children?.map((child, childIndex) => (
-                        <DropdownMenuItem key={childIndex} className="cursor-pointer">
-                          <a href={child.href} className="block w-full">
-                            {child.title}
-                          </a>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenuComp>
-                ) : (
-                  <div className="flex items-center">
-                    {item.href && !isLast ? (
-                      <a href={item.href} className={linkClasses}>
-                        {item.title}
-                      </a>
-                    ) : (
-                      <span className={isLast ? currentClasses : linkClasses}>
-                        {item.title}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </li>
-              
-              {/* Separator */}
-              {item.separator && !isLast && (
-                <li className={separatorClasses}>
-                  {getSeparatorIcon(separatorStyle)}
-                </li>
+            <li key={item.id} className="flex items-center">
+              {/* Content */}
+              {isDropdown ? (
+                <DropdownMenuComp>
+                  <DropdownMenuTrigger className={`${linkClasses} flex items-center`}>
+                    <span>{item.title}</span>
+                    <BreadcrumbEllipsis className="ml-1 h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {item.children?.map((child, childIndex) => (
+                      <DropdownMenuItem key={childIndex} className="cursor-pointer">
+                        <a href={child.href} className="block w-full">
+                          {child.title}
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenuComp>
+              ) : (
+                <div className="flex items-center">
+                  {item.href && !isLast ? (
+                    <a href={item.href} className={linkClasses}>
+                      {item.title}
+                    </a>
+                  ) : (
+                    <span className={isLast ? currentClasses : linkClasses}>
+                      {item.title}
+                    </span>
+                  )}
+                </div>
               )}
-            </React.Fragment>
+              
+              {/* Separator - only show if not the last item */}
+              {!isLast && (
+                <span className="mx-3 text-gray-400 flex-shrink-0">
+                  {getSeparatorIcon(separatorStyle)}
+                </span>
+              )}
+            </li>
           );
         })}
       </ol>

@@ -322,7 +322,7 @@ export const CustomStyling: Story = {
   },
 };
 
-export const SimpleNumbered: Story = {
+export const Simple: Story = {
   args: {
     variant: 'default',
     size: 'md',
