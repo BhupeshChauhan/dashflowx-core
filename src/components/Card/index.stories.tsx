@@ -420,3 +420,50 @@ export const AllElevations: Story = {
     </div>
   ),
 };
+
+export const NoMargin: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    cardTitle: 'No Margin Card',
+    cardDescription: 'A card with no margin',
+    cardContent: 'This card has no margin applied.',
+    margin: 'none',
+  },
+};
+
+export const WithMargin: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    cardTitle: 'With Margin Card',
+    cardDescription: 'A card with custom margin',
+    cardContent: 'This card has custom margin applied.',
+    margin: 'lg',
+  },
+};
+
+export const CompactSpacing: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    cardTitle: 'Compact Spacing Card',
+    cardDescription: 'A card with reduced margins and spacing',
+    cardContent: 'This card demonstrates the improved spacing with reduced title margin.',
+    margin: 'none',
+    padding: 'md',
+  },
+};
+
+export const WithImageCompact: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    cardTitle: 'Card with Image',
+    cardDescription: 'A card with image and compact spacing',
+    cardContent: 'This card shows the improved spacing when an image is present.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop',
+    imageAlt: 'Mountain landscape',
+    margin: 'none',
+  },
+};

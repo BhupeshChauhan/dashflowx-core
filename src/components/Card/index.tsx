@@ -201,7 +201,7 @@ function CardComponent({
 
   // Get custom margin classes
   const getCustomMarginClasses = () => {
-    if (margin === 'none') return '';
+    if (margin === 'none' || margin === undefined) return '';
     const margins = {
       xs: 'm-2',
       sm: 'm-3',
@@ -339,7 +339,7 @@ function CardComponent({
   const widthClasses = fullWidth ? 'w-full' : '';
   const maxWidthClasses = getMaxWidthClasses();
   const customColorClasses = getCustomColorClasses();
-  const customMarginClasses = getCustomMarginClasses();
+  const customMarginClasses = margin !== 'none' ? getCustomMarginClasses() : '';
   const animationClasses = getAnimationClasses();
   const clickableClasses = clickable ? 'cursor-pointer' : '';
   const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : '';
@@ -348,7 +348,7 @@ function CardComponent({
   const textSharpnessClasses = 'text-render-optimize antialiased subpixel-antialiased';
   
   const cardClasses = `${baseClasses} ${variantClasses} ${shadowClasses} ${hoverClasses} ${widthClasses} ${maxWidthClasses} ${customColorClasses} ${customMarginClasses} ${animationClasses} ${clickableClasses} ${disabledClasses} ${textSharpnessClasses} ${className}`.trim();
-  const headerClasses = `flex flex-col space-y-1.5 ${sizeClasses} pb-4 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
+  const headerClasses = `flex flex-col space-y-1 ${sizeClasses} pb-2 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
   const contentClasses = `${sizeClasses} pt-0 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
   const footerClasses = `flex items-center ${sizeClasses} pt-0 border-t border-gray-200 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
 
