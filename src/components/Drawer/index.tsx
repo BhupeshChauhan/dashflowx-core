@@ -34,7 +34,7 @@ export const Drawer: React.FC<iDrawer> = ({
   };
   return (
     <>
-      <Button variant="solid" color="primary" onClick={handleOpen}>
+      <Button variant="primary" onClick={handleOpen}>
         Open Drawer
       </Button>
       <DrawerComp
