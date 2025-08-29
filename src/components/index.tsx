@@ -58,7 +58,7 @@ export {
   BreadcrumbSeparator,
 } from './Breadcrumb';
 
-export { Calendar, CalendarComp } from './Calendar';
+export { Calendar } from './Calendar';
 
 export {
   Card,

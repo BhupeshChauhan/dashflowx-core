@@ -11,19 +11,17 @@ import {
 } from '../Popover';
 
 interface iDatePicker {
-  mode: 'default' | 'single' | 'multiple' | 'range';
+  mode?: 'single' | 'multiple' | 'range';
   date: any;
   setDate: any;
   className?: string;
-  initialFocus?: boolean;
 }
 
 export function DatePicker({
-  mode = 'default',
+  mode = 'single',
   date,
   setDate,
   className,
-  initialFocus,
 }: iDatePicker) {
   return (
     <Popover>
@@ -45,7 +43,6 @@ export function DatePicker({
           mode={mode}
           date={date}
           setDate={setDate}
-          initialFocus={initialFocus}
         />
       </PopoverContent>
     </Popover>

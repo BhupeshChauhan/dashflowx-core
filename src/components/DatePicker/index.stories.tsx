@@ -13,10 +13,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    mode: 'default',
+    mode: 'single',
     date: new Date(),
     setDate: () => {},
     className: '',
-    initialFocus: false,
   },
 };
