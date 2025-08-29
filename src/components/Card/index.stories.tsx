@@ -467,3 +467,15 @@ export const WithImageCompact: Story = {
     margin: 'none',
   },
 };
+
+export const NoDefaultMargins: Story = {
+  args: {
+    variant: 'default',
+    size: 'md',
+    cardTitle: 'No Default Margins',
+    cardDescription: 'This card has explicit margin resets applied',
+    cardContent: 'All text elements now have m-0 p-0 to override browser defaults.',
+    margin: 'none',
+    className: 'border-2 border-red-200',
+  },
+};

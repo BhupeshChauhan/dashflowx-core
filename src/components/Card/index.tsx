@@ -347,6 +347,9 @@ function CardComponent({
   // Ensure text is always sharp and clear
   const textSharpnessClasses = 'text-render-optimize antialiased subpixel-antialiased';
   
+  // Reset margins for all text elements
+  const marginResetClasses = 'm-0 p-0';
+  
   const cardClasses = `${baseClasses} ${variantClasses} ${shadowClasses} ${hoverClasses} ${widthClasses} ${maxWidthClasses} ${customColorClasses} ${customMarginClasses} ${animationClasses} ${clickableClasses} ${disabledClasses} ${textSharpnessClasses} ${className}`.trim();
   const headerClasses = `flex flex-col space-y-1 ${sizeClasses} pb-2 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
   const contentClasses = `${sizeClasses} pt-0 ${textSharpnessClasses} ${getRoundedContentClasses()}`;
@@ -385,10 +388,10 @@ function CardComponent({
 
       {showHeader && (
         <div className={headerClasses}>
-          <h3 className={`text-2xl font-semibold leading-none tracking-tight ${variantStyles.titleColor} antialiased subpixel-antialiased`}>
+          <h3 className={`text-2xl font-semibold leading-none tracking-tight m-0 ${variantStyles.titleColor} antialiased subpixel-antialiased`}>
             {cardTitle}
           </h3>
-          <p className={`text-sm ${variantStyles.descriptionColor} antialiased subpixel-antialiased`}>
+          <p className={`text-sm m-0 ${variantStyles.descriptionColor} antialiased subpixel-antialiased`}>
             {cardDescription}
           </p>
         </div>
@@ -396,7 +399,7 @@ function CardComponent({
       
       <div className={contentClasses}>
         {children || (
-          <p className={`${variantStyles.contentColor} antialiased subpixel-antialiased`}>
+          <p className={`${variantStyles.contentColor} antialiased subpixel-antialiased ${marginResetClasses}`}>
             {cardContent}
           </p>
         )}
@@ -404,7 +407,7 @@ function CardComponent({
       
       {showFooter && (
         <div className={footerClasses}>
-          <span className={`${variantStyles.footerColor} antialiased subpixel-antialiased`}>
+          <span className={`${variantStyles.footerColor} antialiased subpixel-antialiased ${marginResetClasses}`}>
             {footerContent}
           </span>
         </div>
