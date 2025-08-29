@@ -60,15 +60,7 @@ export {
 
 export { Calendar } from './Calendar';
 
-export {
-  Card,
-  CardComp,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from './Card';
+export { Card } from './Card';
 
 export {
   Carousel,
