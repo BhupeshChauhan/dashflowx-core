@@ -381,7 +381,7 @@ function CardComponent({
           <img 
             src={image} 
             alt={imageAlt} 
-            className="w-full h-full object-cover rounded-t-lg"
+            className="w-full h-full object-cover rounded-t-lg m-0"
           />
         </div>
       )}
