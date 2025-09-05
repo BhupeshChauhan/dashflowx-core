@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '../Button';
 import {
   DropdownMenuCheckboxItem,
@@ -46,18 +47,18 @@ function DropDownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
         <Button variant="outline">{actionButton}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        {dropdownItems?.map((dropdownItem) => {
+        {dropdownItems?.map((dropdownItem, index) => {
           if (dropdownItem.type === 'label') {
-            return <DropdownMenuLabel>{dropdownItem.title}</DropdownMenuLabel>;
+            return <DropdownMenuLabel key={index}>{dropdownItem.title}</DropdownMenuLabel>;
           }
           if (dropdownItem.type === 'seperator') {
-            return <DropdownMenuSeparator />;
+            return <DropdownMenuSeparator key={index} />;
           }
           if (dropdownItem.type === 'group') {
             return (
-              <DropdownMenuGroup>
-                {dropdownItem?.children?.map((child) => (
-                  <>
+              <DropdownMenuGroup key={index}>
+                {dropdownItem?.children?.map((child, childIndex) => (
+                  <React.Fragment key={childIndex}>
                     {child.type === 'item' && (
                       <DropdownMenuItem>
                         {child.title}
@@ -80,8 +81,8 @@ function DropDownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
                         )}
                         <DropdownMenuPortal>
                           <DropdownMenuSubContent>
-                            {child?.subChildren?.map((subChild) => (
-                              <DropdownMenuItem>
+                            {child?.subChildren?.map((subChild, subIndex) => (
+                              <DropdownMenuItem key={subIndex}>
                                 {subChild.title}
                               </DropdownMenuItem>
                             ))}
@@ -89,11 +90,12 @@ function DropDownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
                         </DropdownMenuPortal>
                       </DropdownMenuSub>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </DropdownMenuGroup>
             );
           }
+          return null;
         })}
       </DropdownMenuContent>
     </DropdownMenuComp>
