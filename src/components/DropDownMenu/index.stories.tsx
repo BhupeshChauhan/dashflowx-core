@@ -11,7 +11,16 @@ const meta: Meta<typeof DropdownMenu> = {
   argTypes: {
     backgroundColor: {
       control: 'select',
-      options: ['blue', 'green', 'red', 'yellow', 'purple', 'pink', 'indigo', 'emerald', 'teal', 'cyan', 'transparent', 'glass', 'gradient'],
+      options: [
+        'blue', 'green', 'red', 'yellow', 'purple', 'pink', 'indigo', 'emerald', 'teal', 'cyan', 
+        'orange', 'gray', 'slate', 'zinc', 'neutral', 'stone', 'rose', 'violet', 'fuchsia', 
+        'lime', 'amber', 'sky',
+        'transparent', 'glass', 'gradient', 'gradient-blue', 'gradient-green', 'gradient-red', 
+        'gradient-purple', 'gradient-pink', 'gradient-orange', 'gradient-teal', 'gradient-indigo', 
+        'gradient-emerald', 'gradient-cyan', 'gradient-yellow', 'gradient-gray', 'gradient-slate', 
+        'gradient-zinc', 'gradient-neutral', 'gradient-stone', 'gradient-rose', 'gradient-violet', 
+        'gradient-fuchsia', 'gradient-lime', 'gradient-amber', 'gradient-sky'
+      ],
     },
     backgroundIntensity: {
       control: 'select',
@@ -158,6 +167,61 @@ export const GradientBackground: Story = {
             title: 'Gradient Item',
           },
         ],
+      },
+    ],
+  },
+};
+
+export const GradientBackgrounds: Story = {
+  args: {
+    actionButton: 'Gradient Menu',
+    backgroundColor: 'gradient-blue',
+    dropdownItems: [
+      {
+        type: 'label',
+        title: 'Blue Gradient',
+      },
+      {
+        type: 'item',
+        title: 'Gradient Item 1',
+      },
+      {
+        type: 'item',
+        title: 'Gradient Item 2',
+      },
+    ],
+  },
+};
+
+export const AllGradientColors: Story = {
+  args: {
+    actionButton: 'All Gradients',
+    backgroundColor: 'gradient-purple',
+    dropdownItems: [
+      {
+        type: 'label',
+        title: 'Purple Gradient',
+      },
+      {
+        type: 'item',
+        title: 'Purple Item',
+      },
+    ],
+  },
+};
+
+export const RainbowGradient: Story = {
+  args: {
+    actionButton: 'Rainbow Menu',
+    backgroundColor: 'gradient',
+    dropdownItems: [
+      {
+        type: 'label',
+        title: 'Rainbow Gradient',
+      },
+      {
+        type: 'item',
+        title: 'Colorful Item',
       },
     ],
   },
