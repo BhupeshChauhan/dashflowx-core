@@ -133,7 +133,7 @@ export {
 } from './Dialog';
 
 export {
-  DropDownMenu,
+  DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuComp,
   DropdownMenuContent,

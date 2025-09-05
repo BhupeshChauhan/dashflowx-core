@@ -40,7 +40,7 @@ interface iDropDownMenu {
   dropdownItems: iDropDownMenuItems[];
 }
 
-function DropDownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
+function DropdownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
   return (
     <DropdownMenuComp>
       <DropdownMenuTrigger asChild>
@@ -103,7 +103,7 @@ function DropDownMenu({ actionButton, dropdownItems }: iDropDownMenu) {
 }
 
 export {
-  DropDownMenu,
+  DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuComp,
   DropdownMenuContent,

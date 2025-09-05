@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropDownMenu } from '.';
+import { DropdownMenu } from '.';
 
-const meta: Meta<typeof DropDownMenu> = {
-  title: 'Element/DropDownMenu',
-  component: DropDownMenu,
+const meta: Meta<typeof DropdownMenu> = {
+  title: 'Element/DropdownMenu',
+  component: DropdownMenu,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
