@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { Resizable, PanelConfig } from '.';
+import { Resizable } from '.';
+import type { PanelConfig } from './types';
 
 const meta: Meta<typeof Resizable> = {
   title: 'Components/Resizable',
@@ -50,6 +51,18 @@ const meta: Meta<typeof Resizable> = {
     controlsPosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
+    },
+    enableVirtualization: {
+      control: 'boolean',
+    },
+    maxPanels: {
+      control: 'number',
+    },
+    debounceMs: {
+      control: 'number',
+    },
+    debug: {
+      control: 'boolean',
     },
   },
   tags: ['autodocs'],
@@ -322,6 +335,237 @@ export const DraggablePanels: Story = {
   },
 };
 
+export const OptimizedPerformance: Story = {
+  args: {
+    type: 'dynamic',
+    direction: 'horizontal',
+    className: 'max-w-6xl',
+    height: '600px',
+    showControls: true,
+    addable: true,
+    removable: true,
+    collapsible: true,
+    enableVirtualization: true,
+    maxPanels: 8,
+    debounceMs: 200,
+    debug: true,
+    panels: [
+      {
+        id: 'editor-1',
+        title: 'Code Editor',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-blue-50">
+            <div className="text-center">
+              <h3 className="font-semibold text-blue-700 mb-2">Code Editor</h3>
+              <p className="text-blue-600 text-sm">Write your code here</p>
+            </div>
+          </div>
+        ),
+        defaultSize: 40,
+        color: 'blue',
+        lazy: true,
+        closable: true,
+        resizable: true,
+        collapsible: true,
+      },
+      {
+        id: 'preview-1',
+        title: 'Live Preview',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-green-50">
+            <div className="text-center">
+              <h3 className="font-semibold text-green-700 mb-2">Preview</h3>
+              <p className="text-green-600 text-sm">See your changes</p>
+            </div>
+          </div>
+        ),
+        defaultSize: 35,
+        color: 'green',
+        lazy: true,
+        closable: true,
+        resizable: true,
+        collapsible: true,
+      },
+      {
+        id: 'terminal-1',
+        title: 'Terminal',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-gray-50">
+            <span className="font-semibold text-gray-700">Terminal</span>
+          </div>
+        ),
+        defaultSize: 25,
+        color: 'gray',
+        lazy: true,
+        closable: true,
+      },
+    ],
+  },
+};
+
+export const LazyLoading: Story = {
+  args: {
+    type: 'dynamic',
+    direction: 'horizontal',
+    className: 'max-w-4xl',
+    height: '500px',
+    showControls: true,
+    addable: true,
+    removable: true,
+    collapsible: true,
+    debug: true,
+    panels: [
+      {
+        id: 'instant-panel',
+        title: 'Instant Panel',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-green-50">
+            <span className="font-semibold text-green-700">Loaded Instantly</span>
+          </div>
+        ),
+        defaultSize: 50,
+        color: 'green',
+        lazy: false,
+      },
+      {
+        id: 'lazy-panel-1',
+        title: 'Lazy Panel 1',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-blue-50">
+            <span className="font-semibold text-blue-700">Lazy Loaded</span>
+          </div>
+        ),
+        defaultSize: 25,
+        color: 'blue',
+        lazy: true,
+      },
+      {
+        id: 'lazy-panel-2',
+        title: 'Lazy Panel 2',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-purple-50">
+            <span className="font-semibold text-purple-700">Also Lazy</span>
+          </div>
+        ),
+        defaultSize: 25,
+        color: 'purple',
+        lazy: true,
+      },
+    ],
+  },
+};
+
+export const ErrorHandling: Story = {
+  args: {
+    type: 'dynamic',
+    direction: 'horizontal',
+    className: 'max-w-4xl',
+    height: '400px',
+    showControls: true,
+    addable: true,
+    removable: true,
+    collapsible: true,
+    debug: true,
+    panels: [
+      {
+        id: 'working-panel',
+        title: 'Working Panel',
+        content: (
+          <div className="flex h-full items-center justify-center p-6 bg-green-50">
+            <span className="font-semibold text-green-700">Working Panel</span>
+          </div>
+        ),
+        defaultSize: 50,
+        color: 'green',
+        closable: true,
+      },
+      {
+        id: 'error-panel',
+        title: 'Error Panel',
+        content: null,
+        defaultSize: 50,
+        color: 'red',
+        error: 'Failed to load content',
+        closable: true,
+      },
+    ],
+    onPanelError: (panelId, error) => {
+      console.log(`Panel ${panelId} error:`, error);
+    },
+  },
+};
+
+export const PerformanceComparison: Story = {
+  render: () => {
+    const [panels, setPanels] = React.useState<PanelConfig[]>(() => 
+      Array.from({ length: 6 }, (_, i) => ({
+        id: `panel-${i}`,
+        title: `Panel ${i + 1}`,
+        content: (
+          <div className={`flex h-full items-center justify-center p-6 bg-${['blue', 'green', 'red', 'yellow', 'purple', 'orange'][i]}-50`}>
+            <span className={`font-semibold text-${['blue', 'green', 'red', 'yellow', 'purple', 'orange'][i]}-700`}>Panel {i + 1}</span>
+          </div>
+        ),
+        defaultSize: 100 / 6,
+        color: ['blue', 'green', 'red', 'yellow', 'purple', 'orange'][i],
+        lazy: i > 2, // First 3 panels load instantly, rest are lazy
+        closable: true,
+      }))
+    );
+
+    return (
+      <div className="space-y-6 max-w-6xl">
+        <div className="p-4 bg-blue-50 rounded-lg">
+          <h3 className="font-semibold mb-2 text-blue-800">Performance Optimized Resizable</h3>
+          <p className="text-sm text-blue-700 mb-4">
+            Features: Memoization, Lazy Loading, Debounced Updates, Virtualization Ready
+          </p>
+          <div className="grid grid-cols-2 gap-4 text-xs text-blue-600">
+            <div>
+              <strong>Current Panels:</strong> {panels.length}
+            </div>
+            <div>
+              <strong>Lazy Panels:</strong> {panels.filter(p => p.lazy).length}
+            </div>
+          </div>
+        </div>
+        
+        <Resizable
+          type="dynamic"
+          direction="horizontal"
+          className="max-w-6xl"
+          height="500px"
+          panels={panels}
+          showControls={true}
+          addable={true}
+          removable={true}
+          collapsible={true}
+          enableVirtualization={true}
+          maxPanels={10}
+          debounceMs={150}
+          debug={true}
+          controlsPosition="top"
+          onPanelsChange={setPanels}
+          onPanelAdd={(panel) => console.log('Panel added:', panel)}
+          onPanelRemove={(id) => console.log('Panel removed:', id)}
+          onPanelCollapse={(id, collapsed) => console.log('Panel collapsed:', id, collapsed)}
+        />
+        
+        <div className="p-3 bg-gray-100 rounded text-xs text-gray-600">
+          <strong>Performance Features:</strong>
+          <ul className="mt-1 space-y-1">
+            <li>• Memoized components prevent unnecessary re-renders</li>
+            <li>• Lazy loading reduces initial render time</li>
+            <li>• Debounced updates prevent excessive state changes</li>
+            <li>• Panel limits prevent memory issues</li>
+            <li>• Debug mode shows performance metrics</li>
+          </ul>
+        </div>
+      </div>
+    );
+  },
+};
+
 export const InteractiveDemo: Story = {
   render: () => {
     const [panels, setPanels] = React.useState<PanelConfig[]>([
@@ -338,6 +582,7 @@ export const InteractiveDemo: Story = {
         ),
         defaultSize: 50,
         color: 'blue',
+        lazy: false,
         closable: true,
         resizable: true,
         collapsible: true,
@@ -355,6 +600,7 @@ export const InteractiveDemo: Story = {
         ),
         defaultSize: 50,
         color: 'green',
+        lazy: false,
         closable: true,
         resizable: true,
         collapsible: true,
@@ -385,6 +631,8 @@ export const InteractiveDemo: Story = {
           draggable={true}
           collapsible={true}
           controlsPosition="top"
+          maxPanels={8}
+          debounceMs={200}
           onPanelsChange={setPanels}
           onPanelAdd={(panel) => console.log('Panel added:', panel)}
           onPanelRemove={(id) => console.log('Panel removed:', id)}
