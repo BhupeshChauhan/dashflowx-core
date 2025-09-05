@@ -21,6 +21,7 @@ import {
   parseArrayProp, 
   getVariantClasses, 
   getThemeClasses, 
+  getSubMenuClasses,
   isItemDisabled 
 } from './utils';
 
@@ -98,12 +99,13 @@ const SimpleContextMenu = ({
     }
     
     if (item.type === 'subMenu') {
+      const subMenuClasses = getSubMenuClasses(theme);
       return (
         <ContextMenuSub key={index}>
           <ContextMenuSubTrigger inset disabled={isDisabled}>
             {item.title}
           </ContextMenuSubTrigger>
-          <ContextMenuSubContent className="w-48">
+          <ContextMenuSubContent className={`w-48 ${subMenuClasses}`}>
             {item.children?.map((child: any, childIndex: number) => (
               <ContextMenuItem 
                 key={childIndex}

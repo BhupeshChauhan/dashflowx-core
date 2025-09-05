@@ -50,6 +50,15 @@ export const getThemeClasses = (theme: string) => {
   }
 };
 
+export const getSubMenuClasses = (theme: string) => {
+  switch (theme) {
+    case 'dark':
+      return 'bg-gray-800 text-white border-gray-600';
+    default:
+      return 'bg-gray-50 text-gray-900 border-gray-200';
+  }
+};
+
 export const isItemDisabled = (item: ContextMenuItemType) => {
   return item.disabled === true;
 };

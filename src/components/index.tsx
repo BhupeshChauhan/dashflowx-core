@@ -106,6 +106,7 @@ export {
   parseArrayProp,
   getVariantClasses,
   getThemeClasses,
+  getSubMenuClasses,
   isItemDisabled,
   createMenuItem,
   createLabelItem,
