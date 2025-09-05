@@ -15,6 +15,36 @@ import {
 } from './SheetComp';
 
 // Types and Interfaces
+export type SheetBgColor = 
+  | 'white' 
+  | 'gray' 
+  | 'slate' 
+  | 'zinc' 
+  | 'neutral' 
+  | 'stone' 
+  | 'red' 
+  | 'orange' 
+  | 'amber' 
+  | 'yellow' 
+  | 'lime' 
+  | 'green' 
+  | 'emerald' 
+  | 'teal' 
+  | 'cyan' 
+  | 'sky' 
+  | 'blue' 
+  | 'indigo' 
+  | 'violet' 
+  | 'purple' 
+  | 'fuchsia' 
+  | 'pink' 
+  | 'rose'
+  | 'transparent'
+  | 'glass'
+  | 'gradient';
+
+export type SheetBgIntensity = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950';
+
 export interface SheetAction {
   id: string;
   label: string;
@@ -39,7 +69,8 @@ export interface SheetConfig {
   closeOnEscape?: boolean;
   showHeader?: boolean;
   showFooter?: boolean;
-  backgroundColor?: 'default' | 'white' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'pink' | 'indigo' | 'custom';
+  backgroundColor?: SheetBgColor;
+  backgroundIntensity?: SheetBgIntensity;
   customBgColor?: string;
 }
 
@@ -61,6 +92,7 @@ const SHEET_CONFIGS = {
     side: 'right' as const,
     size: 'md' as const,
     backgroundColor: 'blue' as const,
+    backgroundIntensity: '50' as const,
     content: (
       <div className="py-4 space-y-4">
         <div className="p-4 bg-blue-50 rounded-lg">
@@ -88,6 +120,7 @@ const SHEET_CONFIGS = {
     side: 'top' as const,
     size: 'sm' as const,
     backgroundColor: 'yellow' as const,
+    backgroundIntensity: '50' as const,
     content: (
       <div className="py-4">
         <div className="flex items-center space-x-2 text-yellow-600">
@@ -120,6 +153,7 @@ const SHEET_CONFIGS = {
     side: 'right' as const,
     size: 'lg' as const,
     backgroundColor: 'gray' as const,
+    backgroundIntensity: '50' as const,
     content: (
       <div className="py-4 space-y-6">
         <div className="space-y-4">
@@ -187,34 +221,36 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const getBackgroundClasses = (backgroundColor?: string, customBgColor?: string) => {
-  if (backgroundColor === 'custom' && customBgColor) {
+const getBackgroundClasses = (backgroundColor?: SheetBgColor, backgroundIntensity?: SheetBgIntensity, customBgColor?: string) => {
+  // Handle special cases first
+  if (backgroundColor === 'transparent') {
+    return 'bg-transparent';
+  }
+  
+  if (backgroundColor === 'glass') {
+    return 'bg-white/10 backdrop-blur-md border border-white/20';
+  }
+  
+  if (backgroundColor === 'gradient') {
+    return 'bg-gradient-to-br from-blue-50 to-purple-50';
+  }
+  
+  if (backgroundColor === 'white') {
+    return 'bg-white';
+  }
+  
+  // Handle custom color
+  if (customBgColor) {
     return '';
   }
   
-  switch (backgroundColor) {
-    case 'white':
-      return 'bg-white';
-    case 'gray':
-      return 'bg-gray-50';
-    case 'blue':
-      return 'bg-blue-50';
-    case 'green':
-      return 'bg-green-50';
-    case 'red':
-      return 'bg-red-50';
-    case 'yellow':
-      return 'bg-yellow-50';
-    case 'purple':
-      return 'bg-purple-50';
-    case 'pink':
-      return 'bg-pink-50';
-    case 'indigo':
-      return 'bg-indigo-50';
-    case 'default':
-    default:
-      return 'bg-background';
+  // Handle all other colors with intensity
+  if (backgroundColor && backgroundIntensity) {
+    return `bg-${backgroundColor}-${backgroundIntensity}`;
   }
+  
+  // Default fallback
+  return 'bg-background';
 };
 
 // Main Dynamic Sheet Component
@@ -227,7 +263,7 @@ function DynamicSheet({
   className 
 }: DynamicSheetProps) {
   const sizeClasses = useMemo(() => getSizeClasses(config.size || 'md'), [config.size]);
-  const backgroundClasses = useMemo(() => getBackgroundClasses(config.backgroundColor, config.customBgColor), [config.backgroundColor, config.customBgColor]);
+  const backgroundClasses = useMemo(() => getBackgroundClasses(config.backgroundColor, config.backgroundIntensity, config.customBgColor), [config.backgroundColor, config.backgroundIntensity, config.customBgColor]);
 
   const defaultTrigger = useMemo(() => (
     <Button variant="outline">
@@ -256,7 +292,7 @@ function DynamicSheet({
       <SheetContent 
         side={config.side || 'right'}
         className={cn(sizeClasses, backgroundClasses, config.className, className)}
-        style={config.backgroundColor === 'custom' && config.customBgColor ? { backgroundColor: config.customBgColor } : undefined}
+        style={config.customBgColor ? { backgroundColor: config.customBgColor } : undefined}
       >
         {config.showHeader !== false && (
           <SheetHeader>

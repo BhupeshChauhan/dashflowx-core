@@ -76,7 +76,7 @@ export const BackgroundColors: Story = {
       <div className="space-y-2">
         <h3 className="text-lg font-semibold">Background Colors</h3>
         <div className="flex gap-2 flex-wrap">
-          {(['default', 'white', 'gray', 'blue', 'green', 'red', 'yellow', 'purple', 'pink', 'indigo'] as const).map(color => (
+          {(['blue', 'green', 'red', 'yellow', 'purple', 'pink', 'indigo', 'emerald', 'teal', 'cyan'] as const).map(color => (
             <DynamicSheet
               key={color}
               config={{
@@ -86,10 +86,11 @@ export const BackgroundColors: Story = {
                 side: 'right',
                 size: 'md',
                 backgroundColor: color,
+                backgroundIntensity: '50',
                 content: (
                   <div className="py-4">
                     <p className="text-sm text-gray-600">
-                      This sheet uses the {color} background color.
+                      This sheet uses the {color}-50 background color.
                     </p>
                   </div>
                 ),
@@ -106,6 +107,120 @@ export const BackgroundColors: Story = {
   ),
 };
 
+export const BackgroundIntensities: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold">Background Intensities</h3>
+        <div className="flex gap-2 flex-wrap">
+          {(['50', '100', '200', '300', '400', '500'] as const).map(intensity => (
+            <DynamicSheet
+              key={intensity}
+              config={{
+                id: intensity,
+                title: `Blue ${intensity}`,
+                description: `This sheet has blue-${intensity} background.`,
+                side: 'right',
+                size: 'md',
+                backgroundColor: 'blue',
+                backgroundIntensity: intensity,
+                content: (
+                  <div className="py-4">
+                    <p className="text-sm text-gray-600">
+                      This sheet uses blue-{intensity} background.
+                    </p>
+                  </div>
+                ),
+                actions: [
+                  { id: 'close', label: 'Close', variant: 'outline', type: 'button', closeOnClick: true },
+                ],
+              }}
+              trigger={<Button variant="outline">Blue {intensity}</Button>}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const SpecialBackgrounds: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold">Special Backgrounds</h3>
+        <div className="flex gap-2 flex-wrap">
+          <DynamicSheet
+            config={{
+              id: 'transparent',
+              title: 'Transparent',
+              description: 'This sheet has a transparent background.',
+              side: 'right',
+              size: 'md',
+              backgroundColor: 'transparent',
+              content: (
+                <div className="py-4">
+                  <p className="text-sm text-gray-600">
+                    This sheet has a transparent background.
+                  </p>
+                </div>
+              ),
+              actions: [
+                { id: 'close', label: 'Close', variant: 'outline', type: 'button', closeOnClick: true },
+              ],
+            }}
+            trigger={<Button variant="outline">Transparent</Button>}
+          />
+          
+          <DynamicSheet
+            config={{
+              id: 'glass',
+              title: 'Glass Effect',
+              description: 'This sheet has a glass morphism effect.',
+              side: 'right',
+              size: 'md',
+              backgroundColor: 'glass',
+              content: (
+                <div className="py-4">
+                  <p className="text-sm text-gray-600">
+                    This sheet has a glass morphism effect with backdrop blur.
+                  </p>
+                </div>
+              ),
+              actions: [
+                { id: 'close', label: 'Close', variant: 'outline', type: 'button', closeOnClick: true },
+              ],
+            }}
+            trigger={<Button variant="outline">Glass</Button>}
+          />
+          
+          <DynamicSheet
+            config={{
+              id: 'gradient',
+              title: 'Gradient',
+              description: 'This sheet has a gradient background.',
+              side: 'right',
+              size: 'md',
+              backgroundColor: 'gradient',
+              content: (
+                <div className="py-4">
+                  <p className="text-sm text-gray-600">
+                    This sheet has a beautiful gradient background.
+                  </p>
+                </div>
+              ),
+              actions: [
+                { id: 'close', label: 'Close', variant: 'outline', type: 'button', closeOnClick: true },
+              ],
+            }}
+            trigger={<Button variant="outline">Gradient</Button>}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const CustomBackgroundColor: Story = {
   args: {
     config: {
@@ -114,7 +229,6 @@ export const CustomBackgroundColor: Story = {
       description: 'This sheet has a custom background color.',
       side: 'right',
       size: 'md',
-      backgroundColor: 'custom',
       customBgColor: '#f0f9ff',
       content: (
         <div className="py-4">
