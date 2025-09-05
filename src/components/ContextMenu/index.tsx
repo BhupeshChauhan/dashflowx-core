@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import {
   ContextMenuCheckboxItem,
   ContextMenuComp,
@@ -16,39 +16,77 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from './ContextMenuComp';
+import { 
+  ContextMenuItemType, 
+  parseArrayProp, 
+  getVariantClasses, 
+  getThemeClasses, 
+  isItemDisabled 
+} from './utils';
 
 interface ContextMenuProps {
   childern?: string | React.ReactNode;
-  items?: {
-    type: 'label' | 'seperator' | 'subMenu' | 'radio' | 'checkbox';
-    title?: string | React.ReactNode;
-    shortcut?: string | React.ReactNode;
-    value?: string;
-    checked?: boolean;
-    children?: {
-      title: string | React.ReactNode;
-      shortcut?: string | React.ReactNode;
-      value?: string;
-    }[];
-  }[];
+  items?: ContextMenuItemType[];
   className?: string;
   children?: React.ReactNode;
+  onItemClick?: (item: ContextMenuItemType, index: number) => void;
+  onSubItemClick?: (item: ContextMenuItemType, subItem: any, subIndex: number) => void;
+  disabled?: boolean;
+  variant?: 'default' | 'compact' | 'large';
+  theme?: 'light' | 'dark';
 }
 
-// ContextMenu component using proper TSX syntax
+// ContextMenu component with optimized functions
 const SimpleContextMenu = ({ 
   childern = 'Right-click me', 
   items = [], 
   className = '', 
-  children 
+  children,
+  onItemClick,
+  onSubItemClick,
+  disabled = false,
+  variant = 'default',
+  theme = 'light'
 }: ContextMenuProps) => {
-  // Ensure items is always an array
-  const menuItems = Array.isArray(items) ? items : [];
+  // Parse and validate items
+  const menuItems = useMemo(() => parseArrayProp(items, []), [items]);
   
-  const renderMenuItem = (item: any, index: number) => {
+  // Memoized click handlers
+  const handleItemClick = useCallback((item: ContextMenuItemType, index: number) => {
+    if (isItemDisabled(item) || disabled) return;
+    
+    if (item.onClick) {
+      item.onClick();
+    }
+    
+    if (onItemClick) {
+      onItemClick(item, index);
+    }
+  }, [onItemClick, disabled]);
+
+  const handleSubItemClick = useCallback((item: ContextMenuItemType, subItem: any, subIndex: number) => {
+    if (subItem.disabled || disabled) return;
+    
+    if (subItem.onClick) {
+      subItem.onClick();
+    }
+    
+    if (onSubItemClick) {
+      onSubItemClick(item, subItem, subIndex);
+    }
+  }, [onSubItemClick, disabled]);
+
+  // Memoized render function
+  const renderMenuItem = useCallback((item: ContextMenuItemType, index: number) => {
+    const isDisabled = isItemDisabled(item) || disabled;
+    
     if (item.type === 'label') {
       return (
-        <ContextMenuItem key={index}>
+        <ContextMenuItem 
+          key={index} 
+          disabled={isDisabled}
+          onClick={() => handleItemClick(item, index)}
+        >
           {item.title}
           {item.shortcut && <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>}
         </ContextMenuItem>
@@ -62,12 +100,16 @@ const SimpleContextMenu = ({
     if (item.type === 'subMenu') {
       return (
         <ContextMenuSub key={index}>
-          <ContextMenuSubTrigger inset>
+          <ContextMenuSubTrigger inset disabled={isDisabled}>
             {item.title}
           </ContextMenuSubTrigger>
           <ContextMenuSubContent className="w-48">
             {item.children?.map((child: any, childIndex: number) => (
-              <ContextMenuItem key={childIndex}>
+              <ContextMenuItem 
+                key={childIndex}
+                disabled={child.disabled || disabled}
+                onClick={() => handleSubItemClick(item, child, childIndex)}
+              >
                 {child.title}
                 {child.shortcut && <ContextMenuShortcut>{child.shortcut}</ContextMenuShortcut>}
               </ContextMenuItem>
@@ -83,7 +125,12 @@ const SimpleContextMenu = ({
           <ContextMenuLabel inset>{item.title}</ContextMenuLabel>
           <ContextMenuSeparator />
           {item.children?.map((child: any, childIndex: number) => (
-            <ContextMenuRadioItem key={childIndex} value={child.value || ''}>
+            <ContextMenuRadioItem 
+              key={childIndex} 
+              value={child.value || ''}
+              disabled={child.disabled || disabled}
+              onClick={() => handleSubItemClick(item, child, childIndex)}
+            >
               {child.title}
             </ContextMenuRadioItem>
           ))}
@@ -93,7 +140,12 @@ const SimpleContextMenu = ({
     
     if (item.type === 'checkbox') {
       return (
-        <ContextMenuCheckboxItem key={index} checked={item.checked}>
+        <ContextMenuCheckboxItem 
+          key={index} 
+          checked={item.checked}
+          disabled={isDisabled}
+          onClick={() => handleItemClick(item, index)}
+        >
           {item.title}
           {item.shortcut && <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>}
         </ContextMenuCheckboxItem>
@@ -101,15 +153,27 @@ const SimpleContextMenu = ({
     }
     
     return null;
-  };
+  }, [handleItemClick, handleSubItemClick, disabled]);
+
+  // Memoized content classes
+  const contentClasses = useMemo(() => {
+    const variantClasses = getVariantClasses(variant);
+    const themeClasses = getThemeClasses(theme);
+    return `${variantClasses} ${themeClasses} ${className}`.trim();
+  }, [variant, theme, className]);
+
+  // Memoized menu items
+  const renderedItems = useMemo(() => {
+    return menuItems.map(renderMenuItem);
+  }, [menuItems, renderMenuItem]);
 
   return (
     <ContextMenuComp>
-      <ContextMenuTrigger>
+      <ContextMenuTrigger disabled={disabled}>
         {children || childern}
       </ContextMenuTrigger>
-      <ContextMenuContent className={`min-w-56 ${className}`}>
-        {menuItems.map(renderMenuItem)}
+      <ContextMenuContent className={contentClasses}>
+        {renderedItems}
       </ContextMenuContent>
     </ContextMenuComp>
   );
@@ -120,6 +184,7 @@ const ContextMenu = SimpleContextMenu;
 
 export {
   ContextMenu,
+  SimpleContextMenu,
   ContextMenuCheckboxItem,
   ContextMenuComp,
   ContextMenuContent,

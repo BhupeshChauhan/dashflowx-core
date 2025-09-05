@@ -98,22 +98,22 @@ export { ComponentCard } from './ComponentCard';
 
 export {
   ContextMenu,
-  ContextMenuCheckboxItem,
-  ContextMenuComp,
-  ContextMenuContent,
-  ContextMenuGroup,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuPortal,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuTrigger,
+  SimpleContextMenu,
 } from './ContextMenu';
+
+export type { ContextMenuItemType } from './ContextMenu/utils';
+export {
+  parseArrayProp,
+  getVariantClasses,
+  getThemeClasses,
+  isItemDisabled,
+  createMenuItem,
+  createLabelItem,
+  createSeparatorItem,
+  createSubMenuItem,
+  createRadioGroup,
+  createCheckboxItem,
+} from './ContextMenu/utils';
 
 export { DatePicker } from './DatePicker';
 
