@@ -18,16 +18,16 @@ import {
 } from './ContextMenuComp';
 
 interface ContextMenuProps {
-  childern?: string | JSX.Element;
+  childern?: string | React.ReactNode;
   items?: {
     type: 'label' | 'seperator' | 'subMenu' | 'radio' | 'checkbox';
-    title?: string | JSX.Element;
-    shortcut?: string | JSX.Element;
+    title?: string | React.ReactNode;
+    shortcut?: string | React.ReactNode;
     value?: string;
     checked?: boolean;
     children?: {
-      title: string | JSX.Element;
-      shortcut?: string | JSX.Element;
+      title: string | React.ReactNode;
+      shortcut?: string | React.ReactNode;
       value?: string;
     }[];
   }[];
@@ -35,63 +35,88 @@ interface ContextMenuProps {
   children?: React.ReactNode;
 }
 
-function ContextMenu({ 
+// ContextMenu component using proper TSX syntax
+const SimpleContextMenu = ({ 
   childern = 'Right-click me', 
   items = [], 
   className = '', 
   children 
-}: ContextMenuProps) {
+}: ContextMenuProps) => {
   // Ensure items is always an array
   const menuItems = Array.isArray(items) ? items : [];
   
   const renderMenuItem = (item: any, index: number) => {
     if (item.type === 'label') {
-      return React.createElement(ContextMenuItem, { key: index }, [
-        item.title,
-        item.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, item.shortcut)
-      ]);
+      return (
+        <ContextMenuItem key={index}>
+          {item.title}
+          {item.shortcut && <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>}
+        </ContextMenuItem>
+      );
     }
+    
     if (item.type === 'seperator') {
-      return React.createElement(ContextMenuSeparator, { key: index });
+      return <ContextMenuSeparator key={index} />;
     }
+    
     if (item.type === 'subMenu') {
-      return React.createElement(ContextMenuSub, { key: index }, [
-        React.createElement(ContextMenuSubTrigger, { key: 'trigger', inset: true }, item.title),
-        React.createElement(ContextMenuSubContent, { key: 'content', className: 'w-48' }, 
-          item.children?.map((child: any, childIndex: number) =>
-            React.createElement(ContextMenuItem, { key: childIndex }, [
-              child.title,
-              child.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, child.shortcut)
-            ])
-          )
-        )
-      ]);
+      return (
+        <ContextMenuSub key={index}>
+          <ContextMenuSubTrigger inset>
+            {item.title}
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            {item.children?.map((child: any, childIndex: number) => (
+              <ContextMenuItem key={childIndex}>
+                {child.title}
+                {child.shortcut && <ContextMenuShortcut>{child.shortcut}</ContextMenuShortcut>}
+              </ContextMenuItem>
+            ))}
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+      );
     }
+    
     if (item.type === 'radio') {
-      return React.createElement(ContextMenuRadioGroup, { key: index, value: item.value || '' }, [
-        React.createElement(ContextMenuLabel, { key: 'label', inset: true }, item.title),
-        React.createElement(ContextMenuSeparator, { key: 'separator' }),
-        ...item.children?.map((child: any, childIndex: number) =>
-          React.createElement(ContextMenuRadioItem, { key: childIndex, value: child.value || '' }, child.title)
-        ) || []
-      ]);
+      return (
+        <ContextMenuRadioGroup key={index} value={item.value || ''}>
+          <ContextMenuLabel inset>{item.title}</ContextMenuLabel>
+          <ContextMenuSeparator />
+          {item.children?.map((child: any, childIndex: number) => (
+            <ContextMenuRadioItem key={childIndex} value={child.value || ''}>
+              {child.title}
+            </ContextMenuRadioItem>
+          ))}
+        </ContextMenuRadioGroup>
+      );
     }
+    
     if (item.type === 'checkbox') {
-      return React.createElement(ContextMenuCheckboxItem, { key: index, checked: item.checked }, [
-        item.title,
-        item.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, item.shortcut)
-      ]);
+      return (
+        <ContextMenuCheckboxItem key={index} checked={item.checked}>
+          {item.title}
+          {item.shortcut && <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>}
+        </ContextMenuCheckboxItem>
+      );
     }
+    
     return null;
   };
 
-  return React.createElement(ContextMenuComp, {}, [
-    React.createElement(ContextMenuTrigger, { key: 'trigger' }, children || childern),
-    React.createElement(ContextMenuContent, { key: 'content', className: `min-w-56 ${className}` }, 
-      menuItems.map(renderMenuItem)
-    )
-  ]);
-}
+  return (
+    <ContextMenuComp>
+      <ContextMenuTrigger>
+        {children || childern}
+      </ContextMenuTrigger>
+      <ContextMenuContent className={`min-w-56 ${className}`}>
+        {menuItems.map(renderMenuItem)}
+      </ContextMenuContent>
+    </ContextMenuComp>
+  );
+};
+
+// Export as ContextMenu for backward compatibility
+const ContextMenu = SimpleContextMenu;
 
 export {
   ContextMenu,
