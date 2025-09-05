@@ -103,18 +103,33 @@ export {
 
 export type { ContextMenuItemType } from './ContextMenu/utils';
 export {
+  parseArrayProp as parseContextMenuArrayProp,
+  getVariantClasses as getContextMenuVariantClasses,
+  getThemeClasses as getContextMenuThemeClasses,
+  getSubMenuClasses as getContextMenuSubMenuClasses,
+  isItemDisabled as isContextMenuItemDisabled,
+  createMenuItem as createContextMenuItem,
+  createLabelItem as createContextMenuLabelItem,
+  createSeparatorItem as createContextMenuSeparatorItem,
+  createSubMenuItem as createContextMenuSubMenuItem,
+  createRadioGroup as createContextMenuRadioGroup,
+  createCheckboxItem as createContextMenuCheckboxItem,
+} from './ContextMenu/utils';
+
+export type { DropdownMenuItemType } from './DropDownMenu/utils';
+export {
   parseArrayProp,
   getVariantClasses,
   getThemeClasses,
   getSubMenuClasses,
+  getBackgroundClasses,
   isItemDisabled,
   createMenuItem,
   createLabelItem,
   createSeparatorItem,
+  createGroupItem,
   createSubMenuItem,
-  createRadioGroup,
-  createCheckboxItem,
-} from './ContextMenu/utils';
+} from './DropDownMenu/utils';
 
 export { DatePicker } from './DatePicker';
 
