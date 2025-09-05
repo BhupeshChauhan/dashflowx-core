@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ContextMenuCheckboxItem,
   ContextMenuComp,
@@ -16,9 +17,9 @@ import {
   ContextMenuTrigger,
 } from './ContextMenuComp';
 
-interface iContextMenu {
-  childern: string | JSX.Element;
-  items: {
+interface ContextMenuProps {
+  childern?: string | JSX.Element;
+  items?: {
     type: 'label' | 'seperator' | 'subMenu' | 'radio' | 'checkbox';
     title?: string | JSX.Element;
     shortcut?: string | JSX.Element;
@@ -30,68 +31,66 @@ interface iContextMenu {
       value?: string;
     }[];
   }[];
+  className?: string;
+  children?: React.ReactNode;
 }
-function ContextMenu({ childern, items }: iContextMenu) {
-  return (
-    <ContextMenuComp>
-      <ContextMenuTrigger>{childern}</ContextMenuTrigger>
-      <ContextMenuContent className="min-w-56">
-        {items?.map((item) => {
-          if (item.type === 'label') {
-            return (
-              <ContextMenuItem>
-                {item.title}
-                <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>
-              </ContextMenuItem>
-            );
-          }
-          if (item.type === 'seperator') {
-            return <ContextMenuSeparator />;
-          }
-          if (item.type === 'subMenu') {
-            return (
-              <ContextMenuSub>
-                <ContextMenuSubTrigger inset>
-                  {item.title}
-                </ContextMenuSubTrigger>
-                <ContextMenuSubContent className="w-48">
-                  {item?.children?.map((child) => (
-                    <ContextMenuItem>
-                      {child.title}
-                      <ContextMenuShortcut>
-                        {child.shortcut}
-                      </ContextMenuShortcut>
-                    </ContextMenuItem>
-                  ))}
-                </ContextMenuSubContent>
-              </ContextMenuSub>
-            );
-          }
-          if (item.type === 'radio') {
-            return (
-              <ContextMenuRadioGroup value={item.value || ''}>
-                <ContextMenuLabel inset>{item.title}</ContextMenuLabel>
-                <ContextMenuSeparator />
-                {item?.children?.map((child) => (
-                  <ContextMenuRadioItem value={child.value || ''}>
-                    {child.title}
-                  </ContextMenuRadioItem>
-                ))}
-              </ContextMenuRadioGroup>
-            );
-          }
-          if (item.type === 'checkbox') {
-            return (
-              <ContextMenuCheckboxItem checked={item.checked}>
-                {item.title}
-                <ContextMenuShortcut>{item.shortcut}</ContextMenuShortcut>
-              </ContextMenuCheckboxItem>
-            );
-          }
-        })}
-      </ContextMenuContent>
-    </ContextMenuComp>
-  );
+
+function ContextMenu({ 
+  childern = 'Right-click me', 
+  items = [], 
+  className = '', 
+  children 
+}: ContextMenuProps) {
+  // Ensure items is always an array
+  const menuItems = Array.isArray(items) ? items : [];
+  
+  const renderMenuItem = (item: any, index: number) => {
+    if (item.type === 'label') {
+      return React.createElement(ContextMenuItem, { key: index }, [
+        item.title,
+        item.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, item.shortcut)
+      ]);
+    }
+    if (item.type === 'seperator') {
+      return React.createElement(ContextMenuSeparator, { key: index });
+    }
+    if (item.type === 'subMenu') {
+      return React.createElement(ContextMenuSub, { key: index }, [
+        React.createElement(ContextMenuSubTrigger, { key: 'trigger', inset: true }, item.title),
+        React.createElement(ContextMenuSubContent, { key: 'content', className: 'w-48' }, 
+          item.children?.map((child: any, childIndex: number) =>
+            React.createElement(ContextMenuItem, { key: childIndex }, [
+              child.title,
+              child.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, child.shortcut)
+            ])
+          )
+        )
+      ]);
+    }
+    if (item.type === 'radio') {
+      return React.createElement(ContextMenuRadioGroup, { key: index, value: item.value || '' }, [
+        React.createElement(ContextMenuLabel, { key: 'label', inset: true }, item.title),
+        React.createElement(ContextMenuSeparator, { key: 'separator' }),
+        ...item.children?.map((child: any, childIndex: number) =>
+          React.createElement(ContextMenuRadioItem, { key: childIndex, value: child.value || '' }, child.title)
+        ) || []
+      ]);
+    }
+    if (item.type === 'checkbox') {
+      return React.createElement(ContextMenuCheckboxItem, { key: index, checked: item.checked }, [
+        item.title,
+        item.shortcut && React.createElement(ContextMenuShortcut, { key: 'shortcut' }, item.shortcut)
+      ]);
+    }
+    return null;
+  };
+
+  return React.createElement(ContextMenuComp, {}, [
+    React.createElement(ContextMenuTrigger, { key: 'trigger' }, children || childern),
+    React.createElement(ContextMenuContent, { key: 'content', className: `min-w-56 ${className}` }, 
+      menuItems.map(renderMenuItem)
+    )
+  ]);
 }
 
 export {
