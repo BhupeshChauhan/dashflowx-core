@@ -39,6 +39,8 @@ export interface SheetConfig {
   closeOnEscape?: boolean;
   showHeader?: boolean;
   showFooter?: boolean;
+  backgroundColor?: 'default' | 'white' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'pink' | 'indigo' | 'custom';
+  customBgColor?: string;
 }
 
 export interface DynamicSheetProps {
@@ -58,6 +60,7 @@ const SHEET_CONFIGS = {
     description: 'This is an informational sheet.',
     side: 'right' as const,
     size: 'md' as const,
+    backgroundColor: 'blue' as const,
     content: (
       <div className="py-4 space-y-4">
         <div className="p-4 bg-blue-50 rounded-lg">
@@ -84,6 +87,7 @@ const SHEET_CONFIGS = {
     description: 'Are you sure you want to proceed? This action cannot be undone.',
     side: 'top' as const,
     size: 'sm' as const,
+    backgroundColor: 'yellow' as const,
     content: (
       <div className="py-4">
         <div className="flex items-center space-x-2 text-yellow-600">
@@ -115,6 +119,7 @@ const SHEET_CONFIGS = {
     description: 'Configure your application settings.',
     side: 'right' as const,
     size: 'lg' as const,
+    backgroundColor: 'gray' as const,
     content: (
       <div className="py-4 space-y-6">
         <div className="space-y-4">
@@ -182,6 +187,36 @@ const getSizeClasses = (size: string) => {
   }
 };
 
+const getBackgroundClasses = (backgroundColor?: string, customBgColor?: string) => {
+  if (backgroundColor === 'custom' && customBgColor) {
+    return '';
+  }
+  
+  switch (backgroundColor) {
+    case 'white':
+      return 'bg-white';
+    case 'gray':
+      return 'bg-gray-50';
+    case 'blue':
+      return 'bg-blue-50';
+    case 'green':
+      return 'bg-green-50';
+    case 'red':
+      return 'bg-red-50';
+    case 'yellow':
+      return 'bg-yellow-50';
+    case 'purple':
+      return 'bg-purple-50';
+    case 'pink':
+      return 'bg-pink-50';
+    case 'indigo':
+      return 'bg-indigo-50';
+    case 'default':
+    default:
+      return 'bg-background';
+  }
+};
+
 // Main Dynamic Sheet Component
 function DynamicSheet({ 
   config, 
@@ -192,6 +227,7 @@ function DynamicSheet({
   className 
 }: DynamicSheetProps) {
   const sizeClasses = useMemo(() => getSizeClasses(config.size || 'md'), [config.size]);
+  const backgroundClasses = useMemo(() => getBackgroundClasses(config.backgroundColor, config.customBgColor), [config.backgroundColor, config.customBgColor]);
 
   const defaultTrigger = useMemo(() => (
     <Button variant="outline">
@@ -219,7 +255,8 @@ function DynamicSheet({
       </SheetTrigger>
       <SheetContent 
         side={config.side || 'right'}
-        className={cn(sizeClasses, config.className, className)}
+        className={cn(sizeClasses, backgroundClasses, config.className, className)}
+        style={config.backgroundColor === 'custom' && config.customBgColor ? { backgroundColor: config.customBgColor } : undefined}
       >
         {config.showHeader !== false && (
           <SheetHeader>
