@@ -293,6 +293,7 @@ function DynamicSheet({
         side={config.side || 'right'}
         className={cn(sizeClasses, backgroundClasses, config.className, className)}
         style={config.customBgColor ? { backgroundColor: config.customBgColor } : undefined}
+        hasCustomBackground={!!(config.backgroundColor || config.customBgColor)}
       >
         {config.showHeader !== false && (
           <SheetHeader>
