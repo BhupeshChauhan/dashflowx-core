@@ -14,8 +14,8 @@ import {
 // Types
 interface CommandItemType {
   id?: string;
-  title: string;
-  shortcut?: string;
+    title: string;
+    shortcut?: string;
   description?: string;
   icon?: React.ReactNode;
   disabled?: boolean;
@@ -25,7 +25,7 @@ interface CommandItemType {
 
 interface CommandGroupType {
   id?: string;
-  title: string;
+    title: string;
   childs: CommandItemType[];
   collapsible?: boolean;
   collapsed?: boolean;
