@@ -202,6 +202,7 @@ export { IconUnOrderList, List, OrderList, UnOrderList } from './List';
 
 export {
   Menubar,
+  DynamicMenubar,
   MenubarCheckboxItem,
   MenubarComp,
   MenubarContent,
@@ -218,6 +219,13 @@ export {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
+} from './Menubar';
+
+export type {
+  MenubarSubItem,
+  MenubarMenuItem,
+  MenubarMenuConfig,
+  DynamicMenubarProps,
 } from './Menubar';
 
 export { MenuList, MenuListComp, MenuListOne, type iDfxMenu } from './MenuList';
