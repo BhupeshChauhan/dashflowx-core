@@ -10,10 +10,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from './NavigationMenuComp';
 
-// Types
+// Type definitions
 export interface NavigationMenuItemType {
   id: string;
   title: string;
@@ -27,17 +26,39 @@ export interface NavigationMenuItemType {
   onClick?: () => void;
 }
 
+type BackgroundColorType = 
+  | 'default' | 'white' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' 
+  | 'indigo' | 'pink' | 'orange' | 'teal' | 'cyan' | 'emerald' | 'lime' | 'amber' 
+  | 'rose' | 'violet' | 'fuchsia' | 'sky' | 'slate' | 'zinc' | 'neutral' | 'stone' 
+  | 'glass' | 'gradient-blue' | 'gradient-green' | 'gradient-purple' | 'gradient-pink' 
+  | 'gradient-orange' | 'gradient-teal' | 'gradient-cyan' | 'gradient-indigo' 
+  | 'gradient-violet' | 'gradient-rose' | 'gradient-emerald' | 'gradient-lime' 
+  | 'gradient-amber' | 'gradient-sky' | 'gradient-slate' | 'gradient-zinc' 
+  | 'gradient-neutral' | 'gradient-stone' | 'gradient-rainbow';
+
+type HoverBackgroundColorType = 
+  | 'default' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'indigo' 
+  | 'pink' | 'orange' | 'teal' | 'cyan' | 'emerald' | 'lime' | 'amber' | 'rose' 
+  | 'violet' | 'fuchsia' | 'sky' | 'slate' | 'zinc' | 'neutral' | 'stone' | 'accent';
+
+type IntensityType = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+type VariantType = 'default' | 'minimal' | 'bold';
+type ThemeType = 'light' | 'dark' | 'primary';
+
 export interface NavigationMenuProps {
   items?: NavigationMenuItemType[];
   className?: string;
   onItemClick?: (item: NavigationMenuItemType) => void;
   showIcons?: boolean;
   showBadges?: boolean;
-  backgroundColor?: 'default' | 'white' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'indigo' | 'pink' | 'orange' | 'teal' | 'cyan' | 'emerald' | 'lime' | 'amber' | 'rose' | 'violet' | 'fuchsia' | 'sky' | 'slate' | 'zinc' | 'neutral' | 'stone' | 'glass' | 'gradient-blue' | 'gradient-green' | 'gradient-purple' | 'gradient-pink' | 'gradient-orange' | 'gradient-teal' | 'gradient-cyan' | 'gradient-indigo' | 'gradient-violet' | 'gradient-rose' | 'gradient-emerald' | 'gradient-lime' | 'gradient-amber' | 'gradient-sky' | 'gradient-slate' | 'gradient-zinc' | 'gradient-neutral' | 'gradient-stone' | 'gradient-rainbow';
-  backgroundIntensity?: '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+  backgroundColor?: BackgroundColorType;
+  backgroundIntensity?: IntensityType;
   customBgColor?: string;
-  variant?: 'default' | 'minimal' | 'bold';
-  theme?: 'light' | 'dark' | 'primary';
+  hoverBackgroundColor?: HoverBackgroundColorType;
+  hoverBackgroundIntensity?: IntensityType;
+  customHoverBgColor?: string;
+  variant?: VariantType;
+  theme?: ThemeType;
 }
 
 // Default items
@@ -127,132 +148,119 @@ const defaultItems: NavigationMenuItemType[] = [
   }
 ];
 
-// Background color utility functions
+// Utility functions
 const getBackgroundClasses = (
-  backgroundColor: NavigationMenuProps['backgroundColor'] = 'white',
-  backgroundIntensity: NavigationMenuProps['backgroundIntensity'] = '500',
+  backgroundColor: BackgroundColorType = 'white',
+  backgroundIntensity: IntensityType = '500',
   customBgColor?: string
 ): string => {
-  if (customBgColor) {
-    return customBgColor;
-  }
+  if (customBgColor) return customBgColor;
 
-  switch (backgroundColor) {
-    case 'white':
-      return 'bg-white';
-    case 'gray':
-      return `bg-gray-${backgroundIntensity}`;
-    case 'blue':
-      return `bg-blue-${backgroundIntensity}`;
-    case 'green':
-      return `bg-green-${backgroundIntensity}`;
-    case 'red':
-      return `bg-red-${backgroundIntensity}`;
-    case 'yellow':
-      return `bg-yellow-${backgroundIntensity}`;
-    case 'purple':
-      return `bg-purple-${backgroundIntensity}`;
-    case 'indigo':
-      return `bg-indigo-${backgroundIntensity}`;
-    case 'pink':
-      return `bg-pink-${backgroundIntensity}`;
-    case 'orange':
-      return `bg-orange-${backgroundIntensity}`;
-    case 'teal':
-      return `bg-teal-${backgroundIntensity}`;
-    case 'cyan':
-      return `bg-cyan-${backgroundIntensity}`;
-    case 'emerald':
-      return `bg-emerald-${backgroundIntensity}`;
-    case 'lime':
-      return `bg-lime-${backgroundIntensity}`;
-    case 'amber':
-      return `bg-amber-${backgroundIntensity}`;
-    case 'rose':
-      return `bg-rose-${backgroundIntensity}`;
-    case 'violet':
-      return `bg-violet-${backgroundIntensity}`;
-    case 'fuchsia':
-      return `bg-fuchsia-${backgroundIntensity}`;
-    case 'sky':
-      return `bg-sky-${backgroundIntensity}`;
-    case 'slate':
-      return `bg-slate-${backgroundIntensity}`;
-    case 'zinc':
-      return `bg-zinc-${backgroundIntensity}`;
-    case 'neutral':
-      return `bg-neutral-${backgroundIntensity}`;
-    case 'stone':
-      return `bg-stone-${backgroundIntensity}`;
-    case 'glass':
-      return 'bg-white/10 backdrop-blur-md border border-white/20';
-    case 'gradient-blue':
-      return 'bg-gradient-to-r from-blue-500 to-blue-700';
-    case 'gradient-green':
-      return 'bg-gradient-to-r from-green-500 to-green-700';
-    case 'gradient-purple':
-      return 'bg-gradient-to-r from-purple-500 to-purple-700';
-    case 'gradient-pink':
-      return 'bg-gradient-to-r from-pink-500 to-pink-700';
-    case 'gradient-orange':
-      return 'bg-gradient-to-r from-orange-500 to-orange-700';
-    case 'gradient-teal':
-      return 'bg-gradient-to-r from-teal-500 to-teal-700';
-    case 'gradient-cyan':
-      return 'bg-gradient-to-r from-cyan-500 to-cyan-700';
-    case 'gradient-indigo':
-      return 'bg-gradient-to-r from-indigo-500 to-indigo-700';
-    case 'gradient-violet':
-      return 'bg-gradient-to-r from-violet-500 to-violet-700';
-    case 'gradient-rose':
-      return 'bg-gradient-to-r from-rose-500 to-rose-700';
-    case 'gradient-emerald':
-      return 'bg-gradient-to-r from-emerald-500 to-emerald-700';
-    case 'gradient-lime':
-      return 'bg-gradient-to-r from-lime-500 to-lime-700';
-    case 'gradient-amber':
-      return 'bg-gradient-to-r from-amber-500 to-amber-700';
-    case 'gradient-sky':
-      return 'bg-gradient-to-r from-sky-500 to-sky-700';
-    case 'gradient-slate':
-      return 'bg-gradient-to-r from-slate-500 to-slate-700';
-    case 'gradient-zinc':
-      return 'bg-gradient-to-r from-zinc-500 to-zinc-700';
-    case 'gradient-neutral':
-      return 'bg-gradient-to-r from-neutral-500 to-neutral-700';
-    case 'gradient-stone':
-      return 'bg-gradient-to-r from-stone-500 to-stone-700';
-    case 'gradient-rainbow':
-      return 'bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500';
-    default:
-      return 'bg-background';
-  }
+  const colorMap: Record<string, string> = {
+    white: 'bg-white',
+    gray: `bg-gray-${backgroundIntensity}`,
+    blue: `bg-blue-${backgroundIntensity}`,
+    green: `bg-green-${backgroundIntensity}`,
+    red: `bg-red-${backgroundIntensity}`,
+    yellow: `bg-yellow-${backgroundIntensity}`,
+    purple: `bg-purple-${backgroundIntensity}`,
+    indigo: `bg-indigo-${backgroundIntensity}`,
+    pink: `bg-pink-${backgroundIntensity}`,
+    orange: `bg-orange-${backgroundIntensity}`,
+    teal: `bg-teal-${backgroundIntensity}`,
+    cyan: `bg-cyan-${backgroundIntensity}`,
+    emerald: `bg-emerald-${backgroundIntensity}`,
+    lime: `bg-lime-${backgroundIntensity}`,
+    amber: `bg-amber-${backgroundIntensity}`,
+    rose: `bg-rose-${backgroundIntensity}`,
+    violet: `bg-violet-${backgroundIntensity}`,
+    fuchsia: `bg-fuchsia-${backgroundIntensity}`,
+    sky: `bg-sky-${backgroundIntensity}`,
+    slate: `bg-slate-${backgroundIntensity}`,
+    zinc: `bg-zinc-${backgroundIntensity}`,
+    neutral: `bg-neutral-${backgroundIntensity}`,
+    stone: `bg-stone-${backgroundIntensity}`,
+    glass: 'bg-white/10 backdrop-blur-md border border-white/20',
+    'gradient-blue': 'bg-gradient-to-r from-blue-500 to-blue-700',
+    'gradient-green': 'bg-gradient-to-r from-green-500 to-green-700',
+    'gradient-purple': 'bg-gradient-to-r from-purple-500 to-purple-700',
+    'gradient-pink': 'bg-gradient-to-r from-pink-500 to-pink-700',
+    'gradient-orange': 'bg-gradient-to-r from-orange-500 to-orange-700',
+    'gradient-teal': 'bg-gradient-to-r from-teal-500 to-teal-700',
+    'gradient-cyan': 'bg-gradient-to-r from-cyan-500 to-cyan-700',
+    'gradient-indigo': 'bg-gradient-to-r from-indigo-500 to-indigo-700',
+    'gradient-violet': 'bg-gradient-to-r from-violet-500 to-violet-700',
+    'gradient-rose': 'bg-gradient-to-r from-rose-500 to-rose-700',
+    'gradient-emerald': 'bg-gradient-to-r from-emerald-500 to-emerald-700',
+    'gradient-lime': 'bg-gradient-to-r from-lime-500 to-lime-700',
+    'gradient-amber': 'bg-gradient-to-r from-amber-500 to-amber-700',
+    'gradient-sky': 'bg-gradient-to-r from-sky-500 to-sky-700',
+    'gradient-slate': 'bg-gradient-to-r from-slate-500 to-slate-700',
+    'gradient-zinc': 'bg-gradient-to-r from-zinc-500 to-zinc-700',
+    'gradient-neutral': 'bg-gradient-to-r from-neutral-500 to-neutral-700',
+    'gradient-stone': 'bg-gradient-to-r from-stone-500 to-stone-700',
+    'gradient-rainbow': 'bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500',
+  };
+
+  return colorMap[backgroundColor] || 'bg-background';
 };
 
-const getThemeClasses = (theme: NavigationMenuProps['theme'] = 'light'): string => {
-  switch (theme) {
-    case 'dark':
-      return 'text-white';
-    case 'primary':
-      return 'text-primary';
-    default:
-      return 'text-foreground';
-  }
+const getHoverBackgroundClasses = (
+  hoverBackgroundColor: HoverBackgroundColorType = 'gray',
+  hoverBackgroundIntensity: IntensityType = '100',
+  customHoverBgColor?: string
+): string => {
+  if (customHoverBgColor) return customHoverBgColor;
+
+  const hoverColorMap: Record<string, string> = {
+    gray: `hover:bg-gray-${hoverBackgroundIntensity}`,
+    blue: `hover:bg-blue-${hoverBackgroundIntensity}`,
+    green: `hover:bg-green-${hoverBackgroundIntensity}`,
+    red: `hover:bg-red-${hoverBackgroundIntensity}`,
+    yellow: `hover:bg-yellow-${hoverBackgroundIntensity}`,
+    purple: `hover:bg-purple-${hoverBackgroundIntensity}`,
+    indigo: `hover:bg-indigo-${hoverBackgroundIntensity}`,
+    pink: `hover:bg-pink-${hoverBackgroundIntensity}`,
+    orange: `hover:bg-orange-${hoverBackgroundIntensity}`,
+    teal: `hover:bg-teal-${hoverBackgroundIntensity}`,
+    cyan: `hover:bg-cyan-${hoverBackgroundIntensity}`,
+    emerald: `hover:bg-emerald-${hoverBackgroundIntensity}`,
+    lime: `hover:bg-lime-${hoverBackgroundIntensity}`,
+    amber: `hover:bg-amber-${hoverBackgroundIntensity}`,
+    rose: `hover:bg-rose-${hoverBackgroundIntensity}`,
+    violet: `hover:bg-violet-${hoverBackgroundIntensity}`,
+    fuchsia: `hover:bg-fuchsia-${hoverBackgroundIntensity}`,
+    sky: `hover:bg-sky-${hoverBackgroundIntensity}`,
+    slate: `hover:bg-slate-${hoverBackgroundIntensity}`,
+    zinc: `hover:bg-zinc-${hoverBackgroundIntensity}`,
+    neutral: `hover:bg-neutral-${hoverBackgroundIntensity}`,
+    stone: `hover:bg-stone-${hoverBackgroundIntensity}`,
+    accent: 'hover:bg-accent',
+  };
+
+  return hoverColorMap[hoverBackgroundColor] || 'hover:bg-accent';
 };
 
-const getVariantClasses = (variant: NavigationMenuProps['variant'] = 'default'): string => {
-  switch (variant) {
-    case 'minimal':
-      return 'px-2 py-1 text-sm';
-    case 'bold':
-      return 'px-6 py-3 text-lg font-bold';
-    default:
-      return 'px-4 py-2';
-  }
+const getThemeClasses = (theme: ThemeType = 'light'): string => {
+  const themeMap: Record<ThemeType, string> = {
+    dark: 'text-white',
+    primary: 'text-primary',
+    light: 'text-foreground',
+  };
+  return themeMap[theme];
 };
 
-// Dynamic NavigationMenu Component
-const NavigationMenu: React.FC<NavigationMenuProps> = ({
+const getVariantClasses = (variant: VariantType = 'default'): string => {
+  const variantMap: Record<VariantType, string> = {
+    minimal: 'px-2 py-1 text-sm',
+    bold: 'px-6 py-3 text-lg font-bold',
+    default: 'px-4 py-2',
+  };
+  return variantMap[variant];
+};
+
+// Optimized NavigationMenu Component
+const NavigationMenu: React.FC<NavigationMenuProps> = React.memo(({
   items = defaultItems,
   className,
   onItemClick,
@@ -261,10 +269,13 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
   backgroundColor = 'white',
   backgroundIntensity = '500',
   customBgColor,
+  hoverBackgroundColor = 'gray',
+  hoverBackgroundIntensity = '100',
+  customHoverBgColor,
   variant = 'default',
   theme = 'light',
 }) => {
-  const handleItemClick = (item: NavigationMenuItemType) => {
+  const handleItemClick = React.useCallback((item: NavigationMenuItemType) => {
     if (item.disabled) return;
     
     if (item.onClick) {
@@ -274,13 +285,40 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
     if (onItemClick) {
       onItemClick(item);
     }
-  };
+  }, [onItemClick]);
 
-  const renderMenuItem = (item: NavigationMenuItemType) => {
+  const backgroundClasses = React.useMemo(() => 
+    getBackgroundClasses(backgroundColor, backgroundIntensity, customBgColor),
+    [backgroundColor, backgroundIntensity, customBgColor]
+  );
+
+  const hoverBackgroundClasses = React.useMemo(() => 
+    getHoverBackgroundClasses(hoverBackgroundColor, hoverBackgroundIntensity, customHoverBgColor),
+    [hoverBackgroundColor, hoverBackgroundIntensity, customHoverBgColor]
+  );
+
+  const themeClasses = React.useMemo(() => 
+    getThemeClasses(theme),
+    [theme]
+  );
+
+  const variantClasses = React.useMemo(() => 
+    getVariantClasses(variant),
+    [variant]
+  );
+
+  // Custom trigger style with hover background
+  const customTriggerStyle = React.useMemo(() => cn(
+    'group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+    hoverBackgroundClasses,
+    'hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+  ), [hoverBackgroundClasses]);
+
+  const renderMenuItem = React.useCallback((item: NavigationMenuItemType) => {
     if (item.type === 'dropdown' && item.items) {
       return (
         <NavigationMenuItem key={item.id}>
-          <NavigationMenuTrigger>
+          <NavigationMenuTrigger className={customTriggerStyle}>
             <div className="flex items-center space-x-2">
               {showIcons && item.icon && (
                 <span className="flex-shrink-0">{item.icon}</span>
@@ -316,7 +354,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
       return (
         <NavigationMenuItem key={item.id}>
           <NavigationMenuLink 
-            className={navigationMenuTriggerStyle()}
+            className={customTriggerStyle}
             href={item.href}
             onClick={() => handleItemClick(item)}
           >
@@ -337,11 +375,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
     }
 
     return null;
-  };
-
-  const backgroundClasses = getBackgroundClasses(backgroundColor, backgroundIntensity, customBgColor);
-  const themeClasses = getThemeClasses(theme);
-  const variantClasses = getVariantClasses(variant);
+  }, [customTriggerStyle, showIcons, showBadges, handleItemClick]);
 
   return (
     <NavigationMenuComp className={cn(backgroundClasses, themeClasses, variantClasses, className)}>
@@ -350,7 +384,9 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
       </NavigationMenuList>
     </NavigationMenuComp>
   );
-};
+});
+
+NavigationMenu.displayName = 'NavigationMenu';
 
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
@@ -389,5 +425,4 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 };

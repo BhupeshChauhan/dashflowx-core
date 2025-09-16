@@ -240,7 +240,6 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from './NavigationMenu';
 
 export {

@@ -28,6 +28,14 @@ const meta: Meta<typeof NavigationMenu> = {
       control: { type: 'select' },
       options: ['light', 'dark', 'primary'],
     },
+    hoverBackgroundColor: {
+      control: { type: 'select' },
+      options: ['default', 'gray', 'blue', 'green', 'red', 'yellow', 'purple', 'indigo', 'pink', 'orange', 'teal', 'cyan', 'emerald', 'lime', 'amber', 'rose', 'violet', 'fuchsia', 'sky', 'slate', 'zinc', 'neutral', 'stone', 'accent'],
+    },
+    hoverBackgroundIntensity: {
+      control: { type: 'select' },
+      options: ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
   },
 };
 
@@ -38,6 +46,8 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     backgroundColor: 'white',
+    hoverBackgroundColor: 'gray',
+    hoverBackgroundIntensity: '100',
     showIcons: true,
     showBadges: true,
   },
@@ -253,6 +263,36 @@ export const DefaultWhite: Story = {
 export const OldDefault: Story = {
   args: {
     backgroundColor: 'default',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const WithHoverBackground: Story = {
+  args: {
+    backgroundColor: 'white',
+    hoverBackgroundColor: 'blue',
+    hoverBackgroundIntensity: '100',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const HoverGreen: Story = {
+  args: {
+    backgroundColor: 'white',
+    hoverBackgroundColor: 'green',
+    hoverBackgroundIntensity: '200',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const HoverPurple: Story = {
+  args: {
+    backgroundColor: 'white',
+    hoverBackgroundColor: 'purple',
+    hoverBackgroundIntensity: '100',
     showIcons: true,
     showBadges: true,
   },
