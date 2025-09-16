@@ -1,18 +1,12 @@
 import { MenuListComp } from './variants/Basic';
 import { MenuListOne } from './variants/MenuListOne';
 import { MenuListTwo } from './variants/MenuListTwo';
+import type { iDfxMenu } from './types';
 
-interface iDfxMenu {
-  id: string;
-  menuIcon?: JSX.Element;
-  title: string;
-  path: string;
-  active: boolean;
-}
 interface iMenuList {
   menuArrays: iDfxMenu[];
   library: 'react' | 'next';
-  type: any;
+  type: React.ElementType;
   variant: 'basic' | 'one' | 'two';
   className?: string;
   showText?: boolean;
@@ -71,10 +65,11 @@ const MenuList = ({
         showIcon={showIcon}
         tooltipClassName={tooltipClassName}
         navClassName={navClassName}
-        />
+      />
     );
   }
   return null;
 };
 
-export { MenuList, MenuListComp, MenuListOne, type iDfxMenu };
+export { MenuList, MenuListComp, MenuListOne };
+export type { iDfxMenu } from './types';

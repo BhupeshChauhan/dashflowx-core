@@ -1,14 +1,8 @@
 import { Tooltip } from '@/components';
 import { TypographyComp } from '@/components/Typography';
 import { cn } from '@/lib/utils';
+import type { iDfxMenu } from '../types';
 
-export interface iDfxMenu {
-  id: string;
-  menuIcon?: JSX.Element;
-  title: string;
-  path: string;
-  active: boolean;
-}
 interface iDfxMenuList {
   menuArrays: iDfxMenu[];
   library: 'react' | 'next';
@@ -18,7 +12,7 @@ interface iDfxMenuList {
   showIcon?: boolean;
   tooltipClassName?: string;
   navClassName?: string;
-  }
+}
 
 export const MenuListOne = ({
   menuArrays,
@@ -38,17 +32,24 @@ export const MenuListOne = ({
             return (
               <Tooltip 
                   tooltipContent={<span className={'mx-4 font-medium whitespace-nowrap' }>{menu.title}</span>} 
-                  tooltipTrigger={<TypographyComp
+                  tooltipTrigger={                  <TypographyComp
                     className={cn(
                       menu.active
                         ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
                         : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
-                        className
+                      menu.disabled && 'opacity-50 cursor-not-allowed',
+                      className
                     )}
                     as={type}
                     to={menu.path}
+                    onClick={menu.onClick}
                   >
                     {showIcon && menu.menuIcon}
+                    {menu.badge && (
+                      <span className="ml-auto bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                        {menu.badge}
+                      </span>
+                    )}
                   </TypographyComp>} 
                   side="right" 
                   className={cn("ml-8", tooltipClassName)}
@@ -62,13 +63,20 @@ export const MenuListOne = ({
                   menu.active
                     ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
                     : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
-                    className
+                  menu.disabled && 'opacity-50 cursor-not-allowed',
+                  className
                 )}
                 as={type}
                 to={menu.path}
+                onClick={menu.onClick}
               >
                 {showIcon && menu.menuIcon}
                 <span className={'font-medium whitespace-nowrap	ml-2'}>{menu.title}</span>
+                {menu.badge && (
+                  <span className="ml-auto bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                    {menu.badge}
+                  </span>
+                )}
               </TypographyComp>
             )
           }
@@ -84,17 +92,24 @@ export const MenuListOne = ({
             return (
               <Tooltip 
                   tooltipContent={<span className={'mx-4 font-medium whitespace-nowrap'}>{menu.title}</span>} 
-                  tooltipTrigger={<TypographyComp
+                  tooltipTrigger={                  <TypographyComp
                     className={cn(
                       menu.active
                         ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent'
                         : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-light md:p-0',
-                        className
+                      menu.disabled && 'opacity-50 cursor-not-allowed',
+                      className
                     )}
                     as={type}
                     href={menu.path}
+                    onClick={menu.onClick}
                   >
                     {showIcon && menu.menuIcon}
+                    {menu.badge && (
+                      <span className="ml-auto bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                        {menu.badge}
+                      </span>
+                    )}
                   </TypographyComp>} 
                   side="right" 
                   className={cn("ml-8", tooltipClassName)}
@@ -108,13 +123,20 @@ export const MenuListOne = ({
                   menu.active
                     ? 'flex py-2 px-3 text-white bg-primary-light rounded md:bg-transparent md:text-primary-light'
                     : 'flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-primary-light md:p-0',
-                    className
+                  menu.disabled && 'opacity-50 cursor-not-allowed',
+                  className
                 )}
                 as={type}
                 href={menu.path}
+                onClick={menu.onClick}
               >
                 {showIcon && menu.menuIcon}
                 <span className={'font-medium whitespace-nowrap	ml-2'}>{menu.title}</span>
+                {menu.badge && (
+                  <span className="ml-auto bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                    {menu.badge}
+                  </span>
+                )}
               </TypographyComp>
             )
           }

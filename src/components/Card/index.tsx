@@ -392,7 +392,7 @@ function CardComponent({
             {cardTitle}
           </h3>
           <p className={`text-sm m-0 ${variantStyles.descriptionColor} antialiased subpixel-antialiased`}>
-            {cardDescription}
+          {cardDescription}
           </p>
         </div>
       )}
