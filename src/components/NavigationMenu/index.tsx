@@ -129,7 +129,7 @@ const defaultItems: NavigationMenuItemType[] = [
 
 // Background color utility functions
 const getBackgroundClasses = (
-  backgroundColor: NavigationMenuProps['backgroundColor'] = 'default',
+  backgroundColor: NavigationMenuProps['backgroundColor'] = 'white',
   backgroundIntensity: NavigationMenuProps['backgroundIntensity'] = '500',
   customBgColor?: string
 ): string => {
@@ -258,7 +258,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
   onItemClick,
   showIcons = true,
   showBadges = true,
-  backgroundColor = 'default',
+  backgroundColor = 'white',
   backgroundIntensity = '500',
   customBgColor,
   variant = 'default',

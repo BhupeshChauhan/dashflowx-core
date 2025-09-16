@@ -36,7 +36,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: {},
+  args: {
+    backgroundColor: 'white',
+    showIcons: true,
+    showBadges: true,
+  },
 };
 
 export const WithCustomItems: Story = {
@@ -233,6 +237,22 @@ export const BoldVariant: Story = {
   args: {
     backgroundColor: 'gradient-purple',
     variant: 'bold',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const DefaultWhite: Story = {
+  args: {
+    backgroundColor: 'white',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const OldDefault: Story = {
+  args: {
+    backgroundColor: 'default',
     showIcons: true,
     showBadges: true,
   },
