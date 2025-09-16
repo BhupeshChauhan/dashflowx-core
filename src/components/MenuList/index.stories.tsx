@@ -110,3 +110,44 @@ export const Two: Story = {
     showText: false
   },
 };
+
+export const WithText: Story = {
+  args: {
+    menuArrays: [
+      {
+        id: '1',
+        title: 'Dashboard',
+        path: '/admin',
+        active: true,
+        menuIcon: <ArrowRight />,
+      },
+      {
+        id: '2',
+        title: 'Applicants',
+        path: '/admin/posts',
+        active: false,
+        menuIcon: <ArrowRight />,
+      },
+      {
+        id: '3',
+        title: 'Clients',
+        path: '/admin/posts',
+        active: false,
+        menuIcon: <ArrowRight />,
+      },
+      {
+        id: '4',
+        title: 'Settings',
+        path: '/settings',
+        active: false,
+        menuIcon: <ArrowRight />,
+        badge: 'New'
+      },
+    ],
+    type: 'a',
+    library: 'react',
+    variant: 'basic',
+    showText: true,
+    showIcon: true
+  },
+};

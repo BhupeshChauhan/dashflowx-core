@@ -87,7 +87,9 @@ export const TypographyComp = React.forwardRef<HTMLElement, TypographyProps>(
         ref={ref}
         className={cn(typographyClasses, className)}
         {...props}
-      />
+      >
+        {children}
+      </Component>
     );
   }
 );
