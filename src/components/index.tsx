@@ -251,6 +251,19 @@ export {
 
 export { Progress, ProgressComp } from './Progress';
 
+export {
+  Pagination,
+  PaginationComp,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from './Pagination';
+
+export type { PaginationProps } from './Pagination';
+
 export { RadioGroup, RadioGroupComp, RadioGroupItem } from './RadioGroup';
 
 export {
