@@ -12,6 +12,22 @@ const meta: Meta<typeof NavigationMenu> = {
     showBadges: {
       control: { type: 'boolean' },
     },
+    backgroundColor: {
+      control: { type: 'select' },
+      options: ['default', 'white', 'gray', 'blue', 'green', 'red', 'yellow', 'purple', 'indigo', 'pink', 'orange', 'teal', 'cyan', 'emerald', 'lime', 'amber', 'rose', 'violet', 'fuchsia', 'sky', 'slate', 'zinc', 'neutral', 'stone', 'glass', 'gradient-blue', 'gradient-green', 'gradient-purple', 'gradient-pink', 'gradient-orange', 'gradient-teal', 'gradient-cyan', 'gradient-indigo', 'gradient-violet', 'gradient-rose', 'gradient-emerald', 'gradient-lime', 'gradient-amber', 'gradient-sky', 'gradient-slate', 'gradient-zinc', 'gradient-neutral', 'gradient-stone', 'gradient-rainbow'],
+    },
+    backgroundIntensity: {
+      control: { type: 'select' },
+      options: ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'minimal', 'bold'],
+    },
+    theme: {
+      control: { type: 'select' },
+      options: ['light', 'dark', 'primary'],
+    },
   },
 };
 
@@ -155,6 +171,68 @@ export const WithBadges: Story = {
         badge: 'New'
       }
     ],
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const WithBackgroundColor: Story = {
+  args: {
+    backgroundColor: 'blue',
+    backgroundIntensity: '500',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const GlassEffect: Story = {
+  args: {
+    backgroundColor: 'glass',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const GradientBackground: Story = {
+  args: {
+    backgroundColor: 'gradient-blue',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const RainbowGradient: Story = {
+  args: {
+    backgroundColor: 'gradient-rainbow',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const DarkTheme: Story = {
+  args: {
+    backgroundColor: 'slate',
+    backgroundIntensity: '800',
+    theme: 'dark',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const MinimalVariant: Story = {
+  args: {
+    backgroundColor: 'green',
+    backgroundIntensity: '100',
+    variant: 'minimal',
+    showIcons: true,
+    showBadges: true,
+  },
+};
+
+export const BoldVariant: Story = {
+  args: {
+    backgroundColor: 'gradient-purple',
+    variant: 'bold',
     showIcons: true,
     showBadges: true,
   },

@@ -33,6 +33,11 @@ export interface NavigationMenuProps {
   onItemClick?: (item: NavigationMenuItemType) => void;
   showIcons?: boolean;
   showBadges?: boolean;
+  backgroundColor?: 'default' | 'white' | 'gray' | 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'indigo' | 'pink' | 'orange' | 'teal' | 'cyan' | 'emerald' | 'lime' | 'amber' | 'rose' | 'violet' | 'fuchsia' | 'sky' | 'slate' | 'zinc' | 'neutral' | 'stone' | 'glass' | 'gradient-blue' | 'gradient-green' | 'gradient-purple' | 'gradient-pink' | 'gradient-orange' | 'gradient-teal' | 'gradient-cyan' | 'gradient-indigo' | 'gradient-violet' | 'gradient-rose' | 'gradient-emerald' | 'gradient-lime' | 'gradient-amber' | 'gradient-sky' | 'gradient-slate' | 'gradient-zinc' | 'gradient-neutral' | 'gradient-stone' | 'gradient-rainbow';
+  backgroundIntensity?: '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+  customBgColor?: string;
+  variant?: 'default' | 'minimal' | 'bold';
+  theme?: 'light' | 'dark' | 'primary';
 }
 
 // Default items
@@ -122,6 +127,130 @@ const defaultItems: NavigationMenuItemType[] = [
   }
 ];
 
+// Background color utility functions
+const getBackgroundClasses = (
+  backgroundColor: NavigationMenuProps['backgroundColor'] = 'default',
+  backgroundIntensity: NavigationMenuProps['backgroundIntensity'] = '500',
+  customBgColor?: string
+): string => {
+  if (customBgColor) {
+    return customBgColor;
+  }
+
+  switch (backgroundColor) {
+    case 'white':
+      return 'bg-white';
+    case 'gray':
+      return `bg-gray-${backgroundIntensity}`;
+    case 'blue':
+      return `bg-blue-${backgroundIntensity}`;
+    case 'green':
+      return `bg-green-${backgroundIntensity}`;
+    case 'red':
+      return `bg-red-${backgroundIntensity}`;
+    case 'yellow':
+      return `bg-yellow-${backgroundIntensity}`;
+    case 'purple':
+      return `bg-purple-${backgroundIntensity}`;
+    case 'indigo':
+      return `bg-indigo-${backgroundIntensity}`;
+    case 'pink':
+      return `bg-pink-${backgroundIntensity}`;
+    case 'orange':
+      return `bg-orange-${backgroundIntensity}`;
+    case 'teal':
+      return `bg-teal-${backgroundIntensity}`;
+    case 'cyan':
+      return `bg-cyan-${backgroundIntensity}`;
+    case 'emerald':
+      return `bg-emerald-${backgroundIntensity}`;
+    case 'lime':
+      return `bg-lime-${backgroundIntensity}`;
+    case 'amber':
+      return `bg-amber-${backgroundIntensity}`;
+    case 'rose':
+      return `bg-rose-${backgroundIntensity}`;
+    case 'violet':
+      return `bg-violet-${backgroundIntensity}`;
+    case 'fuchsia':
+      return `bg-fuchsia-${backgroundIntensity}`;
+    case 'sky':
+      return `bg-sky-${backgroundIntensity}`;
+    case 'slate':
+      return `bg-slate-${backgroundIntensity}`;
+    case 'zinc':
+      return `bg-zinc-${backgroundIntensity}`;
+    case 'neutral':
+      return `bg-neutral-${backgroundIntensity}`;
+    case 'stone':
+      return `bg-stone-${backgroundIntensity}`;
+    case 'glass':
+      return 'bg-white/10 backdrop-blur-md border border-white/20';
+    case 'gradient-blue':
+      return 'bg-gradient-to-r from-blue-500 to-blue-700';
+    case 'gradient-green':
+      return 'bg-gradient-to-r from-green-500 to-green-700';
+    case 'gradient-purple':
+      return 'bg-gradient-to-r from-purple-500 to-purple-700';
+    case 'gradient-pink':
+      return 'bg-gradient-to-r from-pink-500 to-pink-700';
+    case 'gradient-orange':
+      return 'bg-gradient-to-r from-orange-500 to-orange-700';
+    case 'gradient-teal':
+      return 'bg-gradient-to-r from-teal-500 to-teal-700';
+    case 'gradient-cyan':
+      return 'bg-gradient-to-r from-cyan-500 to-cyan-700';
+    case 'gradient-indigo':
+      return 'bg-gradient-to-r from-indigo-500 to-indigo-700';
+    case 'gradient-violet':
+      return 'bg-gradient-to-r from-violet-500 to-violet-700';
+    case 'gradient-rose':
+      return 'bg-gradient-to-r from-rose-500 to-rose-700';
+    case 'gradient-emerald':
+      return 'bg-gradient-to-r from-emerald-500 to-emerald-700';
+    case 'gradient-lime':
+      return 'bg-gradient-to-r from-lime-500 to-lime-700';
+    case 'gradient-amber':
+      return 'bg-gradient-to-r from-amber-500 to-amber-700';
+    case 'gradient-sky':
+      return 'bg-gradient-to-r from-sky-500 to-sky-700';
+    case 'gradient-slate':
+      return 'bg-gradient-to-r from-slate-500 to-slate-700';
+    case 'gradient-zinc':
+      return 'bg-gradient-to-r from-zinc-500 to-zinc-700';
+    case 'gradient-neutral':
+      return 'bg-gradient-to-r from-neutral-500 to-neutral-700';
+    case 'gradient-stone':
+      return 'bg-gradient-to-r from-stone-500 to-stone-700';
+    case 'gradient-rainbow':
+      return 'bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500';
+    default:
+      return 'bg-background';
+  }
+};
+
+const getThemeClasses = (theme: NavigationMenuProps['theme'] = 'light'): string => {
+  switch (theme) {
+    case 'dark':
+      return 'text-white';
+    case 'primary':
+      return 'text-primary';
+    default:
+      return 'text-foreground';
+  }
+};
+
+const getVariantClasses = (variant: NavigationMenuProps['variant'] = 'default'): string => {
+  switch (variant) {
+    case 'minimal':
+      return 'px-2 py-1 text-sm';
+    case 'bold':
+      return 'px-6 py-3 text-lg font-bold';
+    default:
+      return 'px-4 py-2';
+  }
+};
+
 // Dynamic NavigationMenu Component
 const NavigationMenu: React.FC<NavigationMenuProps> = ({
   items = defaultItems,
@@ -129,6 +258,11 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
   onItemClick,
   showIcons = true,
   showBadges = true,
+  backgroundColor = 'default',
+  backgroundIntensity = '500',
+  customBgColor,
+  variant = 'default',
+  theme = 'light',
 }) => {
   const handleItemClick = (item: NavigationMenuItemType) => {
     if (item.disabled) return;
@@ -205,8 +339,12 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
     return null;
   };
 
+  const backgroundClasses = getBackgroundClasses(backgroundColor, backgroundIntensity, customBgColor);
+  const themeClasses = getThemeClasses(theme);
+  const variantClasses = getVariantClasses(variant);
+
   return (
-    <NavigationMenuComp className={className}>
+    <NavigationMenuComp className={cn(backgroundClasses, themeClasses, variantClasses, className)}>
       <NavigationMenuList>
         {items.map(renderMenuItem)}
       </NavigationMenuList>
