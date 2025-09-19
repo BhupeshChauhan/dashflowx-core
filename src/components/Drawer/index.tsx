@@ -296,44 +296,48 @@ const Drawer: React.FC<DrawerProps> = React.memo(({
     return actionsElement;
   }, [footer, actionsElement]);
 
-  if (!isOpen) {
-    return triggerElement;
-  }
-
   return (
     <>
-      {/* Overlay */}
-      <div
-        className={cn(
-          'fixed inset-0 z-40 bg-black/50 transition-opacity',
-          overlayClassName
-        )}
-        onClick={handleOverlayClick}
-      />
+      {/* Trigger */}
+      {triggerElement}
       
-      {/* Drawer */}
-      <div
-        className={cn(
-          'fixed z-50 bg-white shadow-xl transition-transform duration-300 ease-in-out',
-          positionConfig.container,
-          sizeClass,
-          transformClass,
-          className
-        )}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="drawer-title"
-      >
-        <div className={cn('flex flex-col h-full p-6', containerClassName)}>
-          {headerElement}
+      {/* Drawer - only render when open */}
+      {isOpen && (
+        <>
+          {/* Overlay */}
+          <div
+            className={cn(
+              'fixed inset-0 z-40 bg-black/50 transition-opacity',
+              overlayClassName
+            )}
+            onClick={handleOverlayClick}
+          />
           
-          <div className="flex-1 overflow-y-auto py-4">
-            {children}
+          {/* Drawer */}
+          <div
+            className={cn(
+              'fixed z-50 bg-white shadow-xl transition-transform duration-300 ease-in-out',
+              positionConfig.container,
+              sizeClass,
+              transformClass,
+              className
+            )}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="drawer-title"
+          >
+            <div className={cn('flex flex-col h-full p-6', containerClassName)}>
+              {headerElement}
+              
+              <div className="flex-1 overflow-y-auto py-4">
+                {children}
+              </div>
+              
+              {footerElement}
+            </div>
           </div>
-          
-          {footerElement}
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 });
