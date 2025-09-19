@@ -1,4 +1,8 @@
-import { cn } from '@/lib/utils';
+// Simple utility function to avoid external dependencies
+function cn(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+
 import { PopoverComp, PopoverContent, PopoverTrigger } from './PopoverComp';
 
 interface iPopover {
@@ -9,6 +13,7 @@ interface iPopover {
   align?: string;
   sideOffset?: number;
 }
+
 function Popover({
   popoverTrigger,
   popoverContent,
