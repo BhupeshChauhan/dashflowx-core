@@ -148,6 +148,11 @@ export {
 } from './Dialog';
 
 export {
+  Drawer,
+  DrawerComp,
+} from './Drawer';
+
+export {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuComp,
