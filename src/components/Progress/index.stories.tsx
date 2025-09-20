@@ -39,6 +39,10 @@ const meta: Meta<typeof Progress> = {
       control: 'boolean',
       description: 'Whether to show animation',
     },
+    striped: {
+      control: 'boolean',
+      description: 'Whether to show striped pattern',
+    },
   },
 };
 
@@ -124,7 +128,7 @@ export const LargeSize: Story = {
 
 export const Animated: Story = {
   args: {
-    progress: 50,
+    progress: 75,
     className: 'w-[400px]',
     animated: true,
     showLabel: true,
@@ -132,12 +136,50 @@ export const Animated: Story = {
   },
 };
 
-export const MarkdocCompatible: Story = {
+export const Striped: Story = {
   args: {
-    progress: 75,
+    progress: 60,
     className: 'w-[400px]',
-    variant: 'success',
+    striped: true,
     showLabel: true,
-    label: 'Markdoc Compatible',
+    label: 'Processing',
+  },
+};
+
+export const AnimatedStriped: Story = {
+  args: {
+    progress: 85,
+    className: 'w-[400px]',
+    animated: true,
+    striped: true,
+    showLabel: true,
+    label: 'Uploading...',
+  },
+};
+
+export const ClampingTest: Story = {
+  args: {
+    progress: 150, // Should clamp to 100
+    className: 'w-[400px]',
+    showLabel: true,
+    label: 'Over 100% (Clamped)',
+  },
+};
+
+export const NegativeProgress: Story = {
+  args: {
+    progress: -25, // Should clamp to 0
+    className: 'w-[400px]',
+    showLabel: true,
+    label: 'Negative (Clamped to 0)',
+  },
+};
+
+export const StringProgress: Story = {
+  args: {
+    progress: "75.5" as any, // String that should be parsed
+    className: 'w-[400px]',
+    showLabel: true,
+    label: 'String Progress',
   },
 };

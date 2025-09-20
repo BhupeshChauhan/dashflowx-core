@@ -7,13 +7,14 @@ function cn(...classes: (string | undefined | null | false)[]): string {
 }
 
 interface iProgress {
-  progress: number;
+  progress: number | string;
   className?: string;
   variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
   size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
   label?: string;
   animated?: boolean;
+  striped?: boolean;
 }
 
 function Progress({
@@ -24,24 +25,35 @@ function Progress({
   showLabel = false,
   label,
   animated = false,
+  striped = false,
 }: iProgress) {
   // Ensure progress is between 0 and 100
-  const clampedProgress = Math.min(Math.max(progress, 0), 100);
+  // Handle edge cases: null, undefined, NaN, negative numbers, strings
+  const parseProgress = (value: number | string): number => {
+    if (typeof value === 'string') {
+      const parsed = parseFloat(value);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    return typeof value === 'number' && !isNaN(value) ? value : 0;
+  };
+  
+  const safeProgress = parseProgress(progress);
+  const clampedProgress = Math.min(Math.max(safeProgress, 0), 100);
 
   // Get variant classes
   const getVariantClasses = () => {
     switch (variant) {
       case 'success':
-        return 'bg-green-500';
+        return 'bg-gradient-to-r from-green-500 to-green-600';
       case 'warning':
-        return 'bg-yellow-500';
+        return 'bg-gradient-to-r from-yellow-500 to-yellow-600';
       case 'error':
-        return 'bg-red-500';
+        return 'bg-gradient-to-r from-red-500 to-red-600';
       case 'info':
-        return 'bg-blue-500';
+        return 'bg-gradient-to-r from-blue-500 to-blue-600';
       case 'default':
       default:
-        return 'bg-gray-500';
+        return 'bg-gradient-to-r from-gray-500 to-gray-600';
     }
   };
 
@@ -75,6 +87,17 @@ function Progress({
     }
   };
 
+  // Get animation classes
+  const getAnimationClasses = () => {
+    if (!animated) return '';
+    
+    if (striped) {
+      return 'animate-pulse';
+    }
+    
+    return 'animate-bounce';
+  };
+
   return (
     <div className={cn('w-full', className)}>
       {/* Progress Label */}
@@ -83,7 +106,7 @@ function Progress({
           <span className="text-sm font-medium text-gray-700">
             {label || 'Progress'}
           </span>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-500 font-mono">
             {clampedProgress}%
           </span>
         </div>
@@ -92,22 +115,51 @@ function Progress({
       {/* Progress Bar */}
       <div
         className={cn(
-          'relative w-full overflow-hidden rounded-full',
+          'relative w-full overflow-hidden rounded-full shadow-inner border border-gray-300',
           getSizeClasses(),
           getBackgroundClasses()
         )}
       >
+        {/* Progress Fill */}
         <div
           className={cn(
-            'h-full transition-all duration-300 ease-in-out',
+            'h-full transition-all duration-700 ease-out relative',
             getVariantClasses(),
-            animated && 'animate-pulse'
+            getAnimationClasses()
           )}
           style={{
             width: `${clampedProgress}%`,
+            transition: 'width 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
-        />
+        >
+          {/* Shine effect overlay */}
+          {animated && (
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-pulse" />
+          )}
+          
+          {/* Striped pattern for striped variant */}
+          {striped && (
+            <div 
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px)',
+                backgroundSize: '20px 20px',
+                animation: 'stripes 1s linear infinite',
+              }}
+            />
+          )}
+        </div>
       </div>
+
+      {/* Custom CSS for stripes animation */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes stripes {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
+          }
+        `
+      }} />
     </div>
   );
 }
