@@ -214,8 +214,9 @@ function Sonner({
 }
 
 
-// Export components
+// Export components and utilities
 export { Sonner, ToastContainer, ToastItem };
+export { toast, createIsolatedToastState, clearAllToasts } from './toastUtils';
 
 // Legacy exports for compatibility
 export const SonnerComp = Sonner;
