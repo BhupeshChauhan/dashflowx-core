@@ -27,8 +27,7 @@ function Progress({
   animated = false,
   striped = false,
 }: iProgress) {
-  // Ensure progress is between 0 and 100
-  // Handle edge cases: null, undefined, NaN, negative numbers, strings
+  // Parse and clamp progress value
   const parseProgress = (value: number | string): number => {
     if (typeof value === 'string') {
       const parsed = parseFloat(value);
@@ -38,68 +37,52 @@ function Progress({
   };
   
   const safeProgress = parseProgress(progress);
-  const clampedProgress = Math.min(Math.max(safeProgress, 0), 100);
+  const progressWidth = Math.min(Math.max(safeProgress, 0), 100);
 
-  // Get variant classes
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'success':
-        return 'bg-gradient-to-r from-green-500 to-green-600';
-      case 'warning':
-        return 'bg-gradient-to-r from-yellow-500 to-yellow-600';
-      case 'error':
-        return 'bg-gradient-to-r from-red-500 to-red-600';
-      case 'info':
-        return 'bg-gradient-to-r from-blue-500 to-blue-600';
-      case 'default':
-      default:
-        return 'bg-gradient-to-r from-gray-500 to-gray-600';
-    }
+  // Size classes - matching the working example
+  const sizeClasses = {
+    sm: 'h-1',
+    md: 'h-2.5', 
+    lg: 'h-4'
   };
 
-  // Get size classes
-  const getSizeClasses = () => {
-    switch (size) {
-      case 'sm':
-        return 'h-2';
-      case 'lg':
-        return 'h-6';
-      case 'md':
-      default:
-        return 'h-4';
-    }
+  // Variant classes - simplified and reliable
+  const variantClasses = {
+    default: 'bg-blue-600',
+    success: 'bg-green-600',
+    warning: 'bg-yellow-500',
+    error: 'bg-red-600',
+    info: 'bg-blue-500'
   };
 
-  // Get background variant classes
-  const getBackgroundClasses = () => {
-    switch (variant) {
-      case 'success':
-        return 'bg-green-100';
-      case 'warning':
-        return 'bg-yellow-100';
-      case 'error':
-        return 'bg-red-100';
-      case 'info':
-        return 'bg-blue-100';
-      case 'default':
-      default:
-        return 'bg-gray-200';
-    }
+  // Background classes
+  const backgroundClasses = {
+    default: 'bg-gray-200',
+    success: 'bg-green-100',
+    warning: 'bg-yellow-100',
+    error: 'bg-red-100',
+    info: 'bg-blue-100'
   };
 
-  // Get animation classes
-  const getAnimationClasses = () => {
-    if (!animated) return '';
-    
-    if (striped) {
-      return 'animate-pulse';
-    }
-    
-    return 'animate-bounce';
-  };
+  // Container classes
+  const containerClasses = cn(
+    'w-full rounded-full overflow-hidden',
+    backgroundClasses[variant],
+    sizeClasses[size],
+    className
+  );
+
+  // Progress bar classes
+  const progressClasses = cn(
+    'rounded-full transition-all duration-300 ease-in-out',
+    variantClasses[variant],
+    sizeClasses[size],
+    animated && 'animate-pulse',
+    striped && 'bg-stripes'
+  );
 
   return (
-    <div className={cn('w-full', className)}>
+    <div className="w-full">
       {/* Progress Label */}
       {showLabel && (
         <div className="flex justify-between items-center mb-2">
@@ -107,59 +90,49 @@ function Progress({
             {label || 'Progress'}
           </span>
           <span className="text-sm text-gray-500 font-mono">
-            {clampedProgress}%
+            {progressWidth}%
           </span>
         </div>
       )}
 
       {/* Progress Bar */}
       <div
-        className={cn(
-          'relative w-full overflow-hidden rounded-full shadow-inner border border-gray-300',
-          getSizeClasses(),
-          getBackgroundClasses()
-        )}
+        className={containerClasses}
+        role="progressbar"
+        aria-valuenow={progressWidth}
+        aria-valuemin={0}
+        aria-valuemax={100}
       >
-        {/* Progress Fill */}
         <div
-          className={cn(
-            'h-full transition-all duration-700 ease-out relative',
-            getVariantClasses(),
-            getAnimationClasses()
-          )}
+          className={progressClasses}
           style={{
-            width: `${clampedProgress}%`,
-            transition: 'width 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+            width: `${progressWidth}%`,
           }}
-        >
-          {/* Shine effect overlay */}
-          {animated && (
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-pulse" />
-          )}
-          
-          {/* Striped pattern for striped variant */}
-          {striped && (
-            <div 
-              className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px)',
-                backgroundSize: '20px 20px',
-                animation: 'stripes 1s linear infinite',
-              }}
-            />
-          )}
-        </div>
+        />
       </div>
 
-      {/* Custom CSS for stripes animation */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes stripes {
-            0% { background-position: 0 0; }
-            100% { background-position: 20px 0; }
-          }
-        `
-      }} />
+      {/* Striped pattern CSS */}
+      {striped && (
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .bg-stripes {
+              background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.3) 10px,
+                rgba(255,255,255,0.3) 20px
+              );
+              background-size: 20px 20px;
+              animation: stripes 1s linear infinite;
+            }
+            @keyframes stripes {
+              0% { background-position: 0 0; }
+              100% { background-position: 20px 0; }
+            }
+          `
+        }} />
+      )}
     </div>
   );
 }

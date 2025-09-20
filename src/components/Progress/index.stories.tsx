@@ -57,6 +57,15 @@ export const Basic: Story = {
   },
 };
 
+export const MarkdocStyle: Story = {
+  args: {
+    progress: 75,
+    className: 'w-[400px]',
+    showLabel: true,
+    label: 'Markdoc Compatible',
+  },
+};
+
 export const WithLabel: Story = {
   args: {
     progress: 75,
@@ -181,5 +190,15 @@ export const StringProgress: Story = {
     className: 'w-[400px]',
     showLabel: true,
     label: 'String Progress',
+  },
+};
+
+export const SimplifiedExample: Story = {
+  args: {
+    progress: 85,
+    className: 'w-[400px]',
+    variant: 'success',
+    showLabel: true,
+    label: 'Simplified Implementation',
   },
 };
