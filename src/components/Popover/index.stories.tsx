@@ -43,8 +43,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    popoverTrigger: <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Open Popover</button>,
-    popoverContent: <div className="space-y-2"><p className="font-semibold">Popover Title</p><p>This is the popover content with default white background.</p></div>,
+    popoverTrigger: <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Hover for Popover</button>,
+    popoverContent: <div className="space-y-2"><p className="font-semibold">Popover Title</p><p>This is a standalone HTML/CSS popover with white background. Hover over the trigger to see it!</p></div>,
   },
 };
 
@@ -56,6 +56,7 @@ export const WithCustomContent: Story = {
         <h3 className="font-bold text-lg">Custom Content</h3>
         <p className="text-sm text-gray-600">
           This popover has custom JSX content with a white background.
+          No external dependencies, pure HTML/CSS implementation.
         </p>
         <div className="flex gap-2">
           <button className="px-3 py-1 bg-blue-500 text-white rounded text-sm">
@@ -81,7 +82,8 @@ export const LongContent: Story = {
           multiple paragraphs and complex layouts with the default white background.
         </p>
         <p className="text-sm">
-          The white background ensures good readability and contrast for all content types.
+          The standalone implementation ensures good readability and contrast for all content types.
+          No ES module dependencies means it works perfectly in Markdoc context.
         </p>
         <div className="border-t pt-2">
           <p className="text-xs text-gray-500">
@@ -117,6 +119,24 @@ export const WithForm: Story = {
             Submit
           </button>
         </form>
+      </div>
+    ),
+  },
+};
+
+export const MarkdocCompatible: Story = {
+  args: {
+    popoverTrigger: <span className="px-3 py-1 bg-gray-100 text-gray-800 rounded cursor-pointer hover:bg-gray-200">Markdoc Compatible</span>,
+    popoverContent: (
+      <div className="space-y-2">
+        <h4 className="font-semibold text-green-600">✅ Markdoc Compatible</h4>
+        <ul className="text-sm space-y-1">
+          <li>• No ES module dependencies</li>
+          <li>• Pure HTML/CSS implementation</li>
+          <li>• Works in CommonJS context</li>
+          <li>• Default white background</li>
+          <li>• Hover-based activation</li>
+        </ul>
       </div>
     ),
   },
