@@ -302,7 +302,7 @@ export { Skeleton, SkeletonComp } from './Skeleton';
 
 export { Slider, SliderComp } from './Slider';
 
-export { Sonner, SonnerComp, clearAllToasts } from './Sonner';
+export { Sonner, SonnerComp, clearAllToasts, createIsolatedToastState, toast as sonnerToast } from './Sonner';
 
 export { Switch, SwitchComp } from './Switch';
 
