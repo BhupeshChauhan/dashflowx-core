@@ -1,6 +1,6 @@
 {
   "name": "@dashflowx/core",
-  "version": "2.0.111",
+  "version": "2.0.112",
   "type": "module",
   "files": [
     "dist"
