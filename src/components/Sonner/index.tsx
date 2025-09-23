@@ -34,13 +34,13 @@ const toasts: Array<ToastProps & { id: number }> = [];
 const toastListeners: Array<(toasts: Array<ToastProps & { id: number }>) => void> = [];
 
 // Clear all toasts function
-export function clearAllToasts() {
+function clearAllToasts() {
   toasts.length = 0;
   notifyListeners();
 }
 
 // Create isolated toast state for each instance
-export function createIsolatedToastState() {
+function createIsolatedToastState() {
   let instanceToastId = 0;
   const instanceToasts: Array<ToastProps & { id: number }> = [];
   const instanceListeners: Array<(toasts: Array<ToastProps & { id: number }>) => void> = [];
@@ -95,7 +95,7 @@ export function createIsolatedToastState() {
 }
 
 // Toast functions
-export const toast = {
+const toast = {
   success: (title: string, options?: Partial<ToastProps>) => 
     addToast({ ...options, title, type: 'success' }),
   error: (title: string, options?: Partial<ToastProps>) => 
@@ -343,8 +343,8 @@ function Sonner({
 }
 
 
-// Export components
-export { Sonner, ToastContainer, ToastItem };
+// Export components and utilities
+export { Sonner, ToastContainer, ToastItem, toast, createIsolatedToastState, clearAllToasts };
 
 // Legacy exports for compatibility
 export const SonnerComp = Sonner;
