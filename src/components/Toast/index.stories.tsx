@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Toast } from '.';
+import { Toast, ToastProviderWrapper } from '.';
 
 const meta: Meta<typeof Toast> = {
   title: 'Element/Toast',
@@ -35,11 +35,6 @@ const meta: Meta<typeof Toast> = {
       control: 'boolean',
       description: 'Whether to auto-dismiss the toast',
     },
-    position: {
-      control: 'select',
-      options: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'],
-      description: 'Toast position',
-    },
   },
 };
 
@@ -55,6 +50,11 @@ export const Basic: Story = {
     size: 'md',
     children: 'Show Basic Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const Success: Story = {
@@ -65,6 +65,11 @@ export const Success: Story = {
     size: 'md',
     children: 'Show Success Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const Error: Story = {
@@ -75,6 +80,11 @@ export const Error: Story = {
     size: 'md',
     children: 'Show Error Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const Warning: Story = {
@@ -85,6 +95,11 @@ export const Warning: Story = {
     size: 'md',
     children: 'Show Warning Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const Info: Story = {
@@ -95,6 +110,11 @@ export const Info: Story = {
     size: 'md',
     children: 'Show Info Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const WithAction: Story = {
@@ -110,6 +130,11 @@ export const WithAction: Story = {
     },
     children: 'Show Action Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const SmallSize: Story = {
@@ -120,6 +145,11 @@ export const SmallSize: Story = {
     size: 'sm',
     children: 'Show Small Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const LargeSize: Story = {
@@ -130,6 +160,11 @@ export const LargeSize: Story = {
     size: 'lg',
     children: 'Show Large Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };
 
 export const LongDuration: Story = {
@@ -154,27 +189,7 @@ export const NoAutoDismiss: Story = {
   },
 };
 
-export const TopLeft: Story = {
-  args: {
-    title: 'Top Left',
-    description: 'This toast appears in the top-left corner.',
-    variant: 'default',
-    size: 'md',
-    position: 'top-left',
-    children: 'Show Top Left Toast',
-  },
-};
 
-export const BottomCenter: Story = {
-  args: {
-    title: 'Bottom Center',
-    description: 'This toast appears in the bottom-center.',
-    variant: 'success',
-    size: 'md',
-    position: 'bottom-center',
-    children: 'Show Bottom Center Toast',
-  },
-};
 
 export const CustomStyling: Story = {
   args: {

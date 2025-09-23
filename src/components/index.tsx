@@ -321,6 +321,7 @@ export {
   ToastComp,
   ToastDescription,
   ToastProvider,
+  ToastProviderWrapper,
   ToastTitle,
   ToastViewport,
   type ToastActionElement,

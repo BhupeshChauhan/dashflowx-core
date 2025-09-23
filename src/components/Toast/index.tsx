@@ -36,8 +36,6 @@ export interface DynamicToastProps {
     variant?: 'default' | 'destructive';
   };
   
-  // Positioning
-  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
   
   // Callbacks
   onOpenChange?: (open: boolean) => void;
@@ -73,25 +71,6 @@ const getSizeClasses = (size: DynamicToastProps['size']) => {
   }
 };
 
-// Position Classes
-const getPositionClasses = (position: DynamicToastProps['position']) => {
-  switch (position) {
-    case 'top-left':
-      return 'top-4 left-4';
-    case 'top-center':
-      return 'top-4 left-1/2 transform -translate-x-1/2';
-    case 'top-right':
-      return 'top-4 right-4';
-    case 'bottom-left':
-      return 'bottom-4 left-4';
-    case 'bottom-center':
-      return 'bottom-4 left-1/2 transform -translate-x-1/2';
-    case 'bottom-right':
-      return 'bottom-4 right-4';
-    default:
-      return 'top-4 right-4';
-  }
-};
 
 // Dynamic Toast Component
 const Toast = React.memo<DynamicToastProps>(({
@@ -104,7 +83,6 @@ const Toast = React.memo<DynamicToastProps>(({
   duration = 5000,
   autoDismiss = true,
   action,
-  position = 'top-right',
   onOpenChange,
 }) => {
   const { toast } = useToast();
@@ -132,21 +110,15 @@ const Toast = React.memo<DynamicToastProps>(({
 
   const variantClasses = React.useMemo(() => getVariantClasses(variant), [variant]);
   const sizeClasses = React.useMemo(() => getSizeClasses(size), [size]);
-  const positionClasses = React.useMemo(() => getPositionClasses(position), [position]);
 
   return (
-    <div className={`fixed z-50 ${positionClasses}`}>
-      <ToastProvider>
-        <ToastViewport />
-        <Button
-          variant="outline"
-          onClick={handleToast}
-          className={`${variantClasses} ${sizeClasses} ${className}`}
-        >
-          {children || 'Show Toast'}
-        </Button>
-      </ToastProvider>
-    </div>
+    <Button
+      variant="outline"
+      onClick={handleToast}
+      className={`${variantClasses} ${sizeClasses} ${className}`}
+    >
+      {children || 'Show Toast'}
+    </Button>
   );
 });
 
@@ -164,3 +136,6 @@ export {
   type ToastActionElement,
   type BaseToastProps as ToastProps,
 };
+
+// Export ToastProviderWrapper for easier imports
+export { ToastProviderWrapper } from './ToastProviderWrapper';
