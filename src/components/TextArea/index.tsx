@@ -1,6 +1,13 @@
 import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
-import { ComponentProps, forwardRef } from 'react';
+import { ComponentProps, forwardRef, memo } from 'react';
+import { 
+  BaseInputProps, 
+  InputContainer, 
+  SuccessErrorMessage, 
+  PrefixSuffixWrapper, 
+  FormLabel 
+} from '../Input/shared';
 
 const TextAreaStyles = cva([
   'transition-all',
@@ -12,25 +19,17 @@ const TextAreaStyles = cva([
   'dark:text-white',
 ]);
 
-interface iTextAreaProps {
-  fullwidth?: boolean;
-  disabled?: boolean;
-  prefixElement?: JSX.Element;
-  sufixElement?: JSX.Element;
-  sucessMsg?: String;
-  errorMsg?: String;
+interface iTextAreaProps extends BaseInputProps {
   multiLine?: boolean;
   rows?: number;
   maxRow?: number;
-  lable?: string;
-  lableClassName?: string;
 }
 
 type TextAreaProps = ComponentProps<'textarea'> &
   VariantProps<typeof TextAreaStyles> &
   iTextAreaProps;
 
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = memo(forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
     {
       className,
@@ -44,53 +43,72 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       lable,
       lableClassName,
       required,
+      formMode = false,
       ...props
     },
     ref
   ) => {
+    const baseContainerClasses = 'flex items-start justify-center border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2';
+    
+    const textareaElement = (
+      <textarea
+        ref={ref}
+        className={cn(TextAreaStyles({ className }))}
+        {...props}
+        disabled={disabled}
+        placeholder={placeholder}
+      />
+    );
+
+    const containerContent = (
+      <PrefixSuffixWrapper
+        prefixElement={prefixElement}
+        sufixElement={sufixElement}
+        prefixElementClassName="w-4 h-4 mt-2"
+        sufixElementClassName="w-4 h-4 mt-2"
+      >
+        {textareaElement}
+      </PrefixSuffixWrapper>
+    );
+
+    // Form mode: render textarea with container but without label/error messages for use with FormControl
+    if (formMode) {
+      return (
+        <div className={cn('mb-2', className)}>
+          <InputContainer
+            baseClasses={baseContainerClasses}
+            sucessMsg={sucessMsg}
+            errorMsg={errorMsg}
+            fullwidth={fullwidth}
+            customClasses={fullwidth ? ' w-full' : 'w-56'}
+          >
+            {containerContent}
+          </InputContainer>
+          <SuccessErrorMessage sucessMsg={sucessMsg} errorMsg={errorMsg} />
+        </div>
+      );
+    }
+
+    // Default mode: render complete textarea with label and container
     return (
       <>
-        <label
-          className={cn(
-            'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
-            lable ? '' : 'hidden',
-            lableClassName
-          )}
+        <FormLabel
+          lable={lable}
+          lableClassName={lableClassName}
+          required={required}
           htmlFor="textAreaElement"
+        />
+        <InputContainer
+          baseClasses={baseContainerClasses}
+          sucessMsg={sucessMsg}
+          errorMsg={errorMsg}
+          fullwidth={fullwidth}
+          customClasses={fullwidth ? ' w-full' : 'w-56'}
         >
-          {' '}
-          {lable} {required && <span className='text-red-500'>*</span>}
-        </label>
-        <div
-          className={`flex items-start justify-center border border-gray-200 p-2 rounded-lg focus-within:border-primary-500 focus-within:border-2 + 
-        ${sucessMsg ? 'border-green-500 focus-within:border-green-400 focus-within:border-2' : ''} 
-        ${errorMsg ? 'border-red-500 focus-within:border-red-400 focus-within:border-2' : ''} 
-        ${fullwidth ? ' w-full' : 'w-56'}`}
-        >
-          <div className={`w-4 h-4 mt-2 ${prefixElement ? '' : 'hidden'}`}>
-            {prefixElement}
-          </div>
-          <textarea
-            ref={ref}
-            id="textAreaElement"
-            className={cn(TextAreaStyles({ className }))}
-            {...props}
-            disabled={disabled}
-            placeholder={placeholder}
-          />
-          <div className={`w-4 h-4 mt-2 ${sufixElement ? '' : 'hidden'}`}>
-            {sufixElement}
-          </div>
-        </div>
-        <p
-          className={`mt-2 text-sm text-green-500 ${sucessMsg ? '' : 'hidden'}`}
-        >
-          {sucessMsg}
-        </p>
-        <p className={`mt-2 text-sm text-red-500 ${errorMsg ? '' : 'hidden'}`}>
-          {errorMsg}
-        </p>
+          {containerContent}
+        </InputContainer>
+        <SuccessErrorMessage sucessMsg={sucessMsg} errorMsg={errorMsg} />
       </>
     );
   }
-);
+));

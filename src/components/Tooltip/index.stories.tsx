@@ -26,3 +26,33 @@ export const Right: Story = {
     side: 'right',
   },
 };
+
+export const WhiteBackground: Story = {
+  args: {
+    tooltipTrigger: <Button variant="outline">White Background</Button>,
+    tooltipContent: <p>This tooltip has a default white background</p>,
+  },
+};
+
+export const CustomStyling: Story = {
+  args: {
+    tooltipTrigger: <Button variant="outline">Custom Styled</Button>,
+    tooltipContent: <p>Custom styled tooltip</p>,
+    className: 'bg-blue-50 text-blue-800 border-blue-200',
+  },
+};
+
+export const AllSides: Story = {
+  args: {
+    tooltipTrigger: <Button variant="outline">All Sides</Button>,
+    tooltipContent: <p>Tooltip appears on different sides</p>,
+  },
+  render: (args) => (
+    <div className="flex gap-4 p-8">
+      <Tooltip {...args} side="top" />
+      <Tooltip {...args} side="right" />
+      <Tooltip {...args} side="bottom" />
+      <Tooltip {...args} side="left" />
+    </div>
+  ),
+};
