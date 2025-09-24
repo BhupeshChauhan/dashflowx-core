@@ -35,6 +35,16 @@ const meta: Meta<typeof Toast> = {
       control: 'boolean',
       description: 'Whether to auto-dismiss the toast',
     },
+    bgColor: {
+      control: 'select',
+      options: ['white', 'gray', 'red', 'green', 'blue', 'yellow', 'purple', 'pink', 'indigo', 'teal', 'orange', 'cyan', 'lime', 'emerald', 'violet', 'fuchsia', 'rose', 'sky', 'amber', 'stone', 'neutral', 'zinc', 'slate'],
+      description: 'Background color for the toast',
+    },
+    bgIntensity: {
+      control: 'select',
+      options: ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      description: 'Background color intensity',
+    },
   },
 };
 
@@ -200,4 +210,77 @@ export const CustomStyling: Story = {
     className: 'border-2 border-purple-300 bg-purple-50 text-purple-800',
     children: 'Show Custom Styled Toast',
   },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
+};
+
+export const PurpleBackground: Story = {
+  args: {
+    title: 'Purple Toast',
+    description: 'This toast has a purple background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'purple',
+    bgIntensity: '50',
+    children: 'Show Purple Toast',
+  },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
+};
+
+export const TealBackground: Story = {
+  args: {
+    title: 'Teal Toast',
+    description: 'This toast has a teal background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'teal',
+    bgIntensity: '100',
+    children: 'Show Teal Toast',
+  },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
+};
+
+export const OrangeBackground: Story = {
+  args: {
+    title: 'Orange Toast',
+    description: 'This toast has an orange background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'orange',
+    bgIntensity: '200',
+    children: 'Show Orange Toast',
+  },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
+};
+
+export const PinkBackground: Story = {
+  args: {
+    title: 'Pink Toast',
+    description: 'This toast has a pink background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'pink',
+    bgIntensity: '50',
+    children: 'Show Pink Toast',
+  },
+  render: (args) => (
+    <ToastProviderWrapper>
+      <Toast {...args} />
+    </ToastProviderWrapper>
+  ),
 };

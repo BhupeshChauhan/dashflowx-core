@@ -12,9 +12,9 @@ export const ToastProviderWrapper: React.FC<ToastProviderWrapperProps> = ({ chil
   return (
     <ToastProvider>
       {children}
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, title, description, action, className, ...props }) {
         return (
-          <ToastComp key={id} {...props}>
+          <ToastComp key={id} {...props} className={className}>
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (

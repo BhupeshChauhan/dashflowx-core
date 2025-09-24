@@ -259,6 +259,109 @@ export const ToastCustomStylingExamples = () => {
   );
 };
 
+// Toast with Background Color Examples
+export const ToastBackgroundColorExamples = () => {
+  return (
+    <ToastProviderWrapper>
+      <div className="space-y-4 p-6">
+        <h2 className="text-2xl font-bold mb-4">Toast with Background Color Examples</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Purple Background */}
+          <Toast
+            title="Purple Background"
+            description="This toast has a purple background."
+            variant="default"
+            bgColor="purple"
+            bgIntensity="50"
+            children="Show Purple Toast"
+          />
+
+          {/* Teal Background */}
+          <Toast
+            title="Teal Background"
+            description="This toast has a teal background."
+            variant="default"
+            bgColor="teal"
+            bgIntensity="100"
+            children="Show Teal Toast"
+          />
+
+          {/* Orange Background */}
+          <Toast
+            title="Orange Background"
+            description="This toast has an orange background."
+            variant="default"
+            bgColor="orange"
+            bgIntensity="200"
+            children="Show Orange Toast"
+          />
+
+          {/* Pink Background */}
+          <Toast
+            title="Pink Background"
+            description="This toast has a pink background."
+            variant="default"
+            bgColor="pink"
+            bgIntensity="50"
+            children="Show Pink Toast"
+          />
+
+          {/* Indigo Background */}
+          <Toast
+            title="Indigo Background"
+            description="This toast has an indigo background."
+            variant="default"
+            bgColor="indigo"
+            bgIntensity="100"
+            children="Show Indigo Toast"
+          />
+
+          {/* Emerald Background */}
+          <Toast
+            title="Emerald Background"
+            description="This toast has an emerald background."
+            variant="default"
+            bgColor="emerald"
+            bgIntensity="200"
+            children="Show Emerald Toast"
+          />
+
+          {/* Rose Background */}
+          <Toast
+            title="Rose Background"
+            description="This toast has a rose background."
+            variant="default"
+            bgColor="rose"
+            bgIntensity="50"
+            children="Show Rose Toast"
+          />
+
+          {/* Sky Background */}
+          <Toast
+            title="Sky Background"
+            description="This toast has a sky background."
+            variant="default"
+            bgColor="sky"
+            bgIntensity="100"
+            children="Show Sky Toast"
+          />
+
+          {/* Amber Background */}
+          <Toast
+            title="Amber Background"
+            description="This toast has an amber background."
+            variant="default"
+            bgColor="amber"
+            bgIntensity="200"
+            children="Show Amber Toast"
+          />
+        </div>
+      </div>
+    </ToastProviderWrapper>
+  );
+};
+
 // Interactive Toast Examples
 export const InteractiveToastExamples = () => {
   const [toastCount, setToastCount] = React.useState(0);
@@ -343,6 +446,7 @@ export const AllToastExamples = () => {
         <ToastSizeExamples />
         <ToastDurationExamples />
         <ToastCustomStylingExamples />
+        <ToastBackgroundColorExamples />
         <InteractiveToastExamples />
       </div>
     </ToastProviderWrapper>
