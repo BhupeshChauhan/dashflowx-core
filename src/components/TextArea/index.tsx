@@ -71,21 +71,21 @@ export const TextArea = memo(forwardRef<HTMLTextAreaElement, TextAreaProps>(
       </PrefixSuffixWrapper>
     );
 
-    // Form mode: render textarea with container but without label/error messages for use with FormControl
+    // Form mode: render only the textarea element for use with FormControl
     if (formMode) {
       return (
-        <div className={cn('mb-2', className)}>
-          <InputContainer
-            baseClasses={baseContainerClasses}
-            sucessMsg={sucessMsg}
-            errorMsg={errorMsg}
-            fullwidth={fullwidth}
-            customClasses={fullwidth ? ' w-full' : 'w-56'}
-          >
-            {containerContent}
-          </InputContainer>
-          <SuccessErrorMessage sucessMsg={sucessMsg} errorMsg={errorMsg} />
-        </div>
+        <textarea
+          ref={ref}
+          className={cn(
+            'flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 resize-none',
+            sucessMsg ? 'border-green-500 focus:ring-green-500' : '',
+            errorMsg ? 'border-red-500 focus:ring-red-500' : '',
+            className
+          )}
+          {...props}
+          disabled={disabled}
+          placeholder={placeholder}
+        />
       );
     }
 

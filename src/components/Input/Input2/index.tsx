@@ -77,21 +77,23 @@ export const Input2 = memo(forwardRef<HTMLInputElement, Input2Props>(
       </PrefixSuffixWrapper>
     );
 
-    // Form mode: render input with container but without label/error messages for use with FormControl
+    // Form mode: render only the input element for use with FormControl
     if (formMode) {
       return (
-        <div className={cn('mb-2', className)}>
-          <InputContainer
-            baseClasses={baseContainerClasses}
-            sucessMsg={sucessMsg}
-            errorMsg={errorMsg}
-            fullwidth={fullwidth}
-            customClasses={input2ContainerClassName}
-          >
-            {containerContent}
-          </InputContainer>
-          <SuccessErrorMessage sucessMsg={sucessMsg} errorMsg={errorMsg} />
-        </div>
+        <input
+          ref={ref}
+          type="text"
+          autoComplete="off"
+          placeholder={placeholder}
+          className={cn(
+            'flex h-10 w-full border-b-2 border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:border-b-blue-500 disabled:cursor-not-allowed disabled:opacity-50',
+            sucessMsg ? 'border-b-green-500 focus:border-b-green-500' : '',
+            errorMsg ? 'border-b-red-500 focus:border-b-red-500' : '',
+            className
+          )}
+          {...props}
+          disabled={disabled}
+        />
       );
     }
 
