@@ -49,10 +49,10 @@ export const AllSides: Story = {
   },
   render: (args) => (
     <div className="flex gap-4 p-8">
-      <Tooltip {...args} side="top" />
-      <Tooltip {...args} side="right" />
-      <Tooltip {...args} side="bottom" />
-      <Tooltip {...args} side="left" />
+      <Tooltip {...args} side="top" tooltipTrigger={<button>Top</button>} tooltipContent="Top tooltip" />
+      <Tooltip {...args} side="right" tooltipTrigger={<button>Right</button>} tooltipContent="Right tooltip" />
+      <Tooltip {...args} side="bottom" tooltipTrigger={<button>Bottom</button>} tooltipContent="Bottom tooltip" />
+      <Tooltip {...args} side="left" tooltipTrigger={<button>Left</button>} tooltipContent="Left tooltip" />
     </div>
   ),
 };

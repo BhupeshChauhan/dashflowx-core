@@ -489,7 +489,7 @@ export const ErrorHandling: Story = {
         closable: true,
       },
     ],
-    onPanelError: (panelId, error) => {
+    onPanelError: (panelId: string, error: Error) => {
       console.log(`Panel ${panelId} error:`, error);
     },
   },

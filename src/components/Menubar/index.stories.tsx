@@ -127,7 +127,7 @@ export const CustomMenus: Story = {
 
 export const InteractiveDemo: Story = {
   args: {
-    onItemClick: (menuLabel, itemLabel, item) => {
+    onItemClick: (menuLabel: string, itemLabel: string, item: any) => {
       console.log(`Clicked: ${menuLabel} > ${itemLabel}`, item);
       alert(`You clicked: ${menuLabel} > ${itemLabel}`);
     },
