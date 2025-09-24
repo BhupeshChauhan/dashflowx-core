@@ -18,6 +18,10 @@ export interface DynamicToasterProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   
+  // Background color options
+  bgColor?: 'white' | 'gray' | 'red' | 'green' | 'blue' | 'yellow' | 'purple' | 'pink' | 'indigo' | 'teal' | 'orange' | 'cyan' | 'lime' | 'emerald' | 'violet' | 'fuchsia' | 'rose' | 'sky' | 'amber' | 'stone' | 'neutral' | 'zinc' | 'slate';
+  bgIntensity?: '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+  
   // Behavior
   duration?: number;
   autoDismiss?: boolean;
@@ -51,6 +55,8 @@ const Toaster = React.memo<DynamicToasterProps>(({
   variant = 'default',
   size = 'md',
   className = '',
+  bgColor,
+  bgIntensity = '50',
   duration = 5000,
   autoDismiss = true,
   action,
@@ -60,12 +66,18 @@ const Toaster = React.memo<DynamicToasterProps>(({
   const { toast } = useToast();
 
   const handleToast = React.useCallback(() => {
+    // Generate background color classes if bgColor is provided
+    const bgColorClass = bgColor ? `bg-${bgColor}-${bgIntensity}` : '';
+    const textColorClass = bgColor ? `text-${bgColor}-${parseInt(bgIntensity) + 300}` : '';
+    const borderColorClass = bgColor ? `border-${bgColor}-${parseInt(bgIntensity) + 100}` : '';
+    
     const toastConfig = {
       title,
       description,
-      variant: (variant === 'destructive' ? 'destructive' : 'default') as 'default' | 'destructive',
+      variant: variant as 'default' | 'destructive' | 'success' | 'warning' | 'info',
       duration: autoDismiss ? duration : undefined,
       onOpenChange,
+      className: `${bgColorClass} ${textColorClass} ${borderColorClass}`.trim(),
       action: action ? (
         <ToastAction 
           altText={action.label}
@@ -78,7 +90,7 @@ const Toaster = React.memo<DynamicToasterProps>(({
     };
 
     toast(toastConfig);
-  }, [toast, title, description, variant, duration, autoDismiss, action, onOpenChange]);
+  }, [toast, title, description, variant, bgColor, bgIntensity, duration, autoDismiss, action, onOpenChange]);
 
   const getVariantClasses = React.useCallback(() => {
     switch (variant) {

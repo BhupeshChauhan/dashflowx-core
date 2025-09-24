@@ -55,6 +55,16 @@ const meta: Meta<typeof Toaster> = {
       control: 'boolean',
       description: 'Whether to show close button',
     },
+    bgColor: {
+      control: 'select',
+      options: ['white', 'gray', 'red', 'green', 'blue', 'yellow', 'purple', 'pink', 'indigo', 'teal', 'orange', 'cyan', 'lime', 'emerald', 'violet', 'fuchsia', 'rose', 'sky', 'amber', 'stone', 'neutral', 'zinc', 'slate'],
+      description: 'Background color for the toaster',
+    },
+    bgIntensity: {
+      control: 'select',
+      options: ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      description: 'Background color intensity',
+    },
   },
 };
 
@@ -188,5 +198,77 @@ export const CustomStyling: Story = {
     size: 'md',
     className: 'border-2 border-purple-300 bg-purple-50 text-purple-800',
     children: 'Show Custom Styled Toast',
+  },
+};
+
+export const PurpleBackground: Story = {
+  args: {
+    title: 'Purple Toaster',
+    description: 'This toaster has a purple background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'purple',
+    bgIntensity: '50',
+    children: 'Show Purple Toaster',
+  },
+};
+
+export const TealBackground: Story = {
+  args: {
+    title: 'Teal Toaster',
+    description: 'This toaster has a teal background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'teal',
+    bgIntensity: '100',
+    children: 'Show Teal Toaster',
+  },
+};
+
+export const OrangeBackground: Story = {
+  args: {
+    title: 'Orange Toaster',
+    description: 'This toaster has an orange background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'orange',
+    bgIntensity: '200',
+    children: 'Show Orange Toaster',
+  },
+};
+
+export const PinkBackground: Story = {
+  args: {
+    title: 'Pink Toaster',
+    description: 'This toaster has a pink background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'pink',
+    bgIntensity: '50',
+    children: 'Show Pink Toaster',
+  },
+};
+
+export const IndigoBackground: Story = {
+  args: {
+    title: 'Indigo Toaster',
+    description: 'This toaster has an indigo background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'indigo',
+    bgIntensity: '100',
+    children: 'Show Indigo Toaster',
+  },
+};
+
+export const EmeraldBackground: Story = {
+  args: {
+    title: 'Emerald Toaster',
+    description: 'This toaster has an emerald background.',
+    variant: 'default',
+    size: 'md',
+    bgColor: 'emerald',
+    bgIntensity: '200',
+    children: 'Show Emerald Toaster',
   },
 };

@@ -248,6 +248,107 @@ export const ToasterCustomStylingExamples = () => {
   );
 };
 
+// Toaster with Background Color Examples
+export const ToasterBackgroundColorExamples = () => {
+  return (
+    <div className="space-y-4 p-6">
+      <h2 className="text-2xl font-bold mb-4">Toaster with Background Color Examples</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Purple Background */}
+        <Toaster
+          title="Purple Background"
+          description="This toaster has a purple background."
+          variant="default"
+          bgColor="purple"
+          bgIntensity="50"
+          children="Show Purple Toaster"
+        />
+
+        {/* Teal Background */}
+        <Toaster
+          title="Teal Background"
+          description="This toaster has a teal background."
+          variant="default"
+          bgColor="teal"
+          bgIntensity="100"
+          children="Show Teal Toaster"
+        />
+
+        {/* Orange Background */}
+        <Toaster
+          title="Orange Background"
+          description="This toaster has an orange background."
+          variant="default"
+          bgColor="orange"
+          bgIntensity="200"
+          children="Show Orange Toaster"
+        />
+
+        {/* Pink Background */}
+        <Toaster
+          title="Pink Background"
+          description="This toaster has a pink background."
+          variant="default"
+          bgColor="pink"
+          bgIntensity="50"
+          children="Show Pink Toaster"
+        />
+
+        {/* Indigo Background */}
+        <Toaster
+          title="Indigo Background"
+          description="This toaster has an indigo background."
+          variant="default"
+          bgColor="indigo"
+          bgIntensity="100"
+          children="Show Indigo Toaster"
+        />
+
+        {/* Emerald Background */}
+        <Toaster
+          title="Emerald Background"
+          description="This toaster has an emerald background."
+          variant="default"
+          bgColor="emerald"
+          bgIntensity="200"
+          children="Show Emerald Toaster"
+        />
+
+        {/* Rose Background */}
+        <Toaster
+          title="Rose Background"
+          description="This toaster has a rose background."
+          variant="default"
+          bgColor="rose"
+          bgIntensity="50"
+          children="Show Rose Toaster"
+        />
+
+        {/* Sky Background */}
+        <Toaster
+          title="Sky Background"
+          description="This toaster has a sky background."
+          variant="default"
+          bgColor="sky"
+          bgIntensity="100"
+          children="Show Sky Toaster"
+        />
+
+        {/* Amber Background */}
+        <Toaster
+          title="Amber Background"
+          description="This toaster has an amber background."
+          variant="default"
+          bgColor="amber"
+          bgIntensity="200"
+          children="Show Amber Toaster"
+        />
+      </div>
+    </div>
+  );
+};
+
 // Toaster Visibility Examples
 export const ToasterVisibilityExamples = () => {
   return (
@@ -456,14 +557,15 @@ export const AllToasterExamples = () => {
     <div className="space-y-8 p-6">
       <h1 className="text-3xl font-bold text-center mb-8">Toaster Component Examples</h1>
       
-      <BasicToasterExamples />
-      <ToasterWithActionsExamples />
-      <ToasterSizeExamples />
-      <ToasterDurationExamples />
-      <ToasterCustomStylingExamples />
-      <ToasterVisibilityExamples />
-      <InteractiveToasterExamples />
-      <RealWorldToasterExamples />
+        <BasicToasterExamples />
+        <ToasterWithActionsExamples />
+        <ToasterSizeExamples />
+        <ToasterDurationExamples />
+        <ToasterCustomStylingExamples />
+        <ToasterBackgroundColorExamples />
+        <ToasterVisibilityExamples />
+        <InteractiveToasterExamples />
+        <RealWorldToasterExamples />
     </div>
   );
 };
